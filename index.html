@@ -659,7 +659,7 @@ details.acc .ab{padding:14px}
 .xlsb{background:#ecf8f0;border-color:#bfe3cb;color:#13693f}
 @media(max-width:420px){.cikti{flex-wrap:wrap}.cikti .cb{width:100%;padding-left:50px}.cikti .cb .btn{flex:1}}
 .klon,.fotoon{width:72px;height:72px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-size:40px;overflow:hidden;flex:none;border:2px solid var(--line)}
-.klon{border-radius:18px;background:#fff}
+.klon{border-radius:18px;background:repeating-conic-gradient(#dfe6e1 0 25%,#fff 0 50%) 0 0/14px 14px}
 .klon img{width:100%;height:100%;object-fit:contain}
 .fotoon img{width:100%;height:100%;object-fit:cover}
 .fotoalan{display:flex;gap:14px;align-items:center;margin-bottom:14px}
@@ -1233,7 +1233,7 @@ function macKart(m, opt={}){
   else if(m.durum==='hukmen') rozet = '<span class="badge hk">Hükmen</span>';
   else if(m.durum==='ertelendi') rozet = '<span class="badge er">Ertelendi</span>';
   else if(m.durum==='bitti') rozet = '<span class="badge">MS</span>';
-  const ust = [opt.tarihYok ? '' : (m.tarih ? tarihYaz(m.tarih) : 'Tarih yok'), oyn && m.saat && !opt.tarihYok ? m.saat : '', opt.turYok ? '' : `${m.tur}. Tur`, (S.T.ayar.sahaSayisi>1 && m.saha) ? `Saha ${m.saha}` : ''].filter(Boolean).map(x=>`<i>${x}</i>`).join('');
+  const ust = [opt.tarihYok ? '' : (m.tarih ? tarihYaz(m.tarih) : 'Tarih yok'), oyn && m.saat && !opt.tarihYok ? m.saat : '', opt.turYok ? '' : `${m.tur}. Tur`, (S.T.ayar.sahaSayisi>1 && m.saha) ? `${esc(takim(m.ev).ad)} sahası` : ''].filter(Boolean).map(x=>`<i>${x}</i>`).join('');
   return `<button class="mac" onclick="macDetay('${m.id}')">
     <div class="mt"><span class="mtp">${ust}</span>${rozet}</div>
     <div class="mrow">
@@ -1524,13 +1524,13 @@ function macDetayRender(ilk){
     panel = `<div class="card"><b>Tarih / saat değiştir</b>
       <div class="grid2" style="margin-top:10px"><input class="inp" type="date" id="dtT" value="${m.tarih||bugun()}"><input class="inp" type="time" id="dtS" value="${m.saat||sl[0]||'12:00'}" list="slotlist"></div>
       <datalist id="slotlist">${sl.map(s=>`<option value="${s}">`).join('')}</datalist>
-      ${S.T.ayar.sahaSayisi>1?`<select class="inp" id="dtH" style="margin-top:10px">${Array.from({length:+S.T.ayar.sahaSayisi},(_,i)=>`<option value="${i+1}" ${+m.saha===i+1?'selected':''}>Saha ${i+1}</option>`).join('')}</select>`:''}
+      ${S.T.ayar.sahaSayisi>1?`<select class="inp" id="dtH" style="margin-top:10px">${Array.from({length:+S.T.ayar.sahaSayisi},(_,i)=>`<option value="${i+1}" ${+m.saha===i+1?'selected':''}>Eş zamanlı maç ${i+1}</option>`).join('')}</select>`:''}
       <button class="btn p blk" style="margin-top:10px" onclick="tarihKaydet()">Kaydet</button></div>`;
   }
   if(detayPanel==='hukmen') panel = `<div class="card"><b>Hükmen sonuç</b><p class="small mut" style="margin:4px 0 10px">Kazanan takıma ${S.T.ayar.hukmenSkor ?? 3}-0 galibiyet yazılır.</p>
       <div class="grid2"><button class="btn" onclick="hukmen('ev')">${esc(e.ad)} kazandı</button><button class="btn" onclick="hukmen('dep')">${esc(d.ad)} kazandı</button></div></div>`;
   const html = `<div class="sh"><h2>${m.tur}. Tur</h2><button class="x" onclick="sheetKapat()">✕</button></div>
-    <div class="mut small" style="text-align:center">${m.tarih?tarihYaz(m.tarih,true):'Tarih belirsiz'}${m.saat?' · '+m.saat:''}${S.T.ayar.sahaSayisi>1&&m.saha?' · Saha '+m.saha:''}</div>
+    <div class="mut small" style="text-align:center">${m.tarih?tarihYaz(m.tarih,true):'Tarih belirsiz'}${m.saat?' · '+m.saat:''}${S.T.ayar.sahaSayisi>1&&m.saha?' · '+esc(takim(m.ev).ad)+' sahası':''}</div>
     <div class="dsk"><div class="t">${logo(e,54)}${esc(e.ad)}<span class="mut small" style="font-family:Barlow">Ev sahibi</span></div>
       <div class="s">${oyn?`${m.evGol} - ${m.depGol}`:'<span style="font-size:26px;color:var(--mut)">VS</span>'}</div>
       <div class="t">${logo(d,54)}${esc(d.ad)}<span class="mut small" style="font-family:Barlow">Deplasman</span></div></div>
@@ -1869,7 +1869,7 @@ function wizardHtml(){
     <div class="fld"><label>Oyun günleri</label>${gunSecici('w')}</div>
     <div class="fld"><label>Maç saatleri</label>${slotEditor('w')}<div class="hint">Örn. öğle arası 12:30 ve 13:00. Her saate bir maç (ya da saha sayısı kadar maç) konur.</div></div>
     <div class="grid2">
-      <div class="fld"><label>Aynı anda kaç saha/masa?</label>${stepper('w','sahaSayisi',1,10)}</div>
+      <div class="fld"><label>Aynı anda kaç maç oynanabilir?</label>${stepper('w','sahaSayisi',1,10)}</div>
       <div class="fld"><label>Takım günde en fazla</label>${stepper('w','gunlukMacMax',1,5)}<div class="hint">maç oynar</div></div>
     </div>
     <div class="fld"><label>Tatil / maç yapılmayacak günler</label>${tatilEditor('w')}</div>`;
@@ -1955,7 +1955,7 @@ function ayarlarHtml(){
   <details class="card acc" ${accAcik('takvim')} ontoggle="accTog('takvim',this)"><summary><span class="ai">🗓️</span><span class="at"><b>Takvim ve maç saatleri</b><small>Günler, saatler, tatiller, yeniden planlama</small></span></summary><div class="ab">
     <div class="fld"><label>Oyun günleri</label>${gunSecici('a')}</div>
     <div class="fld"><label>Maç saatleri</label>${slotEditor('a')}</div>
-    <div class="grid2"><div class="fld"><label>Saha/masa sayısı</label>${stepper('a','sahaSayisi',1,10)}</div><div class="fld"><label>Takım günde en fazla</label>${stepper('a','gunlukMacMax',1,5)}</div>
+    <div class="grid2"><div class="fld"><label>Aynı anda oynanan maç</label>${stepper('a','sahaSayisi',1,10)}</div><div class="fld"><label>Takım günde en fazla</label>${stepper('a','gunlukMacMax',1,5)}</div>
       <div class="fld"><label>Bitiş tarihi</label><input class="inp" type="date" data-a="bitis" value="${A.bitis||''}"></div></div>
     <div class="fld"><label>Tatil / maç yapılmayacak günler</label>${tatilEditor('a')}</div>
     <button class="btn p blk" onclick="ayarKaydet('takvim')">Takvim ayarlarını kaydet</button>
@@ -2174,6 +2174,7 @@ function kurumForm(){
     <div class="row" style="margin-bottom:14px"><span id="klOn" class="klon">${k.logoImg?`<img src="${k.logoImg}">`:'🏫'}</span>
       <div><label class="btn sm" style="cursor:pointer">🖼️ Logo yükle<input type="file" accept="image/*" hidden onchange="kurumLogoSec(this)"></label>
       <button class="btn sm r" onclick="window._kl=null;document.getElementById('klOn').innerHTML='🏫'">Kaldır</button>
+      <button class="btn sm" style="margin-top:6px" onclick="logoBeyazKaldir()">🪄 Beyaz arka planı kaldır</button>
       <div class="hint small mut" style="margin-top:6px">Kare ya da yuvarlak logo önerilir (PNG).</div></div></div>
     ${f('kAd','Kurum adı','Örn. Yunus Emre İlkokulu', k.ad)}
     ${f('kAlt','Alt başlık','Örn. Sınıflar Arası Spor Turnuvaları', k.altBaslik)}
@@ -2188,6 +2189,46 @@ async function kurumLogoSec(inp){
   const f = inp.files[0]; if(!f) return;
   try{ window._kl = await gorselKucult(f, 256, 'image/png'); document.getElementById('klOn').innerHTML = `<img src="${window._kl}">`; }
   catch(e){ toast('Görsel okunamadı'); }
+}
+/* Logonun kenarlarına bağlı beyaz zemini şeffaf yapar; logonun içindeki beyazlara dokunmaz */
+function beyazTemizle(url){
+  return new Promise((res, rej)=>{
+    const img = new Image(); img.onerror = rej;
+    img.onload = ()=>{
+      const W = img.naturalWidth, H = img.naturalHeight, c = document.createElement('canvas'); c.width = W; c.height = H;
+      const x = c.getContext('2d'); x.drawImage(img, 0, 0);
+      const d = x.getImageData(0, 0, W, H), p = d.data, gor = new Uint8Array(W*H);
+      const beyaz = i => p[i*4+3] > 0 && p[i*4] > 226 && p[i*4+1] > 226 && p[i*4+2] > 226;
+      const q = []; let say = 0;
+      for(let k=0; k<W; k++) q.push(k, (H-1)*W + k);
+      for(let k=0; k<H; k++) q.push(k*W, k*W + W - 1);
+      while(q.length){
+        const i = q.pop(); if(gor[i]) continue; gor[i] = 1;
+        if(!beyaz(i)) continue;
+        p[i*4+3] = 0; say++;
+        const px = i % W, py = (i / W) | 0;
+        if(px > 0) q.push(i-1); if(px < W-1) q.push(i+1); if(py > 0) q.push(i-W); if(py < H-1) q.push(i+W);
+      }
+      for(let i=0; i<W*H; i++){
+        if(p[i*4+3] === 0) continue;
+        const px = i % W;
+        const kom = (px > 0 && p[(i-1)*4+3] === 0) || (px < W-1 && p[(i+1)*4+3] === 0) || (i-W >= 0 && p[(i-W)*4+3] === 0) || (i+W < W*H && p[(i+W)*4+3] === 0);
+        if(kom){ const m = Math.min(p[i*4], p[i*4+1], p[i*4+2]); if(m > 185) p[i*4+3] = Math.round(255 * (255 - m) / 70); }
+      }
+      x.putImageData(d, 0, 0);
+      res({url:c.toDataURL('image/png'), oran:say / (W*H)});
+    };
+    img.src = url;
+  });
+}
+async function logoBeyazKaldir(){
+  if(!window._kl){ toast('Önce logo yükleyin'); return; }
+  try{
+    const r = await beyazTemizle(window._kl);
+    if(r.oran < .005){ toast('Logonun kenarında beyaz zemin bulunamadı'); return; }
+    window._kl = r.url; document.getElementById('klOn').innerHTML = `<img src="${r.url}">`;
+    toast('Beyaz zemin kaldırıldı — Kaydet\'e basın');
+  }catch(e){ toast('Logo işlenemedi'); }
 }
 async function kurumKaydet(){
   const v = id => $('#'+id).value.trim();
@@ -2346,12 +2387,12 @@ function vFikstur(){
   const ms = Object.values(S.T.maclar).sort((a,b)=>a.tur-b.tur || ((a.tarih||'9')+(a.saat||'')).localeCompare((b.tarih||'9')+(b.saat||'')) || a.sira-b.sira);
   const saha = +S.T.ayar.sahaSayisi > 1;
   const kol = [{ad:'Tur', w:6}, {ad:'Tarih', w:12}, {ad:'Gün', w:11}, {ad:'Saat', w:8}];
-  if(saha) kol.push({ad:'Saha', w:6});
+  if(saha) kol.push({ad:'Saha', w:16});
   kol.push({ad:'Ev Sahibi', w:22, al:'right', b:1}, {ad:'Skor', w:9, b:1}, {ad:'Deplasman', w:22, al:'left', b:1}, {ad:'Durum', w:11}, {ad:'Maçın Oyuncusu', w:22, al:'left'});
   return {ad:'Fikstür', baslik:'Fikstür ve Sonuçlar', kolonlar:kol, satirlar: ms.map(m=>{
     const d = m.tarih ? parseD(m.tarih) : null, mvp = m.mvp && oyuncu(m.mvp.tk, m.mvp.p);
     const r = [m.tur + '. Tur', d ? d.toLocaleDateString('tr-TR') : '—', d ? GUN_UZUN[d.getDay()] : '', m.saat || ''];
-    if(saha) r.push(m.saha || '');
+    if(saha) r.push(takim(m.ev).ad + ' sahası');
     r.push(takim(m.ev).ad, (oynandi(m) || m.durum==='canli') ? `${m.evGol} - ${m.depGol}` : '-', takim(m.dep).ad, durumYaz(m), mvp ? oyuncuAd(mvp) : '');
     return r;
   })};
@@ -2427,7 +2468,7 @@ function pFikstur(){
     const tm = ms.filter(m=>m.tur===t), bay = S.T.baylar['t'+t];
     h += `<div class="blok"><h3>${t}. Tur${bay ? `<span class="bay">Bay: ${esc(takim(bay).ad)}</span>` : ''}</h3>
       <table><thead><tr><th>Tarih</th><th>Saat</th>${saha?'<th>Saha</th>':''}<th class="r">Ev Sahibi</th><th>Skor</th><th class="l">Deplasman</th><th>Durum</th></tr></thead><tbody>
-      ${tm.map(m=>`<tr><td>${m.tarih ? tarihYaz(m.tarih) : '—'}</td><td>${esc(m.saat || '')}</td>${saha?`<td>${m.saha||''}</td>`:''}<td class="r">${pTk(m.ev,18)}</td><td class="b skr">${(oynandi(m) || m.durum==='canli') ? `${m.evGol} - ${m.depGol}` : '-'}</td><td class="l">${pTk(m.dep,18)}</td><td class="dm ${m.durum}">${durumYaz(m)}</td></tr>`).join('')}
+      ${tm.map(m=>`<tr><td>${m.tarih ? tarihYaz(m.tarih) : '—'}</td><td>${esc(m.saat || '')}</td>${saha?`<td>${esc(takim(m.ev).ad)} sahası</td>`:''}<td class="r">${pTk(m.ev,18)}</td><td class="b skr">${(oynandi(m) || m.durum==='canli') ? `${m.evGol} - ${m.depGol}` : '-'}</td><td class="l">${pTk(m.dep,18)}</td><td class="dm ${m.durum}">${durumYaz(m)}</td></tr>`).join('')}
       </tbody></table></div>`;
   }
   return h;
@@ -2436,7 +2477,7 @@ function pGunluk(tarih){
   const ms = macListe().filter(m=>m.tarih===tarih); if(!ms.length) return '';
   const saha = +S.T.ayar.sahaSayisi > 1;
   return `<table class="gunluk"><thead><tr><th>Saat</th>${saha?'<th>Saha</th>':''}<th>Tur</th><th class="r">Ev Sahibi</th><th>Skor</th><th class="l">Deplasman</th><th>Hakem paraf</th></tr></thead><tbody>
-    ${ms.map(m=>`<tr><td class="b">${esc(m.saat || '')}</td>${saha?`<td>${m.saha||''}</td>`:''}<td>${m.tur}</td><td class="r">${pTk(m.ev,22)}</td>
+    ${ms.map(m=>`<tr><td class="b">${esc(m.saat || '')}</td>${saha?`<td>${esc(takim(m.ev).ad)} sahası</td>`:''}<td>${m.tur}</td><td class="r">${pTk(m.ev,22)}</td>
       <td>${oynandi(m) ? `<b class="skr">${m.evGol} - ${m.depGol}</b>` : '<span class="kutu"></span> - <span class="kutu"></span>'}</td><td class="l">${pTk(m.dep,22)}</td><td></td></tr>`).join('')}
     </tbody></table><p class="aciklama">Toplam ${ms.length} maç. Sonuçlar maç bitiminde uygulamaya işlenir.</p>`;
 }
@@ -2476,7 +2517,7 @@ function pFoy(arg){
   const satir = (t) => { const oy = oyuncuSirali(t); const bos = Math.max(0, Math.max(+a.kadro || 0, 3) - oy.length);
     return oy.map(p=>`<tr><td class="b">${esc(p.no||'')}</td><td class="l">${esc(p.ad||'')}</td><td class="tik"></td></tr>`).join('') + Array.from({length:bos},()=>'<tr><td>&nbsp;</td><td></td><td class="tik"></td></tr>').join(''); };
   return ms.map((m, i)=>{ const e = takim(m.ev), d = takim(m.dep);
-    return `<div class="${i ? 'pb' : ''}">${pdfBaslik('MAÇ FÖYÜ', `${m.tur}. Tur · ${m.tarih ? tarihYaz(m.tarih, true) : 'Tarih belirsiz'}${m.saat ? ' · ' + m.saat : ''}${+a.sahaSayisi>1 && m.saha ? ' · Saha ' + m.saha : ''}`)}
+    return `<div class="${i ? 'pb' : ''}">${pdfBaslik('MAÇ FÖYÜ', `${m.tur}. Tur · ${m.tarih ? tarihYaz(m.tarih, true) : 'Tarih belirsiz'}${m.saat ? ' · ' + m.saat : ''}${+a.sahaSayisi>1 && m.saha ? ' · ' + takim(m.ev).ad + ' sahası' : ''}`)}
       <div class="foyust"><div class="ft">${logo(e,54)}<b>${esc(e.ad)}</b><span class="rol">Ev Sahibi</span></div>
         <div class="fskor"><div class="kb"></div><span>-</span><div class="kb"></div><small>MAÇ SONUCU</small></div>
         <div class="ft">${logo(d,54)}<b>${esc(d.ad)}</b><span class="rol">Deplasman</span></div></div>
