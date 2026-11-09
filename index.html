@@ -374,7 +374,7 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
 @keyframes isik{from{transform:rotate(-32deg)}to{transform:rotate(32deg)}}
 #ktKonfeti{position:absolute;inset:0;pointer-events:none;z-index:5}
 .kt-ust{position:relative;z-index:3;display:flex;align-items:center;gap:12px;flex:none}
-.kt-ust img{width:44px;height:44px;object-fit:contain;flex:none}
+.kt-ust>img{width:44px;height:44px;object-fit:contain;flex:none}
 .kt-ue{font-size:34px;flex:none}
 .kt-ub{min-width:0}
 .kt-ub small{display:block;font-size:12px;opacity:.75;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -391,6 +391,7 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
 @keyframes kYuk{from{transform:translateY(24px);opacity:0}}
 .ki-logo{width:min(22vh,36vw);height:min(22vh,36vw);border-radius:50%;background:radial-gradient(circle,#fff,#e6eee8);display:grid;place-items:center;font-size:min(13vh,21vw);box-shadow:0 0 0 6px rgba(244,196,48,.65),0 0 70px rgba(244,196,48,.45);animation:logoGir 1.3s cubic-bezier(.2,1.4,.4,1)}
 .ki-logo img{width:80%;height:80%;object-fit:contain}
+#kuraT .lg img{object-fit:contain}
 .ki-logo.resim{background:none}
 @keyframes logoGir{from{transform:scale(.2) rotate(-25deg);opacity:0}}
 .ki-ust{font-weight:700;opacity:.8;letter-spacing:1px;margin-top:1.4vh}
@@ -404,18 +405,21 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
 .ki-sayac.vur{animation:vur .9s ease-out}
 @keyframes vur{0%{transform:scale(2.3);opacity:0}30%{opacity:1}100%{transform:scale(1)}}
 .kt-cek{grid-template-columns:minmax(0,.9fr) minmax(0,1.2fr) minmax(0,1.1fr);gap:3vw;align-items:center}
-.kt-sol{display:flex;flex-direction:column;align-items:center;gap:1.8vh}
-.kt-torba{position:relative;width:min(25vw,44vh);aspect-ratio:1}
+.kt-sol{display:flex;flex-direction:column;align-items:center;gap:1vh}
+.kt-torba{position:relative;width:min(25vw,40vh);aspect-ratio:1;margin-bottom:13%;container-type:inline-size}
 .kt-cam{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.32),rgba(255,255,255,.07) 45%,rgba(255,255,255,.03) 70%);border:3px solid rgba(255,255,255,.42);box-shadow:inset 0 -20px 44px rgba(0,0,0,.4),0 14px 44px rgba(0,0,0,.45),0 0 40px rgba(244,196,48,.15);overflow:hidden}
-.kt-ayak{position:absolute;left:28%;right:28%;bottom:-7%;height:10%;background:linear-gradient(#e2b23a,#8a6410);border-radius:4px 4px 14px 14px;z-index:-1}
+.kt-ayak{position:absolute;left:26%;right:26%;top:100%;height:10%;margin-top:-1%;background:linear-gradient(#e9be4a,#8a6410);border-radius:3px 3px 14px 14px;box-shadow:0 6px 16px rgba(0,0,0,.35)}
+.kt-ayak::before{content:"";position:absolute;left:30%;right:30%;top:-34%;height:40%;background:linear-gradient(#c99a26,#e9be4a);border-radius:4px 4px 0 0}
 .kt-parilti{position:absolute;left:14%;top:9%;width:30%;height:17%;border-radius:50%;background:rgba(255,255,255,.4);filter:blur(5px);transform:rotate(-30deg)}
-.kt-top{position:absolute;width:15%;aspect-ratio:1;border-radius:50%;box-shadow:inset -4px -6px 10px rgba(0,0,0,.35),inset 4px 4px 8px rgba(255,255,255,.55);animation:kar 1.4s ease-in-out infinite alternate;transition:opacity .35s,scale .35s}
+.kt-top{position:absolute;width:19%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;overflow:hidden;font-size:11cqw;line-height:1;font-style:normal;box-shadow:inset -4px -6px 10px rgba(0,0,0,.35),inset 4px 4px 8px rgba(255,255,255,.55),0 3px 8px rgba(0,0,0,.3);animation:kar 1.4s ease-in-out infinite alternate;transition:opacity .35s,scale .35s}
+.kt-top img,.kt-firla img{width:76%;height:76%;object-fit:contain}
+.kt-top span,.kt-firla span{filter:drop-shadow(0 1px 1px rgba(0,0,0,.25))}
 .kt-torba.karis .kt-top{animation-duration:.42s}
 .kt-top.cikti{opacity:0;scale:0}
 @keyframes kar{to{transform:translate(var(--x),var(--y))}}
 .kt-torba.salla{animation:salla .6s}
 @keyframes salla{20%{transform:rotate(-7deg)}40%{transform:rotate(6deg)}60%{transform:rotate(-3deg)}80%{transform:rotate(2deg)}}
-.kt-firla{position:absolute;left:42.5%;top:0;width:15%;aspect-ratio:1;border-radius:50%;opacity:0;box-shadow:inset -4px -6px 10px rgba(0,0,0,.35),inset 4px 4px 8px rgba(255,255,255,.6),0 0 26px rgba(255,255,255,.7);z-index:2}
+.kt-firla{position:absolute;left:40.5%;top:0;width:19%;aspect-ratio:1;border-radius:50%;opacity:0;display:grid;place-items:center;overflow:hidden;font-size:11cqw;line-height:1;font-style:normal;box-shadow:inset -4px -6px 10px rgba(0,0,0,.35),inset 4px 4px 8px rgba(255,255,255,.6),0 0 26px rgba(255,255,255,.7);z-index:2}
 .kt-firla.git{animation:firla .9s cubic-bezier(.2,.7,.3,1) forwards}
 @keyframes firla{0%{opacity:1;transform:translateY(60%) scale(.6)}55%{opacity:1;transform:translateY(-130%) scale(1.6)}100%{opacity:0;transform:translateY(-170%) scale(2.6)}}
 .kt-sayac{font-family:var(--fd);font-weight:800;font-size:clamp(20px,3.6vh,36px);color:var(--acc)}
@@ -434,7 +438,7 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
 @keyframes kartGit{to{transform:translateX(35%) scale(.55);opacity:0}}
 .kk-no{font-size:12.5px;font-weight:800;letter-spacing:2.5px;opacity:.9}
 .kk-no b{display:block;font-family:var(--fd);font-size:min(7.5vh,56px);line-height:1;color:var(--acc);text-shadow:0 2px 12px rgba(0,0,0,.4)}
-.kk-logo .lg{box-shadow:0 0 0 4px rgba(255,255,255,.8),0 12px 30px rgba(0,0,0,.4)}
+.kk-logo .lg{box-shadow:0 12px 30px rgba(0,0,0,.4)}
 .kk-ad{font-family:var(--fd);font-weight:800;font-size:clamp(26px,5.6vh,54px);line-height:1;text-shadow:0 3px 14px rgba(0,0,0,.35)}
 .kk-td{display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.25);border-radius:14px;padding:7px 14px 7px 7px;text-align:left;max-width:100%}
 .kk-td img,.kk-td>span{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.85);display:grid;place-items:center;font-size:23px;background:rgba(255,255,255,.15);flex:none}
@@ -1454,7 +1458,8 @@ function takimDuzenle(tk){
 async function logoYukle(inp, onId){
   const f = inp.files[0]; if(!f) return;
   try{
-    const url = await gorselKucult(f, 128, 'image/png');
+    let url = await gorselKucult(f, 128, 'image/png');
+    try{ const r = await beyazTemizle(url); if(r.oran > .005) url = r.url; }catch(e){}
     window._tl = {logo:window._tl ? window._tl.logo : '⚽', logoImg:url};
     if(onId){ const el = document.getElementById(onId); if(el) el.innerHTML = `<span class="lg" style="width:64px;height:64px"><img src="${url}"></span>`; }
     if(inp._cb) inp._cb(url);
@@ -2187,7 +2192,7 @@ function kurumForm(){
 }
 async function kurumLogoSec(inp){
   const f = inp.files[0]; if(!f) return;
-  try{ window._kl = await gorselKucult(f, 256, 'image/png'); document.getElementById('klOn').innerHTML = `<img src="${window._kl}">`; }
+  try{ window._kl = await gorselKucult(f, 256, 'image/png'); try{ const r = await beyazTemizle(window._kl); if(r.oran > .005) window._kl = r.url; }catch(e){} document.getElementById('klOn').innerHTML = `<img src="${window._kl}">`; }
   catch(e){ toast('Görsel okunamadı'); }
 }
 /* Logonun kenarlarına bağlı beyaz zemini şeffaf yapar; logonun içindeki beyazlara dokunmaz */
@@ -2700,6 +2705,27 @@ const Ses = {
   }
 };
 
+/* ---------- Logo beyaz zemin temizliği (önbellekli) ---------- */
+const LT = {map:{}, key:{}, n:0};
+function temizUrl(url){
+  if(!url) return url;
+  if(LT.map[url]) return LT.map[url];
+  if(!LT.key[url]){
+    const k = 'l' + (++LT.n); LT.key[url] = k;
+    beyazTemizle(url).then(r=>{
+      const son = r.oran > .005 ? r.url : url; LT.map[url] = son;
+      if(son !== url) document.querySelectorAll('img[data-lt="'+k+'"]').forEach(i=>{ i.src = son; });
+    }).catch(()=>{ LT.map[url] = url; });
+  }
+  return url;
+}
+function ltImg(url, cls){ return `<img src="${temizUrl(url)}" data-lt="${LT.key[url] || ''}" alt=""${cls ? ` class="${cls}"` : ''}>`; }
+function ktLogo(t, size){
+  if(!t.logoImg) return logo(t, size);
+  return `<span class="lg" style="width:${size}px;height:${size}px;background:${esc(t.renk)}">${ltImg(t.logoImg)}</span>`;
+}
+function topIc(t){ return t.logoImg ? ltImg(t.logoImg) : `<span>${esc(t.logo || '⚽')}</span>`; }
+
 /* ---------- Zaman çizelgesi ---------- */
 function turGrup(T){
   const g = {}; Object.values(T.maclar || {}).forEach(m=>{ (g[m.tur] = g[m.tur] || []).push(m); });
@@ -2787,12 +2813,12 @@ function ktIskelet(P){
   const k = S.kurum || {}, a = S.T.ayar;
   let el = $('#kuraT'); if(!el){ el = document.createElement('div'); el.id = 'kuraT'; document.body.appendChild(el); }
   const rnd = (i, s) => { const x = Math.sin(i*12.9898 + s*78.233)*43758.5453; return x - Math.floor(x); };
-  const toplar = P.sira.map((id, i)=>{ const t = takim(id), ang = rnd(i,1)*Math.PI*2, r = Math.sqrt(rnd(i,2))*30;
-    return `<i class="kt-top" id="ktTop${i}" style="left:${(42.5 + Math.cos(ang)*r).toFixed(1)}%;top:${(48 + Math.sin(ang)*r*.8).toFixed(1)}%;background:${esc(t.renk)};--x:${Math.round(rnd(i,3)*30-15)}px;--y:${Math.round(rnd(i,4)*30-15)}px;animation-delay:-${(rnd(i,5)*1.4).toFixed(2)}s"></i>`; }).join('');
+  const toplar = P.sira.map((id, i)=>{ const t = takim(id), ang = rnd(i,1)*Math.PI*2, r = Math.sqrt(rnd(i,2))*27;
+    return `<i class="kt-top" id="ktTop${i}" style="left:${(40.5 + Math.cos(ang)*r).toFixed(1)}%;top:${(41 + Math.sin(ang)*r*.8).toFixed(1)}%;background:${esc(t.renk)};--x:${Math.round(rnd(i,3)*24-12)}px;--y:${Math.round(rnd(i,4)*24-12)}px;animation-delay:-${(rnd(i,5)*1.4).toFixed(2)}s">${topIc(t)}</i>`; }).join('');
   el.innerHTML = `
     <div class="kt-bg"><i class="isik i1"></i><i class="isik i2"></i><i class="isik i3"></i></div>
     <canvas id="ktKonfeti"></canvas>
-    <header class="kt-ust">${k.logoImg ? `<img src="${k.logoImg}" alt="">` : `<span class="kt-ue">${esc(a.logo || '🏆')}</span>`}
+    <header class="kt-ust">${k.logoImg ? ltImg(k.logoImg) : `<span class="kt-ue">${esc(a.logo || '🏆')}</span>`}
       <div class="kt-ub"><small>${esc(k.ad || a.tur || '')}</small><b>${esc(a.ad)}</b></div>
       <span class="kt-canli">${KT.tekrar ? '↺ TEKRAR' : '● CANLI'} · KURA ÇEKİMİ</span>
       <div class="kt-btn"><button id="ktSes" onclick="ktSesDegis()" title="Ses">${Ses.acik ? '🔊' : '🔇'}</button><button onclick="ktAtla()" title="Sona atla">⏭</button><button onclick="kuraKapat()" title="Kapat">✕</button></div></header>
@@ -2813,7 +2839,7 @@ function ktIskelet(P){
 function ktIntro(h){
   ktFaz('intro');
   const k = S.kurum || {}, a = S.T.ayar;
-  $('#ktIntro').innerHTML = `<div class="ki-logo${k.logoImg ? ' resim' : ''}">${k.logoImg ? `<img src="${k.logoImg}" alt="">` : esc(a.logo || '🏆')}</div>
+  $('#ktIntro').innerHTML = `<div class="ki-logo${k.logoImg ? ' resim' : ''}">${k.logoImg ? ltImg(k.logoImg) : esc(a.logo || '🏆')}</div>
     ${k.ad ? `<div class="ki-ust">${esc(k.ad)}</div>` : ''}<h1>${esc(a.ad)}</h1><div class="ki-alt">CANLI KURA ÇEKİMİ</div>
     <div class="ki-bilgi">${KT.P.n} takım · ${a.ligDevre===2 ? 'çift' : 'tek'} devre lig usulü${a.aciklama ? ' · ' + esc(a.aciklama) : ''}</div><div class="ki-sayac" id="kiSayac"></div>`;
   ktDurum('Tören başlıyor');
@@ -2834,7 +2860,7 @@ function ktTopFirla(i, h){
   $('#ktSayac').textContent = `${i+1} / ${P.n}`; ktDurum(`Kura çekiliyor · ${i+1}. takım`);
   if(h) return;
   const t = takim(P.sira[i]), f = $('#ktFirla');
-  f.style.background = t.renk; f.classList.remove('git'); void f.offsetWidth; f.classList.add('git');
+  f.style.background = t.renk; f.innerHTML = topIc(t); f.classList.remove('git'); void f.offsetWidth; f.classList.add('git');
   const torba = $('#ktTorba'); torba.classList.remove('salla'); void torba.offsetWidth; torba.classList.add('salla');
   const kart = $('#ktKart'); kart.className = 'kt-kart bos bekle'; kart.style.removeProperty('--tc'); kart.innerHTML = '<span>?</span>';
   Ses.calis('davul');
@@ -2843,14 +2869,14 @@ function ktKartAc(i, h){
   const t = takim(KT.P.sira[i]), td = t.td || {}, kart = $('#ktKart');
   kart.style.setProperty('--tc', t.renk);
   kart.className = 'kt-kart' + (h ? '' : ' ac');
-  kart.innerHTML = `<div class="kk-no">KURA NO<b>${i+1}</b></div><div class="kk-logo">${logo(t,104)}</div><div class="kk-ad">${esc(t.ad)}</div>
+  kart.innerHTML = `<div class="kk-no">KURA NO<b>${i+1}</b></div><div class="kk-logo">${ktLogo(t,104)}</div><div class="kk-ad">${esc(t.ad)}</div>
     ${td.ad ? `<div class="kk-td">${td.foto ? `<img src="${td.foto}" alt="">` : '<span>👔</span>'}<div><small>TEKNİK DİREKTÖR</small><b>${esc(td.ad)}</b></div></div>` : ''}`;
   if(!h) Ses.calis('ding');
 }
 function ktYerles(i, h){
   const t = takim(KT.P.sira[i]), s = $('#ktSlot'+i); if(!s) return;
   s.className = 'kt-slot dolu' + (h ? '' : ' yeni');
-  s.innerHTML = `<b>${i+1}</b>${logo(t,24)}<span>${esc(t.ad)}</span>`;
+  s.innerHTML = `<b>${i+1}</b>${ktLogo(t,24)}<span>${esc(t.ad)}</span>`;
   if(!h){ Ses.calis('yerles'); const kart = $('#ktKart'); if(kart) kart.classList.add('gidiyor'); }
 }
 function ktCekimBitti(h){
@@ -2867,8 +2893,8 @@ function ktTur(r, h){
   $('#ktFik').innerHTML = `<div class="kf-kart ${h ? '' : 'ac'}">
     <div class="kf-bas"><span>FİKSTÜR · ${P.R} TUR</span><h2>${tr.tur}. TUR</h2><small>${tarihler.length ? tarihYaz(tarihler[0], true) + (tarihler.length > 1 ? ' – ' + tarihYaz(tarihler[tarihler.length-1]) : '') : ''}</small></div>
     <div class="kf-liste">${tr.maclar.map((m, j)=>{ const e = takim(m.ev), d = takim(m.dep);
-      return `<div class="kf-sat" style="animation-delay:${gec(j)}ms"><span class="kf-e"><span class="kf-ad">${esc(e.ad)}</span>${logo(e,30)}</span><b>${m.saat ? esc(m.saat) : 'VS'}</b><span class="kf-d">${logo(d,30)}<span class="kf-ad">${esc(d.ad)}</span></span></div>`; }).join('')}
-      ${tr.bay ? `<div class="kf-bay" style="animation-delay:${gec(tr.maclar.length)}ms">${logo(takim(tr.bay),22)} ${esc(takim(tr.bay).ad)} bu tur <b>BAY</b></div>` : ''}</div>
+      return `<div class="kf-sat" style="animation-delay:${gec(j)}ms"><span class="kf-e"><span class="kf-ad">${esc(e.ad)}</span>${ktLogo(e,30)}</span><b>${m.saat ? esc(m.saat) : 'VS'}</b><span class="kf-d">${ktLogo(d,30)}<span class="kf-ad">${esc(d.ad)}</span></span></div>`; }).join('')}
+      ${tr.bay ? `<div class="kf-bay" style="animation-delay:${gec(tr.maclar.length)}ms">${ktLogo(takim(tr.bay),22)} ${esc(takim(tr.bay).ad)} bu tur <b>BAY</b></div>` : ''}</div>
     <div class="kf-nok">${P.turlar.map((_, k)=>`<i class="${k < r ? 'gec' : k===r ? 'on' : ''}"></i>`).join('')}</div></div>`;
   ktDurum(`Fikstür açıklanıyor · ${tr.tur}. tur / ${P.R}`);
   if(!h) Ses.calis(ilk ? 'whoosh' : 'tik');
@@ -2879,7 +2905,7 @@ function ktFinal(h){
   $('#ktFinal').innerHTML = `<div class="kfin"><div class="kfin-kupa">🏆</div><h1>FİKSTÜR HAZIR</h1>
     <div class="kfin-chips"><span>${P.n} takım</span><span>${P.R} tur</span><span>${top} maç</span></div>
     ${ilk ? `<div class="kfin-ilk"><small>İLK MAÇ · ${tarihYaz(ilk.tarih, true)}${ilk.saat ? ' · ' + esc(ilk.saat) : ''}</small>
-      <div class="kfin-mac"><span>${esc(takim(ilk.ev).ad)} ${logo(takim(ilk.ev),38)}</span><b>VS</b><span>${logo(takim(ilk.dep),38)} ${esc(takim(ilk.dep).ad)}</span></div></div>` : ''}
+      <div class="kfin-mac"><span>${esc(takim(ilk.ev).ad)} ${ktLogo(takim(ilk.ev),38)}</span><b>VS</b><span>${ktLogo(takim(ilk.dep),38)} ${esc(takim(ilk.dep).ad)}</span></div></div>` : ''}
     <div class="kfin-btn"><button class="btn a" onclick="kuraKapat();S.view='fikstur';S.fTur=null;S.fTakim='';render()">📅 Fikstürü gör</button><button class="btn" onclick="kuraGoster(0,true)">↺ Tekrar izle</button></div></div>`;
   ktDurum('Fikstür hazır · İyi şanslar!');
   if(!h){ Ses.calis('fanfar'); ktKonfeti(); setTimeout(()=>Ses.padDur(), 1200); }
