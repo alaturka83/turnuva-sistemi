@@ -331,6 +331,7 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
 #qr img,#qr canvas{display:block}
 
 .mtp i{font-style:normal}
+.mtp i.tt-k{display:none}
 .mtp i+i::before{content:" · "}
 @media(max-width:600px){
   .mac{display:flex;align-items:center;gap:6px;padding:7px 8px}
@@ -348,13 +349,31 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
 
 
 .tozet{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
-.tozet span{background:rgba(255,255,255,.16);border-radius:8px;padding:3px 8px;font-size:13px;white-space:nowrap}
-.tozet b{font-family:var(--fd);font-size:15px}
+.tozet span{background:rgba(255,255,255,.16);border-radius:9px;padding:4px 10px;font-size:14px;white-space:nowrap;border-left:4px solid transparent}
+.tozet .g{border-left-color:#4ade80}.tozet .b{border-left-color:#cbd5e1}.tozet .m{border-left-color:#f87171}
+.tozet b{font-family:var(--fd);font-size:17px}
 .tform{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-top:6px;font-size:12px}
 .tform span{opacity:.85;margin-right:2px}
 .tform i{font-style:normal;font-weight:700;padding:2px 7px;border-radius:6px;color:#fff}
 .tform .G{background:#16a34a}.tform .B{background:#9ca3af}.tform .M{background:#dc2626}
 
+
+@media(max-width:600px){
+  .mtp i:first-child:has(+ .tt-k){display:none}
+  .mtp i.tt-k{display:block}
+  .mtp i.tt-k::before{content:none}
+  .mac{gap:5px;padding:7px 6px}
+  .mac .mt{width:60px}
+  .mac .mtp,.mac .mtp i{max-width:60px}
+  .mac .mrow{gap:4px;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}
+  .mac .tk{gap:4px;font-size:13px;line-height:1.12}
+  .mac .tk .tad{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word;text-overflow:clip}
+  .mac .tk .lg{width:22px!important;height:22px!important;font-size:19px!important}
+  .mac .skor,.mac .saat{min-width:46px;padding:1px 4px}
+  .mac .skor{font-size:17px}
+  .mac .saat{font-size:14.5px}
+  .tozet span{font-size:13px;padding:3px 9px}
+}
 /* v6: istatistik + takımlar + tablo sığdırma */
 .st-tab{display:flex;background:#e2e9e4;border-radius:12px;padding:3px;margin-bottom:12px}
 .st-tab button{flex:1;height:36px;border-radius:10px;font-weight:700;font-size:14px;color:var(--mut)}
@@ -1345,7 +1364,8 @@ function macKart(m, opt={}){
   else if(m.durum==='hukmen') rozet = '<span class="badge hk">Hükmen</span>';
   else if(m.durum==='ertelendi') rozet = '<span class="badge er">Ertelendi</span>';
   else if(m.durum==='bitti') rozet = '<span class="badge">MS</span>';
-  const ust = [opt.tarihYok ? '' : (m.tarih ? tarihYaz(m.tarih) : 'Tarih yok'), oyn && m.saat && !opt.tarihYok ? m.saat : '', opt.turYok ? '' : `${m.tur}. Tur`, (S.T.ayar.sahaSayisi>1 && m.saha) ? `🏟 ${esc(takim(m.ev).ad)}` : ''].filter(Boolean).map(x=>`<i title="${x.startsWith('🏟') ? x.slice(3)+' sahası' : ''}">${x}</i>`).join('');
+  const tk = m.tarih ? m.tarih.split('-').reverse().join('.') : '';
+  const ust = [opt.tarihYok ? '' : (m.tarih ? `${tarihYaz(m.tarih)}</i><i class="tt-k">${tk}` : 'Tarih yok'), oyn && m.saat && !opt.tarihYok ? m.saat : '', opt.turYok ? '' : `${m.tur}. Tur`, (S.T.ayar.sahaSayisi>1 && m.saha) ? `🏟 ${esc(takim(m.ev).ad)}` : ''].filter(Boolean).map(x=>`<i title="${x.startsWith('🏟') ? x.slice(3)+' sahası' : ''}">${x}</i>`).join('');
   return `<button class="mac" onclick="macDetay('${m.id}')">
     <div class="mt"><span class="mtp">${ust}</span>${rozet}</div>
     <div class="mrow">
@@ -1508,8 +1528,7 @@ function takimDetayHtml(){
   const ad = yonetici();
   return `<button class="btn sm" style="margin-bottom:10px" onclick="git('takimlar')">← Takımlar</button>
     <div class="thead" style="background:linear-gradient(135deg,${esc(t.renk)},#0b3d2a)">${logo(t,64)}<div><h1>${esc(t.ad)}</h1>${t.td && t.td.ad ? `<div class="tdsat">${tdGorsel(t,26)}<span>Teknik Direktör: <b>${esc(t.td.ad)}</b></span></div>` : ''}
-      <div class="tozet"><span><b>${i+1}.</b> sıra</span><span><b>${st.p}</b> puan</span><span><b>${st.o}</b> maç</span><span><b>${st.g}</b> galibiyet</span><span><b>${st.b}</b> beraberlik</span><span><b>${st.m}</b> mağlubiyet</span><span><b>${st.ag}</b> attığı ${esc(skorAd().toLowerCase())}</span><span><b>${st.yg}</b> yediği ${esc(skorAd().toLowerCase())}</span><span>averaj <b>${st.av>0?'+':''}${st.av}</b></span></div>
-      ${st.form.length?`<div class="tform"><span>Son maçlar:</span>${st.form.map(f=>`<i class="${f}">${{G:'Galibiyet',B:'Beraberlik',M:'Mağlubiyet'}[f]}</i>`).join('')}</div>`:''}</div></div>
+      <div class="tozet"><span class="g"><b>${st.g}</b> galibiyet</span><span class="b"><b>${st.b}</b> beraberlik</span><span class="m"><b>${st.m}</b> yenilgi</span></div></div></div>
     ${ad ? `<div class="row" style="margin-bottom:6px;flex-wrap:wrap"><button class="btn sm" onclick="takimDuzenle('${t.id}')">✏️ Takımı düzenle</button>${!Object.keys(S.T.maclar).length ? `<button class="btn sm r" onclick="takimSil('${t.id}')">🗑 Sil</button>` : ''}<button class="btn sm" onclick="oyuncuForm('${t.id}')">+ Oyuncu</button><button class="btn sm" onclick="topluOyuncu('${t.id}')">📋 Toplu ekle</button><button class="btn sm" onclick="indirMenu('takim')">⬇️ Kadro / kartlar</button></div>` : ''}
     <div class="sec"><h2>Oyuncular</h2><span class="mut small">${oy.length}${kadro?' / '+kadro:''}</span></div>
     ${kadro && oy.length>kadro ? `<div class="uyari">Kadro sınırı ${kadro} oyuncu, bu takımda ${oy.length} oyuncu var.</div>`:''}
