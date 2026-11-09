@@ -955,6 +955,57 @@ details.acc .ab{padding:14px}
   details.acc .ab .cikti .cb .btn{height:34px}
   .sec .btn.sm{height:30px;padding:0 10px;font-size:13px}
 }
+
+/* v9: puan tablosu açıklama kartı */
+.pbilgi{display:grid;gap:14px;padding:14px}
+.pbilgi section{min-width:0}
+.pbilgi h4{margin:0 0 8px;font-family:var(--fd);font-size:16px;color:var(--pri);display:flex;align-items:center;gap:8px}
+.pbilgi h4::before{content:"";width:4px;height:16px;border-radius:3px;background:var(--acc)}
+.pb-puan{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.pb-puan span{display:flex;flex-direction:column;align-items:center;gap:1px;padding:8px 4px;border-radius:11px;font-size:12.5px;font-weight:600;color:var(--mut);background:var(--soft);border-top:3px solid transparent}
+.pb-puan b{font-family:var(--fd);font-size:24px;line-height:1;color:var(--ink)}
+.pb-puan .g{border-top-color:#16a34a}.pb-puan .b{border-top-color:#9ca3af}.pb-puan .m{border-top-color:#dc2626}
+.pb-kr{margin:0;padding:0;list-style:none;counter-reset:k;display:grid;gap:5px}
+.pb-kr li{counter-increment:k;display:flex;align-items:center;gap:8px;font-size:14px;background:var(--soft);border-radius:10px;padding:6px 10px}
+.pb-kr li::before{content:counter(k);width:22px;height:22px;border-radius:7px;background:var(--pri2);color:#fff;font-weight:800;font-size:12px;display:grid;place-items:center;flex:none}
+.pb-kis{margin:0;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.pb-kis div{display:flex;align-items:center;gap:6px;background:var(--soft);border-radius:9px;padding:5px 8px;min-width:0}
+.pb-kis dt{font-family:var(--fd);font-weight:800;font-size:15px;color:var(--pri2);min-width:20px}
+.pb-kis dd{margin:0;font-size:12px;color:var(--mut);line-height:1.15}
+@media(min-width:900px){.pbilgi{grid-template-columns:1fr 1.2fr 1.2fr;align-items:start}.pb-kis{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.pb-kis{grid-template-columns:repeat(2,1fr)}.pb-kr li{font-size:13px}}
+
+/* v10: takımlar daha sıkı + istatistik takımlar arka plan dolgusu */
+@media(max-width:600px){
+  .tgrid.tgv{gap:5px!important}
+  .tgrid.tgv .tcard{gap:1px;padding:5px 3px 4px!important;border-radius:10px}
+  .tgrid.tgv .tcard::before{height:3px!important}
+  .tgrid.tgv.tdgizle .tcard .tdk{display:none}
+  .st-tl{padding:6px 8px}
+  .st-tl-b{font-size:11px;margin:0 0 3px 2px}
+  .st-tr{grid-template-columns:16px 18px minmax(0,1fr) auto!important;gap:6px!important;padding:4px 6px!important;border-bottom:0!important;border-radius:7px;margin-bottom:2px;
+    background:linear-gradient(90deg,var(--bc,rgba(22,163,74,.16)) var(--p,0%),transparent var(--p,0%))}
+  .st-tr .st-bar,.st-tr .st-yig{display:none}
+  .st-tr-ad{white-space:nowrap!important;display:block!important;overflow:hidden;text-overflow:ellipsis;font-size:12.5px!important;line-height:1.2}
+  .st-tr>b{font-size:15px;min-width:34px}
+  .st-tr.t-hucum{--bc:rgba(22,163,74,.17)}
+  .st-tr.t-savunma{--bc:rgba(220,38,38,.14)}
+  .st-tr.t-puan{--bc:rgba(212,160,23,.2)}
+  .st-tr.t-oran{background:linear-gradient(90deg,rgba(22,163,74,.2) 0 var(--g),rgba(156,163,175,.22) var(--g) var(--gb),rgba(220,38,38,.14) var(--gb) 100%)}
+  .st-chip{margin-bottom:6px}
+  .st-chip button{height:30px;padding:0 11px;font-size:12.5px}
+  .st-tab{margin-bottom:8px}
+  .st-tab button{height:32px}
+}
+
+@media(max-width:600px){
+  .st-tl .st-tr{height:var(--rh,auto);padding-top:0!important;padding-bottom:0!important;min-height:0}
+  .st-tl .st-tr-ad{font-size:var(--rf,12.5px)!important}
+  .st-tl .st-tr>b{font-size:calc(var(--rf,12.5px) + 2.5px)}
+  .st-tl .st-tr .lg{width:calc(var(--rf,12.5px) + 5px)!important;height:calc(var(--rf,12.5px) + 5px)!important;font-size:calc(var(--rf,12.5px) + 3px)!important}
+  .st-tl .st-n{font-size:calc(var(--rf,12.5px) - 1.5px)}
+  .st-tl-b .st-lej{font-size:11px}
+}
 </style>
 </head>
 <body>
@@ -1381,6 +1432,8 @@ function render(){
   if(!S.T){ main.innerHTML = bosHtml(); return; }
   const f = {bugun:bugunHtml, tablo:tabloHtml, fikstur:fiksturHtml, takimlar:takimlarHtml, takim:takimDetayHtml, istatistik:istatistikHtml, turnuvaAyar:ayarlarHtml}[S.view] || bugunHtml;
   main.innerHTML = f();
+  if(S.view==='takimlar') requestAnimationFrame(takimSigdir);
+  if(S.view==='istatistik') requestAnimationFrame(istSigdir);
   if(S.view==='turnuvaAyar') qrCiz();
 }
 function kurumLogo(size){
@@ -1502,10 +1555,13 @@ function tabloHtml(){
   return `<div class="sec" style="margin-top:4px"><h2>Puan Tablosu</h2>
     <div class="row" style="gap:6px"><div class="seg"><button class="${!S.tDetay?'on':''}" onclick="S.tDetay=false;render()">Kısa</button><button class="${S.tDetay?'on':''}" onclick="S.tDetay=true;render()">Detaylı</button></div><button class="ibtn" title="İndir" onclick="indirMenu('tablo')">⬇️</button></div></div>
     <div class="card">${tabloTablo(sira, S.tDetay)}</div>
-    <div class="card small mut">
-      <b style="color:var(--ink)">Puanlama:</b> Galibiyet ${a.puanG ?? 3} · Beraberlik ${a.puanB ?? 1} · Yenilgi ${a.puanM ?? 0}<br>
-      <b style="color:var(--ink)">Puan eşitliğinde:</b> ${kr.map((k,i)=>`${i+1}) ${KRITERLER[k]}`).join(' · ') || 'takım adı'}<br>
-      O: oynanan · G: galibiyet · B: beraberlik · M: mağlubiyet · A/Y: atılan/yenilen ${esc(skorAd().toLowerCase())} · AV: averaj · P: puan
+    <div class="card pbilgi">
+      <section><h4>Puanlama</h4>
+        <div class="pb-puan"><span class="g"><b>${a.puanG ?? 3}</b>Galibiyet</span><span class="b"><b>${a.puanB ?? 1}</b>Beraberlik</span><span class="m"><b>${a.puanM ?? 0}</b>Yenilgi</span></div></section>
+      <section><h4>Puan eşitliğinde sıralama</h4>
+        <ol class="pb-kr">${kr.length ? kr.map(k=>`<li>${KRITERLER[k]}</li>`).join('') : '<li>Takım adı</li>'}</ol></section>
+      <section><h4>Kısaltmalar</h4>
+        <dl class="pb-kis">${[['O','Oynanan maç'],['G','Galibiyet'],['B','Beraberlik'],['M','Mağlubiyet'],['A','Atılan '+esc(skorAd().toLocaleLowerCase('tr'))],['Y','Yenilen '+esc(skorAd().toLocaleLowerCase('tr'))],['AV','Averaj'],['P','Puan']].map(([x,y])=>`<div><dt>${x}</dt><dd>${y}</dd></div>`).join('')}</dl></section>
     </div>`;
 }
 
@@ -1555,20 +1611,48 @@ function takimlarHtml(){
     <div class="tgrid tgv" style="${takimGridStil(ts.length)}">${ts.map(t=>`<button class="tcard" style="--tc:${esc(t.renk)}" onclick="takimAc('${t.id}')">${logo(t,58)}<b>${esc(t.ad)}</b><span class="tdk">${t.td && t.td.ad ? '👔 ' + esc(t.td.ad) : '<i>Teknik direktör yok</i>'}</span></button>`).join('')}</div>
     ${yonetici() ? takimTopluKart() : ''}`;
 }
-function takimGridStil(n){
+function takimGridStil(n, cMin, hMax){
   if(window.innerWidth > 600 || !n) return '';
+  const vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
   const hd = ($('#hdr') || {}).offsetHeight || 46, nv = ($('#nav') || {}).offsetHeight || 60;
-  const H = window.innerHeight - hd - nv - 66, W = window.innerWidth - 20, G = 6;
+  const H = vh - hd - nv - 74, W = window.innerWidth - 20, G = 5;
   let sec = null;
-  for(const c of [3, 4, 5]){
+  for(const c of [3, 4, 5, 6]){
+    if(cMin && c < cMin) continue;
     const r = Math.ceil(n / c), h = Math.floor((H - (r - 1) * G) / r), w = (W - (c - 1) * G) / c;
-    const minH = c === 3 ? 82 : c === 4 ? 74 : 66;
-    sec = {c, h:Math.min(h, Math.round(w * 1.35), 170), w};
+    const minH = c === 3 ? 78 : c === 4 ? 70 : c === 5 ? 62 : 54;
+    sec = {c, h:Math.min(h, Math.round(w * 1.3), 150, hMax || 999), w};
     if(h >= minH) break;
   }
-  const lg = Math.max(22, Math.min(64, Math.round(sec.h * .4), Math.round(sec.w * .5)));
-  const fs = sec.c === 3 ? 13.5 : sec.c === 4 ? 12 : 10.5;
-  return `--c:${sec.c};--h:${Math.max(56, sec.h)}px;--lg:${lg}px;--fs:${fs}px`;
+  const lg = Math.max(18, Math.min(56, Math.round(sec.h * .38), Math.round(sec.w * .46)));
+  const fs = sec.c === 3 ? 12.5 : sec.c === 4 ? 11 : sec.c === 5 ? 10 : 9.5;
+  return `--c:${sec.c};--h:${Math.max(48, sec.h)}px;--lg:${lg}px;--fs:${fs}px`;
+}
+function istSigdir(){
+  const tl = document.querySelector('.st-tl'); if(!tl || window.innerWidth > 600) return;
+  const sat = tl.querySelectorAll('.st-tr'); if(!sat.length) return;
+  tl.style.removeProperty('--rh'); tl.style.removeProperty('--rf');
+  const ust = sat[0].getBoundingClientRect().top + window.scrollY;
+  const sinir = $('#nav').getBoundingClientRect().top + window.scrollY - 14;
+  const alt = sat[sat.length-1].getBoundingClientRect().bottom + window.scrollY;
+  if(alt <= sinir) return;
+  const rh = Math.max(17, Math.floor((sinir - ust) / sat.length) - 2);
+  tl.style.setProperty('--rh', rh + 'px');
+  tl.style.setProperty('--rf', Math.max(9.5, Math.min(12.5, rh * .52)).toFixed(1) + 'px');
+}
+function takimSigdir(){
+  const g = document.querySelector('.tgrid.tgv'); if(!g || window.innerWidth > 600) return;
+  const nav = $('#nav'), kartlar = g.querySelectorAll('.tcard'); if(!kartlar.length) return;
+  for(let d=0; d<6; d++){
+    const alt = kartlar[kartlar.length-1].getBoundingClientRect().bottom + window.scrollY;
+    const sinir = nav.getBoundingClientRect().top + window.scrollY - 6;
+    if(alt <= sinir) break;
+    const c = +getComputedStyle(g).getPropertyValue('--c') || 3, h = parseFloat(getComputedStyle(g).getPropertyValue('--h')) || 90;
+    const r = Math.ceil(kartlar.length / c), yeniH = Math.floor(h - (alt - sinir) / r) - 1;
+    const minH = c === 3 ? 72 : c === 4 ? 64 : c === 5 ? 56 : 48;
+    g.setAttribute('style', yeniH >= minH ? takimGridStil(kartlar.length, c, yeniH) : takimGridStil(kartlar.length, c + 1));
+  }
+  g.classList.toggle('tdgizle', parseFloat(getComputedStyle(g).getPropertyValue('--h')) < 66);
 }
 let takimRsz = null;
 window.addEventListener('resize', ()=>{ clearTimeout(takimRsz); takimRsz = setTimeout(()=>{ const ae = document.activeElement; if(S.view==='takimlar' && !(ae && /INPUT|TEXTAREA/.test(ae.tagName))) render(); }, 150); });
@@ -1802,7 +1886,7 @@ function istatistikHtml(){
   const OL = {
     hucum:{ad:'Hücum', acik:`Attığı ${sak}`, sir:(a,b)=>b.ag-a.ag || b.p-a.p, d:s=>s.ag, f:s=>String(s.ag), r:'a'},
     savunma:{ad:'Savunma', acik:`Maç başı yediği ${sak} (az olan üstte)`, sir:(a,b)=>a.yg/a.o-b.yg/b.o || b.p-a.p, d:s=>s.yg/s.o, f:s=>(s.yg/s.o).toFixed(1), r:'y'},
-    oran:{ad:'Galibiyet %', acik:'Galibiyet · beraberlik · yenilgi oranı', sir:(a,b)=>b.g/b.o-a.g/a.o || b.p-a.p, f:s=>'%'+Math.round(s.g/s.o*100)},
+    oran:{ad:'Galibiyet %', acik:'<span class="st-lej"><i class="g"></i>galibiyet <i class="b"></i>beraberlik <i class="m"></i>yenilgi</span>', sir:(a,b)=>b.g/b.o-a.g/a.o || b.p-a.p, f:s=>'%'+Math.round(s.g/s.o*100)},
     puan:{ad:'Puan ort.', acik:'Maç başına alınan puan', sir:(a,b)=>b.p/b.o-a.p/a.o || b.p-a.p, d:s=>s.p/s.o, f:s=>(s.p/s.o).toFixed(2), r:'p'}
   }, o = OL[tk];
   const liste = [...ogr].sort(o.sir), mx = o.d ? Math.max(.0001, ...liste.map(o.d)) : 1;
@@ -1812,8 +1896,9 @@ function istatistikHtml(){
       const bar = tk==='oran'
         ? `<div class="st-yig"><i class="g" style="width:${s.g/s.o*100}%"></i><i class="b" style="width:${s.b/s.o*100}%"></i><i class="m" style="width:${s.m/s.o*100}%"></i></div>`
         : `<div class="st-bar ${o.r}"><i style="width:${(tk==='puan' ? o.d(s)/mxP : o.d(s)/mx)*100}%"></i></div>`;
-      return `<button class="st-tr" onclick="takimAc('${s.id}')"><span class="st-n">${i+1}</span>${logo(t,18)}<span class="st-tr-ad">${esc(t.ad)}</span>${bar}<b>${o.f(s)}</b></button>`; }).join('')}
-    ${tk==='oran' ? `<div class="st-lej" style="margin-top:6px"><i class="g"></i>galibiyet <i class="b"></i>beraberlik <i class="m"></i>yenilgi</div>` : ''}</div>`;
+      const yp = tk==='oran' ? `--g:${(s.g/s.o*100).toFixed(1)}%;--gb:${((s.g+s.b)/s.o*100).toFixed(1)}%` : `--p:${((tk==='puan' ? o.d(s)/mxP : o.d(s)/mx)*100).toFixed(1)}%`;
+      return `<button class="st-tr t-${tk}" style="${yp}" onclick="takimAc('${s.id}')"><span class="st-n">${i+1}</span>${logo(t,18)}<span class="st-tr-ad">${esc(t.ad)}</span>${bar}<b>${o.f(s)}</b></button>`; }).join('')}
+</div>`;
   return h;
 }
 
