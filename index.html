@@ -347,6 +347,13 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
 .stp input{padding:0}
 
 
+.tozet{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.tozet span{background:rgba(255,255,255,.16);border-radius:8px;padding:3px 8px;font-size:13px;white-space:nowrap}
+.tozet b{font-family:var(--fd);font-size:15px}
+.tform{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-top:6px;font-size:12px}
+.tform span{opacity:.85;margin-right:2px}
+.tform i{font-style:normal;font-weight:700;padding:2px 7px;border-radius:6px;color:#fff}
+.tform .G{background:#16a34a}.tform .B{background:#9ca3af}.tform .M{background:#dc2626}
 /* v5: teknik direktör + canlı kura töreni */
 .tdsat{display:flex;align-items:center;gap:8px;font-size:14px;margin:4px 0 2px;opacity:.95}
 .tdsat .pfoto{border-width:2px}
@@ -1403,8 +1410,8 @@ function takimDetayHtml(){
   const ad = yonetici();
   return `<button class="btn sm" style="margin-bottom:10px" onclick="git('takimlar')">← Takımlar</button>
     <div class="thead" style="background:linear-gradient(135deg,${esc(t.renk)},#0b3d2a)">${logo(t,64)}<div><h1>${esc(t.ad)}</h1>${t.td && t.td.ad ? `<div class="tdsat">${tdGorsel(t,26)}<span>Teknik Direktör: <b>${esc(t.td.ad)}</b></span></div>` : ''}
-      <div style="opacity:.9;font-size:14px">${i+1}. sıra · ${st.p} puan · ${st.g}G ${st.b}B ${st.m}M · Averaj ${st.av>0?'+':''}${st.av}</div>
-      ${st.form.length?`<div class="form" style="justify-content:flex-start;margin-top:6px">${st.form.map(f=>`<i class="${f}">${f}</i>`).join('')}</div>`:''}</div></div>
+      <div class="tozet"><span><b>${i+1}.</b> sıra</span><span><b>${st.p}</b> puan</span><span><b>${st.o}</b> maç</span><span><b>${st.g}</b> galibiyet</span><span><b>${st.b}</b> beraberlik</span><span><b>${st.m}</b> mağlubiyet</span><span><b>${st.ag}</b> attığı ${esc(skorAd().toLowerCase())}</span><span><b>${st.yg}</b> yediği ${esc(skorAd().toLowerCase())}</span><span>averaj <b>${st.av>0?'+':''}${st.av}</b></span></div>
+      ${st.form.length?`<div class="tform"><span>Son maçlar:</span>${st.form.map(f=>`<i class="${f}">${{G:'Galibiyet',B:'Beraberlik',M:'Mağlubiyet'}[f]}</i>`).join('')}</div>`:''}</div></div>
     ${ad ? `<div class="row" style="margin-bottom:6px;flex-wrap:wrap"><button class="btn sm" onclick="takimDuzenle('${t.id}')">✏️ Takımı düzenle</button>${!Object.keys(S.T.maclar).length ? `<button class="btn sm r" onclick="takimSil('${t.id}')">🗑 Sil</button>` : ''}<button class="btn sm" onclick="oyuncuForm('${t.id}')">+ Oyuncu</button><button class="btn sm" onclick="topluOyuncu('${t.id}')">📋 Toplu ekle</button><button class="btn sm" onclick="indirMenu('takim')">⬇️ Kadro / kartlar</button></div>` : ''}
     <div class="sec"><h2>Oyuncular</h2><span class="mut small">${oy.length}${kadro?' / '+kadro:''}</span></div>
     ${kadro && oy.length>kadro ? `<div class="uyari">Kadro sınırı ${kadro} oyuncu, bu takımda ${oy.length} oyuncu var.</div>`:''}
