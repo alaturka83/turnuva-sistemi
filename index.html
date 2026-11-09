@@ -343,6 +343,40 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
 .grid2[style*="repeat(3"] .stp button{width:32px;font-size:19px}
 .grid2[style*="repeat(3"] .stp input{padding:0;font-size:17px}
 .stp input{padding:0}
+
+/* v4: TV gezinme ve kısa listeler */
+#tv{touch-action:pan-y}
+#tv .tvb{flex:1;min-height:0;overflow:hidden}
+#tv .tvb.sag{animation:tvsag .35s ease-out}
+#tv .tvb.sol{animation:tvsol .35s ease-out}
+@keyframes tvsag{from{transform:translateX(40px);opacity:0}}
+@keyframes tvsol{from{transform:translateX(-40px);opacity:0}}
+#tv .tvalt{display:flex;align-items:center;justify-content:center;gap:10px;padding-top:1vh;flex:none}
+#tv .tvok{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.12);color:#fff;font-size:26px;line-height:1;font-weight:700}
+#tv .tvdots{display:flex;gap:8px;margin:0}
+#tv .tvdots button{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.28);padding:0}
+#tv .tvdots button.on{background:var(--acc);width:26px;border-radius:6px}
+#tv .tvoto{position:absolute;right:3vw;height:34px;padding:0 12px;border-radius:10px;background:rgba(255,255,255,.1);color:#fff;font-size:13px;font-weight:600}
+#tv .tvalt{position:relative}
+@media(max-width:600px){#tv .tvoto{position:static;margin-left:4px;font-size:12px;padding:0 9px}}
+#tv .tvls{display:grid;grid-template-columns:1fr 1fr;gap:3vw;height:100%}
+#tv .tvls.dik{grid-template-columns:1fr;gap:1.6vh;align-content:start}
+#tv .tvls h2{font-size:1.15em;margin:0 0 .35em}
+#tv .tvr{display:grid;grid-template-columns:3.6em 1fr auto 1fr;align-items:center;gap:.5em;border-bottom:1px solid rgba(255,255,255,.1)}
+#tv .tvsol{display:flex;flex-direction:column;line-height:1.1;font-size:.72em;opacity:.85}
+#tv .tvsol b{font-size:1.15em;color:#fff;opacity:1}
+#tv .tvt{display:flex;align-items:center;gap:.45em;min-width:0;font-weight:600}
+#tv .tvt.e{justify-content:flex-end}
+#tv .tvt span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#tv .tvsk{font-family:var(--fd);font-weight:800;font-size:1.25em;min-width:2.8em;text-align:center;background:rgba(255,255,255,.1);border-radius:8px;padding:.05em .4em}
+#tv .tvsk.vs{opacity:.45;background:none}
+#tv .tvsk.cn{background:var(--live)}
+#tv .tvr.tvo{grid-template-columns:1.6em auto 1fr auto}
+#tv .tvn{opacity:.6;font-weight:700;text-align:center}
+#tv .tvoad{min-width:0;line-height:1.15}
+#tv .tvoad b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#tv .tvoad span{display:flex;align-items:center;gap:.3em;font-size:.72em;opacity:.75}
+#tv .tvbos{opacity:.6;padding:.6em 0}
 /* v3: TV tek ekran + mobil sıkı düzen */
 #tv{padding:calc(1.6vh + env(safe-area-inset-top)) 3vw 1.4vh}
 #tv .tvh{margin-bottom:1.2vh;gap:12px}
@@ -2271,35 +2305,80 @@ function pRapor(){
 }
 
 /* ===================== TV MODU ===================== */
-let tvI = 0, tvT = null;
-function tvAc(){ if(!S.T) return; $('#tv').classList.add('ac'); tvI = 0; tvRender(); clearInterval(tvT); tvT = setInterval(()=>{ tvI = (tvI+1)%3; tvRender(); }, 12000); try{ document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); }catch(e){} }
-window.addEventListener('resize', ()=>{ if($('#tv').classList.contains('ac')) tvRender(); });
+let tvI = 0, tvT = null, tvOto = true, tvYon = 0;
+const TV_SURE = 15000, TV_SAYFA = ['Puan Durumu', 'Sonuçlar ve Sıradaki Maçlar', 'Krallık Yarışı'];
+function tvAc(){
+  if(!S.T) return; $('#tv').classList.add('ac'); tvI = 0; tvYon = 0; tvRender(); tvZamanla();
+  try{ document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); }catch(e){}
+}
 function tvKapat(){ $('#tv').classList.remove('ac'); clearInterval(tvT); try{ document.fullscreenElement && document.exitFullscreen(); }catch(e){} }
+function tvZamanla(){ clearInterval(tvT); if(tvOto) tvT = setInterval(()=>{ tvYon = 1; tvI = (tvI+1)%3; tvRender(); }, TV_SURE); }
+function tvGit(d){ tvYon = d; tvI = (tvI + d + 3) % 3; tvRender(); tvZamanla(); }
+function tvSec(i){ tvYon = i > tvI ? 1 : -1; tvI = i; tvRender(); tvZamanla(); }
+function tvOtoDegis(){ tvOto = !tvOto; tvZamanla(); tvRender(); toast(tvOto ? 'Otomatik geçiş açık' : 'Otomatik geçiş durdu'); }
+window.addEventListener('resize', ()=>{ if($('#tv').classList.contains('ac')) tvRender(); });
+document.addEventListener('keydown', e=>{
+  if(!$('#tv').classList.contains('ac')) return;
+  if(e.key==='ArrowRight') tvGit(1); else if(e.key==='ArrowLeft') tvGit(-1); else if(e.key===' '){ e.preventDefault(); tvOtoDegis(); }
+});
+(function(){
+  const el = document.getElementById('tv'); let x0 = null, y0 = 0;
+  el.addEventListener('touchstart', e=>{ const t = e.touches[0]; x0 = t.clientX; y0 = t.clientY; }, {passive:true});
+  el.addEventListener('touchend', e=>{
+    if(x0===null) return; const t = e.changedTouches[0], dx = t.clientX - x0, dy = t.clientY - y0; x0 = null;
+    if(Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)*1.2) tvGit(dx < 0 ? 1 : -1);
+  }, {passive:true});
+})();
 function tvRender(){
   if(!S.T) return;
   const sira = siralamaHesap(S.T), ms = macListe(), bg = bugun();
+  const H = window.innerHeight, W = window.innerWidth, dik = H > W * 1.05;
+  const alan = H*0.86 - 70;
   let b = '';
   if(tvI===0){
     // Tüm takımlar tek ekrana: satır yüksekliği takım sayısına ve ekran boyuna göre
-    const n = Math.max(1, sira.length), H = window.innerHeight, W = window.innerWidth;
-    const alan = H*0.88 - 56;
+    const n = Math.max(1, sira.length);
     const satir = Math.max(16, Math.min(H*0.085, alan/(n+1.3)));
     const fs = Math.max(10, Math.min(satir*0.56, W<500 ? 21 : 38)), lg = Math.round(satir*0.74), pd = Math.max(1, (satir - lg)/2);
     b = `<table class="tvtab" style="font-size:${fs}px"><tr><th>#</th><th class="l">Takım</th><th>O</th><th>G</th><th>B</th><th>M</th><th>AV</th><th>P</th></tr>${sira.map((s,i)=>{ const t = takim(s.id); return `<tr class="${i===0&&s.o?'tvilk':''}"><td style="padding:${pd}px 4px">${i+1}</td><td class="l" style="padding:${pd}px 4px"><span class="tvtk">${logo(t,lg)}<span>${esc(t.ad)}</span></span></td><td>${s.o}</td><td>${s.g}</td><td>${s.b}</td><td>${s.m}</td><td>${s.av>0?'+':''}${s.av}</td><td class="tvp">${s.p}</td></tr>`; }).join('')}</table>`;
+  } else {
+    // Liste sayfaları: dikeyde iki bölüm alt alta, yatayda yan yana; satır sayısı ekrana göre sınırlanır
+    const rh = dik ? Math.max(34, Math.min(54, H*0.058)) : Math.max(34, Math.min(70, H*0.075));
+    const bolumH = dik ? (alan - 2*rh*0.9) / 2 : alan - rh*0.9;
+    const adet = Math.max(2, Math.min(8, Math.floor(bolumH / rh)));
+    const fs = Math.round(rh*0.4), lg = Math.round(rh*0.62);
+    const bos = t => `<div class="tvbos">${t}</div>`;
+    const bolum = (baslik, satirlar, bosMetin) => `<section><h2>${baslik}</h2>${satirlar.length ? satirlar.join('') : bos(bosMetin)}</section>`;
+    if(tvI===1){
+      const son = ms.filter(oynandi).reverse().slice(0, adet);
+      const gel = ms.filter(m=>!oynandi(m) && m.durum!=='canli' && m.tarih && m.tarih>=bg).slice(0, adet);
+      const canli = ms.filter(m=>m.durum==='canli');
+      const sat = (m, tip) => { const e = takim(m.ev), d = takim(m.dep), d0 = m.tarih ? parseD(m.tarih) : null;
+        const sol = tip==='gel' ? `<b>${esc(m.saat||'')}</b><span>${d0 ? (m.tarih===bg ? 'Bugün' : d0.getDate()+' '+AY_AD[d0.getMonth()]) : ''}</span>`
+          : `<b>${d0 ? d0.getDate()+' '+AY_AD[d0.getMonth()] : ''}</b><span>${m.durum==='hukmen' ? 'Hükmen' : m.durum==='canli' ? 'Canlı' : 'MS'}</span>`;
+        const orta = tip==='gel' ? `<div class="tvsk vs">-</div>` : `<div class="tvsk ${m.durum==='canli'?'cn':''}">${m.evGol}-${m.depGol}</div>`;
+        return `<div class="tvr" style="height:${rh}px"><div class="tvsol">${sol}</div><div class="tvt e"><span>${esc(e.ad)}</span>${logo(e,lg)}</div>${orta}<div class="tvt">${logo(d,lg)}<span>${esc(d.ad)}</span></div></div>`; };
+      b = `<div class="tvls ${dik?'dik':''}" style="font-size:${fs}px">
+        ${bolum(canli.length ? '🔴 Canlı ve Son Sonuçlar' : 'Son Sonuçlar', [...canli, ...son].slice(0, adet).map(m=>sat(m, canli.includes(m) ? 'canli' : 'son')), 'Henüz maç oynanmadı.')}
+        ${bolum('Sıradaki Maçlar', gel.map(m=>sat(m,'gel')), 'Planlanmış maç yok.')}</div>`;
+    } else {
+      const g = golcuListesi().slice(0, adet), mv = mvpListesi().slice(0, adet);
+      const sat = (x, v, i) => { const p = oyuncu(x.tk,x.p), t = takim(x.tk);
+        return `<div class="tvr tvo" style="height:${rh}px"><div class="tvn">${i+1}</div>${oyuncuGorsel(p, lg)}<div class="tvoad"><b>${esc(oyuncuAd(p))}</b><span>${logo(t, Math.round(lg*0.5))} ${esc(t.ad)}</span></div><div class="tvsk">${v}</div></div>`; };
+      b = `<div class="tvls ${dik?'dik':''}" style="font-size:${fs}px">
+        ${bolum(`👑 ${esc(skorAd())} Krallığı`, g.map((x,i)=>sat(x, x.gol, i)), 'Henüz veri yok.')}
+        ${bolum('⭐ Maçın Oyuncusu', mv.map((x,i)=>sat(x, x.n, i)), 'Henüz veri yok.')}</div>`;
+    }
   }
-  if(tvI===1){
-    const son = ms.filter(oynandi).reverse().slice(0,6), gel = ms.filter(m=>!oynandi(m) && m.tarih && m.tarih>=bg).slice(0,6);
-    const sat = (m, sk) => { const e = takim(m.ev), d = takim(m.dep); return `<div class="tvm"><div class="e">${esc(e.ad)} ${logo(e,30)}</div><div class="s">${sk?`${m.evGol}-${m.depGol}`:esc(m.saat||'')}</div><div>${logo(d,30)} ${esc(d.ad)}</div></div>`; };
-    b = `<div class="tvcols"><div><h2>Son Sonuçlar</h2>${son.map(m=>sat(m,true)).join('') || '<p style="opacity:.6">Henüz maç oynanmadı.</p>'}</div>
-      <div><h2>Sıradaki Maçlar</h2>${gel.map(m=>`<div style="font-size:1.8vh;opacity:.7;margin-top:1vh">${tarihYaz(m.tarih)}</div>${sat(m,false)}`).join('') || '<p style="opacity:.6">Planlanmış maç yok.</p>'}</div></div>`;
-  }
-  if(tvI===2){
-    const g = golcuListesi().slice(0,8), mv = mvpListesi().slice(0,8);
-    const sat = (x,v) => { const p = oyuncu(x.tk,x.p), t = takim(x.tk); return `<div class="tvm" style="grid-template-columns:auto 1fr auto">${oyuncuGorsel(p,46)}<div><b>${esc(oyuncuAd(p))}</b><div style="font-size:1.8vh;opacity:.7">${esc(t.ad)}</div></div><div class="s">${v}</div></div>`; };
-    b = `<div class="tvcols"><div><h2>👑 ${esc(skorAd())} Krallığı</h2>${g.map(x=>sat(x,x.gol)).join('') || '<p style="opacity:.6">Henüz veri yok.</p>'}</div><div><h2>⭐ Maçın Oyuncusu</h2>${mv.map(x=>sat(x,x.n)).join('') || '<p style="opacity:.6">Henüz veri yok.</p>'}</div></div>`;
-  }
-  $('#tv').innerHTML = `<div class="tvh"><span class="tvlg">${esc(S.T.ayar.logo||'🏆')}</span><div class="tvbas"><h1>${esc(S.T.ayar.ad)}</h1><small>${['Puan Durumu','Sonuçlar ve Sıradaki Maçlar','Krallık Yarışı'][tvI]}</small></div><button class="x" onclick="tvKapat()" title="Kapat">✕</button></div>
-    <div class="tvb">${b}</div><div class="tvdots">${[0,1,2].map(i=>`<i class="${i===tvI?'on':''}"></i>`).join('')}</div>`;
+  const anim = tvYon > 0 ? 'sag' : tvYon < 0 ? 'sol' : ''; tvYon = 0;
+  $('#tv').innerHTML = `<div class="tvh"><span class="tvlg">${esc(S.T.ayar.logo||'🏆')}</span><div class="tvbas"><h1>${esc(S.T.ayar.ad)}</h1><small>${TV_SAYFA[tvI]}</small></div><button class="x" onclick="tvKapat()" title="Kapat">✕</button></div>
+    <div class="tvb ${anim}">${b}</div>
+    <div class="tvalt">
+      <button class="tvok" onclick="tvGit(-1)" aria-label="Önceki">‹</button>
+      <div class="tvdots">${[0,1,2].map(i=>`<button class="${i===tvI?'on':''}" onclick="tvSec(${i})" aria-label="${TV_SAYFA[i]}"></button>`).join('')}</div>
+      <button class="tvok" onclick="tvGit(1)" aria-label="Sonraki">›</button>
+      <button class="tvoto" onclick="tvOtoDegis()" title="Otomatik geçiş">${tvOto ? '⏸ Otomatik' : '▶ Otomatik'}</button>
+    </div>`;
 }
 
 /* ===================== UYGULAMA OLARAK YÜKLE ===================== */
