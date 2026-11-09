@@ -344,6 +344,179 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
 .grid2[style*="repeat(3"] .stp input{padding:0;font-size:17px}
 .stp input{padding:0}
 
+
+/* v5: teknik direktör + canlı kura töreni */
+.tdsat{display:flex;align-items:center;gap:8px;font-size:14px;margin:4px 0 2px;opacity:.95}
+.tdsat .pfoto{border-width:2px}
+.tdk{display:block;font-size:12px;color:var(--mut);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kurabekle{background:radial-gradient(ellipse at 50% 0,#1f7a4c,#0b3d2a 70%);color:#fff;border-radius:18px;padding:20px 16px;text-align:center;margin-bottom:14px;position:relative;overflow:hidden;box-shadow:var(--sh)}
+.kurabekle::before{content:"";position:absolute;top:-60%;left:50%;width:120%;height:160%;margin-left:-60%;background:conic-gradient(from 180deg at 50% 0,transparent,rgba(255,240,180,.14) 10deg,transparent 20deg);animation:isik 6s ease-in-out infinite alternate;transform-origin:50% 0;pointer-events:none}
+.kurabekle>*{position:relative}
+.kurabekle .kb-ik{font-size:46px;line-height:1}
+.kurabekle small{opacity:.8;font-weight:600}
+.kurabekle h2{font-size:28px;margin:2px 0 4px;color:var(--acc)}
+.kurabekle p{opacity:.9;margin:4px auto 12px;font-size:14.5px;max-width:480px}
+.kurabekle .kb-tarih{font-weight:700}
+.kurabekle .kb-geri{font-family:var(--fd);font-size:36px;font-weight:800;color:var(--acc);letter-spacing:1px;margin:2px 0 10px}
+.kurabekle .kb-takim{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:12px}
+.kurabekle .kb-takim span{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.12);border-radius:999px;padding:3px 10px 3px 4px;font-weight:700;font-size:13px}
+.kurabekle .kb-yon{background:rgba(0,0,0,.2);border-radius:14px;padding:12px}
+.kurabekle .kb-yon .row{justify-content:center;flex-wrap:wrap;margin-bottom:10px}
+.kurabekle .kb-yon .inp{max-width:240px;height:40px}
+
+#kuraT{position:fixed;inset:0;z-index:85;display:none;flex-direction:column;color:#fff;background:radial-gradient(ellipse at 50% 28%,#1d7049 0%,#0a2a1c 55%,#020a06 100%);overflow:hidden;padding:calc(10px + env(safe-area-inset-top)) 3vw calc(10px + env(safe-area-inset-bottom));user-select:none}
+#kuraT.ac{display:flex}
+.kt-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.kt-bg::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 7vw,rgba(255,255,255,.025) 7vw 14vw)}
+.kt-bg .isik{position:absolute;top:-25%;left:50%;width:70vmax;height:150vmax;margin-left:-35vmax;background:conic-gradient(from 180deg at 50% 0%,transparent 0deg,rgba(255,240,180,.15) 7deg,transparent 14deg);transform-origin:50% 0;animation:isik 8s ease-in-out infinite alternate}
+.kt-bg .i2{animation-duration:10s;animation-delay:-4s;filter:hue-rotate(60deg)}
+.kt-bg .i3{animation-duration:13s;animation-delay:-8s}
+@keyframes isik{from{transform:rotate(-32deg)}to{transform:rotate(32deg)}}
+#ktKonfeti{position:absolute;inset:0;pointer-events:none;z-index:5}
+.kt-ust{position:relative;z-index:3;display:flex;align-items:center;gap:12px;flex:none}
+.kt-ust img{width:44px;height:44px;object-fit:contain;background:#fff;border-radius:12px;padding:3px;flex:none}
+.kt-ue{font-size:34px;flex:none}
+.kt-ub{min-width:0}
+.kt-ub small{display:block;font-size:12px;opacity:.75;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kt-ub b{display:block;font-family:var(--fd);font-size:22px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kt-canli{background:var(--live);font-size:12px;font-weight:800;letter-spacing:.8px;padding:5px 10px;border-radius:7px;white-space:nowrap;animation:nabizK 1.6s infinite;flex:none}
+@keyframes nabizK{50%{box-shadow:0 0 0 7px rgba(225,29,72,.22)}}
+.kt-btn{margin-left:auto;display:flex;gap:6px;flex:none}
+.kt-btn button{width:40px;height:40px;border-radius:11px;background:rgba(255,255,255,.12);color:#fff;font-size:17px}
+.kt-sahne{position:relative;z-index:2;flex:1;min-height:0;margin:1.6vh 0 1vh}
+.kt-sahne>section{position:absolute;inset:0;display:none}
+#kuraT[data-faz=intro] .kt-intro,#kuraT[data-faz=fik] .kt-fik,#kuraT[data-faz=final] .kt-final{display:flex}
+#kuraT[data-faz=cek] .kt-cek{display:grid}
+.kt-intro{flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1vh;animation:kYuk .8s ease-out}
+@keyframes kYuk{from{transform:translateY(24px);opacity:0}}
+.ki-logo{width:min(22vh,36vw);height:min(22vh,36vw);border-radius:50%;background:radial-gradient(circle,#fff,#e6eee8);display:grid;place-items:center;font-size:min(13vh,21vw);box-shadow:0 0 0 6px rgba(244,196,48,.65),0 0 70px rgba(244,196,48,.45);animation:logoGir 1.3s cubic-bezier(.2,1.4,.4,1)}
+.ki-logo img{width:80%;height:80%;object-fit:contain}
+@keyframes logoGir{from{transform:scale(.2) rotate(-25deg);opacity:0}}
+.ki-ust{font-weight:700;opacity:.8;letter-spacing:1px;margin-top:1.4vh}
+.kt-intro h1{font-size:clamp(28px,6.2vh,66px);line-height:1}
+.ki-alt,.kfin h1{background:linear-gradient(90deg,#f4c430,#fff6c8,#f4c430);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:parla 2.4s linear infinite}
+.ki-alt{font-family:var(--fd);font-weight:800;letter-spacing:5px;font-size:clamp(16px,3.2vh,32px)}
+@keyframes parla{to{background-position:-200% 0}}
+.ki-bilgi{opacity:.78;font-size:14px}
+.ki-sayac{font-family:var(--fd);font-weight:800;font-size:clamp(56px,15vh,150px);line-height:1;color:var(--acc);min-height:1em;margin-top:1vh;text-shadow:0 0 34px rgba(244,196,48,.6)}
+.ki-sayac.yazi{font-size:clamp(34px,8vh,80px);letter-spacing:3px}
+.ki-sayac.vur{animation:vur .9s ease-out}
+@keyframes vur{0%{transform:scale(2.3);opacity:0}30%{opacity:1}100%{transform:scale(1)}}
+.kt-cek{grid-template-columns:minmax(0,.9fr) minmax(0,1.2fr) minmax(0,1.1fr);gap:3vw;align-items:center}
+.kt-sol{display:flex;flex-direction:column;align-items:center;gap:1.8vh}
+.kt-torba{position:relative;width:min(25vw,44vh);aspect-ratio:1}
+.kt-cam{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.32),rgba(255,255,255,.07) 45%,rgba(255,255,255,.03) 70%);border:3px solid rgba(255,255,255,.42);box-shadow:inset 0 -20px 44px rgba(0,0,0,.4),0 14px 44px rgba(0,0,0,.45),0 0 40px rgba(244,196,48,.15);overflow:hidden}
+.kt-ayak{position:absolute;left:28%;right:28%;bottom:-7%;height:10%;background:linear-gradient(#e2b23a,#8a6410);border-radius:4px 4px 14px 14px;z-index:-1}
+.kt-parilti{position:absolute;left:14%;top:9%;width:30%;height:17%;border-radius:50%;background:rgba(255,255,255,.4);filter:blur(5px);transform:rotate(-30deg)}
+.kt-top{position:absolute;width:15%;aspect-ratio:1;border-radius:50%;box-shadow:inset -4px -6px 10px rgba(0,0,0,.35),inset 4px 4px 8px rgba(255,255,255,.55);animation:kar 1.4s ease-in-out infinite alternate;transition:opacity .35s,scale .35s}
+.kt-torba.karis .kt-top{animation-duration:.42s}
+.kt-top.cikti{opacity:0;scale:0}
+@keyframes kar{to{transform:translate(var(--x),var(--y))}}
+.kt-torba.salla{animation:salla .6s}
+@keyframes salla{20%{transform:rotate(-7deg)}40%{transform:rotate(6deg)}60%{transform:rotate(-3deg)}80%{transform:rotate(2deg)}}
+.kt-firla{position:absolute;left:42.5%;top:0;width:15%;aspect-ratio:1;border-radius:50%;opacity:0;box-shadow:inset -4px -6px 10px rgba(0,0,0,.35),inset 4px 4px 8px rgba(255,255,255,.6),0 0 26px rgba(255,255,255,.7);z-index:2}
+.kt-firla.git{animation:firla .9s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes firla{0%{opacity:1;transform:translateY(60%) scale(.6)}55%{opacity:1;transform:translateY(-130%) scale(1.6)}100%{opacity:0;transform:translateY(-170%) scale(2.6)}}
+.kt-sayac{font-family:var(--fd);font-weight:800;font-size:clamp(20px,3.6vh,36px);color:var(--acc)}
+.kt-orta{display:flex;justify-content:center;perspective:1200px}
+.kt-kart{--tc:#13693f;width:min(29vw,50vh,360px);aspect-ratio:3/4;border-radius:22px;background:linear-gradient(160deg,var(--tc),#06160e 130%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.3vh;text-align:center;padding:16px;box-shadow:0 22px 60px rgba(0,0,0,.55),0 0 0 3px rgba(255,255,255,.28);position:relative;overflow:hidden}
+.kt-kart::before{content:"";position:absolute;inset:-45%;background:conic-gradient(from 0deg,transparent,rgba(255,255,255,.2),transparent 28%);animation:don 4s linear infinite}
+@keyframes don{to{transform:rotate(360deg)}}
+.kt-kart>*{position:relative}
+.kt-kart.bos,.kt-kart.tamam{background:linear-gradient(160deg,#1d4d36,#0a2117)}
+.kt-kart.bos span{font-family:var(--fd);font-size:min(16vh,120px);font-weight:800;opacity:.35}
+.kt-kart.bekle span{animation:nabiz .45s ease-in-out infinite alternate;opacity:.75}
+@keyframes nabiz{to{transform:scale(1.18)}}
+.kt-kart.ac{animation:kartAc .8s cubic-bezier(.2,1.25,.4,1)}
+@keyframes kartAc{0%{transform:rotateY(95deg) scale(.7);filter:brightness(2.6)}100%{transform:none;filter:none}}
+.kt-kart.gidiyor{animation:kartGit .4s ease-in forwards}
+@keyframes kartGit{to{transform:translateX(35%) scale(.55);opacity:0}}
+.kk-no{font-size:12.5px;font-weight:800;letter-spacing:2.5px;opacity:.9}
+.kk-no b{display:block;font-family:var(--fd);font-size:min(7.5vh,56px);line-height:1;color:var(--acc);text-shadow:0 2px 12px rgba(0,0,0,.4)}
+.kk-logo .lg{box-shadow:0 0 0 4px rgba(255,255,255,.8),0 12px 30px rgba(0,0,0,.4)}
+.kk-ad{font-family:var(--fd);font-weight:800;font-size:clamp(26px,5.6vh,54px);line-height:1;text-shadow:0 3px 14px rgba(0,0,0,.35)}
+.kk-td{display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.25);border-radius:14px;padding:7px 14px 7px 7px;text-align:left;max-width:100%}
+.kk-td img,.kk-td>span{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.85);display:grid;place-items:center;font-size:23px;background:rgba(255,255,255,.15);flex:none}
+.kk-td div{min-width:0}
+.kk-td small{display:block;font-size:10.5px;opacity:.85;font-weight:800;letter-spacing:1px}
+.kk-td b{display:block;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kk-tamam{font-size:64px;color:var(--acc);line-height:1}
+.kk-alt{opacity:.8}
+.kt-sag{display:flex;flex-direction:column;min-height:0;max-height:100%}
+.kt-sag h3{font-family:var(--fd);font-size:20px;color:var(--acc);margin:0 0 8px}
+.kt-slotlar{display:grid;grid-template-columns:1fr 1fr;gap:6px;overflow:hidden;align-content:start}
+.kt-slot{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.25);border-radius:10px;padding:5px 8px;min-height:36px;font-weight:700;font-size:14px;min-width:0}
+.kt-slot>b{width:22px;height:22px;border-radius:7px;background:rgba(255,255,255,.15);display:grid;place-items:center;font-size:12px;flex:none}
+.kt-slot span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kt-slot.dolu{background:rgba(255,255,255,.14);border-style:solid;border-color:rgba(255,255,255,.35)}
+.kt-slot.dolu>b{background:var(--acc);color:#2a2100}
+.kt-slot.yeni{animation:slotGir .75s cubic-bezier(.2,1.4,.4,1)}
+@keyframes slotGir{0%{transform:scale(1.45);box-shadow:0 0 0 7px rgba(244,196,48,.6)}100%{transform:none}}
+.kt-fik{align-items:center;justify-content:center;perspective:1200px}
+.kf-kart{width:min(740px,100%);max-height:100%;display:flex;flex-direction:column;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:2vh 2.4vw;backdrop-filter:blur(4px)}
+.kf-kart.ac{animation:kfGir .5s ease-out}
+@keyframes kfGir{from{transform:translateX(70px) rotateY(-14deg);opacity:0}}
+.kf-bas{text-align:center;margin-bottom:1.2vh}
+.kf-bas span{font-size:12px;letter-spacing:3px;opacity:.7;font-weight:800}
+.kf-bas h2{font-family:var(--fd);font-size:clamp(32px,6.5vh,64px);color:var(--acc);line-height:1}
+.kf-bas small{opacity:.85}
+.kf-liste{display:flex;flex-direction:column;gap:.7vh;overflow:hidden;min-height:0}
+.kf-sat{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;background:rgba(255,255,255,.08);border-radius:12px;padding:.6vh 12px;font-weight:700;font-size:clamp(14px,2.4vh,23px);animation:satGir .45s ease-out backwards}
+@keyframes satGir{from{transform:translateY(16px) scale(.97);opacity:0}}
+.kf-e,.kf-d{display:flex;align-items:center;gap:8px;min-width:0}
+.kf-e{justify-content:flex-end}
+.kf-ad{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kf-sat>b{font-family:var(--fd);color:var(--acc);min-width:3.2em;text-align:center}
+.kf-bay{display:flex;justify-content:center;align-items:center;gap:6px;opacity:.85;font-size:14px;padding-top:4px;animation:satGir .45s ease-out backwards}
+.kf-nok{display:flex;justify-content:center;gap:4px;flex-wrap:wrap;margin-top:1.4vh}
+.kf-nok i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2)}
+.kf-nok i.gec{background:rgba(244,196,48,.55)}
+.kf-nok i.on{background:var(--acc);width:22px;border-radius:5px}
+.kt-final{align-items:center;justify-content:center}
+.kfin{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.8vh;animation:kYuk .7s ease-out}
+.kfin-kupa{font-size:clamp(70px,16vh,150px);line-height:1;animation:kupa 1.2s cubic-bezier(.2,1.5,.4,1);filter:drop-shadow(0 0 30px rgba(244,196,48,.75))}
+@keyframes kupa{from{transform:scale(0) rotate(-30deg)}}
+.kfin h1{font-family:var(--fd);font-size:clamp(36px,8.5vh,84px);line-height:1}
+.kfin-chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.kfin-chips span{background:rgba(255,255,255,.13);border-radius:999px;padding:6px 14px;font-weight:700}
+.kfin-ilk{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:12px 18px;max-width:100%}
+.kfin-ilk small{display:block;opacity:.78;letter-spacing:1px;font-weight:700;margin-bottom:6px}
+.kfin-mac{display:flex;align-items:center;justify-content:center;gap:14px;font-family:var(--fd);font-size:clamp(20px,3.6vh,32px);font-weight:800;flex-wrap:wrap}
+.kfin-mac span{display:flex;align-items:center;gap:8px}
+.kfin-mac b{color:var(--acc)}
+.kfin-btn{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.kt-alt{position:relative;z-index:3;flex:none;display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;opacity:.92}
+.kt-alt span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60%}
+.kt-bar{flex:1;height:5px;background:rgba(255,255,255,.15);border-radius:5px;overflow:hidden}
+.kt-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#f4c430,#fff3b0);border-radius:5px}
+.kt-sesac{position:absolute;z-index:6;left:50%;bottom:calc(44px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#fff;color:#0b3d2a;font-weight:800;font-size:15px;padding:13px 22px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.45);animation:nabizK 1.6s infinite;white-space:nowrap}
+@media (max-aspect-ratio:1/1){
+  .kt-canli{display:none}
+  .kt-ust img{width:38px;height:38px}
+  .kt-ub b{font-size:18px}
+  .kt-btn button{width:36px;height:36px;font-size:15px}
+  .kt-cek{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);grid-template-rows:auto minmax(0,1fr);gap:2.2vh 4vw;align-items:start}
+  .kt-sol{grid-column:1;grid-row:1;align-self:center}
+  .kt-orta{grid-column:2;grid-row:1}
+  .kt-sag{grid-column:1/-1;grid-row:2}
+  .kt-torba{width:36vw}
+  .kt-kart{width:min(54vw,40vh);padding:10px;gap:.8vh;border-radius:18px}
+  .kk-logo .lg{width:min(76px,18vw)!important;height:min(76px,18vw)!important;font-size:min(46px,11vw)!important}
+  .kk-ad{font-size:clamp(22px,4vh,40px)}
+  .kk-no b{font-size:min(5.5vh,40px)}
+  .kk-td{padding:5px 10px 5px 5px;gap:7px}.kk-td img,.kk-td>span{width:32px;height:32px;font-size:18px}.kk-td b{font-size:13px}.kk-td small{font-size:9px}
+  .kt-slotlar{grid-template-columns:repeat(3,1fr);gap:5px}
+  .kt-slot{font-size:12.5px;padding:4px 6px;min-height:32px;gap:5px}
+  .kt-slot .lg{width:20px!important;height:20px!important;font-size:13px!important}
+  .kt-sag h3{font-size:17px;margin-bottom:6px}
+  .kf-kart{padding:2vh 3.4vw}
+  .kf-sat{gap:6px;padding:.6vh 8px}
+  .kf-sat .lg{width:24px!important;height:24px!important;font-size:15px!important}
+}
+.kurabekle .btn,.kfin-btn .btn{color:var(--ink)}
+.kurabekle .btn.a,.kfin-btn .btn.a{color:#2a2100}
+.kurabekle .inp{color:var(--ink)}
+.kfin-btn .btn{min-width:150px}
 /* v4: TV gezinme ve kısa listeler */
 #tv{touch-action:pan-y}
 #tv .tvb{flex:1;min-height:0;overflow:hidden}
@@ -846,6 +1019,7 @@ const Store = {
         firebase.initializeApp(FIREBASE_CONFIG);
         this.db = firebase.database(); this.auth = firebase.auth(); this.mod = 'bulut';
         this.auth.onAuthStateChanged(u=>{ this.user = u; render(); });
+        this.db.ref('.info/serverTimeOffset').on('value', sn=>{ sunucuFark = sn.val() || 0; });
       }catch(e){ console.error(e); this.mod = 'yerel'; }
     }
   },
@@ -935,6 +1109,7 @@ function yenile(){
   if(canliId) canliRender();
   if(detayId && $('#sheet').classList.contains('ac')) macDetayRender();
   if($('#tv').classList.contains('ac')) tvRender();
+  kuraKontrol();
 }
 document.addEventListener('focusout', ()=>setTimeout(()=>{ if(bekleyenRender){ const ae = document.activeElement; if(!(ae && $('#main').contains(ae) && /INPUT|TEXTAREA|SELECT/.test(ae.tagName))) render(); } }, 60));
 
@@ -1082,6 +1257,8 @@ function bugunHtml(){
   const golcu = golcuListesi()[0];
   const bitti = toplam && oyn===toplam;
   const kr = S.kurum || {};
+  const kb = kuraBekleKart();
+  if(kb) return kb + (sira.length ? `<div class="sec"><h2>Takımlar</h2><button class="lnk" onclick="git('takimlar')">Tümü →</button></div><div class="card">${tabloTablo(sira, false)}</div>` : '');
   let h = `<div class="hero">
     ${kr.ad ? `<div class="hk">${kurumLogo(26)}<span>${esc(kr.ad)}</span></div>` : ''}
     <h1>${bitti && lider ? '🏆 Şampiyon: '+esc(lider.ad) : esc(T.ayar.ad)}</h1>
@@ -1131,12 +1308,13 @@ function tabloHtml(){
 /* ===================== FİKSTÜR ===================== */
 function fiksturHtml(){
   const ms = macListe(), turSay = Math.max(0, ...ms.map(m=>m.tur));
+  if(!ms.length) return `<div class="sec" style="margin-top:4px"><h2>Fikstür</h2></div>` + (kuraBekleKart() || `<div class="card empty">Henüz fikstür çekilmedi.</div>`);
   if(S.fTur===null){ const ilk = ms.filter(m=>!oynandi(m)).sort((a,b)=>a.tur-b.tur)[0]; S.fTur = ilk ? ilk.tur : 1; }
   const tk = S.fTakim;
   const filtre = m => !tk || m.ev===tk || m.dep===tk;
   const secenek = Object.values(S.T.takimlar).sort((a,b)=>(a.sira||0)-(b.sira||0)).map(t=>`<option value="${t.id}" ${tk===t.id?'selected':''}>${esc(t.ad)}</option>`).join('');
   let h = `<div class="sec" style="margin-top:4px"><h2>Fikstür</h2>
-    <div class="row" style="gap:6px"><div class="seg"><button class="${S.fMod==='tur'?'on':''}" onclick="S.fMod='tur';render()">Tur</button><button class="${S.fMod==='tarih'?'on':''}" onclick="S.fMod='tarih';render()">Tarih</button></div><button class="ibtn" title="İndir" onclick="indirMenu('fikstur')">⬇️</button></div></div>
+    <div class="row" style="gap:6px"><div class="seg"><button class="${S.fMod==='tur'?'on':''}" onclick="S.fMod='tur';render()">Tur</button><button class="${S.fMod==='tarih'?'on':''}" onclick="S.fMod='tarih';render()">Tarih</button></div>${S.T.kura && arr(S.T.kura.sira).length ? `<button class="ibtn" title="Kura törenini izle" onclick="kuraGoster(0,true)">🎬</button>` : ''}<button class="ibtn" title="İndir" onclick="indirMenu('fikstur')">⬇️</button></div></div>
     <select class="inp" style="margin-bottom:10px" onchange="S.fTakim=this.value;render()"><option value="">Tüm takımlar</option>${secenek}</select>`;
   if(S.fMod==='tur' && !tk){
     h += `<div class="chips">${Array.from({length:turSay},(_,i)=>i+1).map(t=>`<button class="chip ${S.fTur===t?'on':''}" onclick="S.fTur=${t};render()">${t}. Tur</button>`).join('')}</div>`;
@@ -1170,7 +1348,7 @@ function takimlarHtml(){
   const sira = siralamaHesap(S.T), pos = {}; sira.forEach((s,i)=>pos[s.id]=i+1);
   const ts = Object.values(S.T.takimlar).sort((a,b)=>(a.sira||0)-(b.sira||0));
   return `<div class="sec" style="margin-top:4px"><h2>Takımlar</h2><span class="mut small">${ts.length} takım</span></div>
-    <div class="tgrid">${ts.map(t=>`<button class="tcard" style="--tc:${esc(t.renk)}" onclick="takimAc('${t.id}')">${logo(t,58)}<b>${esc(t.ad)}</b><span class="mut small">${pos[t.id]}. sırada · ${Object.keys(t.oyuncular).length} oyuncu</span></button>`).join('')}</div>`;
+    <div class="tgrid">${ts.map(t=>`<button class="tcard" style="--tc:${esc(t.renk)}" onclick="takimAc('${t.id}')">${logo(t,58)}<b>${esc(t.ad)}</b><span class="mut small">${pos[t.id]}. sırada · ${Object.keys(t.oyuncular).length} oyuncu</span>${t.td && t.td.ad ? `<span class="tdk">👔 ${esc(t.td.ad)}</span>` : ''}</button>`).join('')}</div>`;
 }
 function takimAc(id){ S.takimId = id; S.view = 'takim'; window.scrollTo(0,0); render(); }
 function takimDetayHtml(){
@@ -1181,7 +1359,7 @@ function takimDetayHtml(){
   const ms = macListe().filter(m=>m.ev===t.id || m.dep===t.id);
   const ad = yonetici();
   return `<button class="btn sm" style="margin-bottom:10px" onclick="git('takimlar')">← Takımlar</button>
-    <div class="thead" style="background:linear-gradient(135deg,${esc(t.renk)},#0b3d2a)">${logo(t,64)}<div><h1>${esc(t.ad)}</h1>
+    <div class="thead" style="background:linear-gradient(135deg,${esc(t.renk)},#0b3d2a)">${logo(t,64)}<div><h1>${esc(t.ad)}</h1>${t.td && t.td.ad ? `<div class="tdsat">${tdGorsel(t,26)}<span>Teknik Direktör: <b>${esc(t.td.ad)}</b></span></div>` : ''}
       <div style="opacity:.9;font-size:14px">${i+1}. sıra · ${st.p} puan · ${st.g}G ${st.b}B ${st.m}M · Averaj ${st.av>0?'+':''}${st.av}</div>
       ${st.form.length?`<div class="form" style="justify-content:flex-start;margin-top:6px">${st.form.map(f=>`<i class="${f}">${f}</i>`).join('')}</div>`:''}</div></div>
     ${ad ? `<div class="row" style="margin-bottom:6px;flex-wrap:wrap"><button class="btn sm" onclick="takimDuzenle('${t.id}')">✏️ Takımı düzenle</button><button class="btn sm" onclick="oyuncuForm('${t.id}')">+ Oyuncu</button><button class="btn sm" onclick="topluOyuncu('${t.id}')">📋 Toplu ekle</button><button class="btn sm" onclick="indirMenu('takim')">⬇️ Kadro / kartlar</button></div>` : ''}
@@ -1258,12 +1436,17 @@ async function topluKaydet(tk){
   await Store.update(up); sheetKapat(); toast(satir.length+' oyuncu eklendi');
 }
 function takimDuzenle(tk){
-  const t = takim(tk); window._tl = {logo:t.logo, logoImg:t.logoImg||null};
+  const t = takim(tk); window._tl = {logo:t.logo, logoImg:t.logoImg||null}; const td = t.td || {}; window._tdFoto = td.foto || null;
   sheet(`<div class="sh"><h2>Takımı düzenle</h2><button class="x" onclick="sheetKapat()">✕</button></div>
     <div class="row" style="margin-bottom:14px"><span id="tlOn">${logo(t,64)}</span><div style="flex:1"><label class="btn sm" style="cursor:pointer">🖼️ Logo yükle<input type="file" accept="image/*" hidden onchange="logoYukle(this,'tlOn')"></label>
       <div class="hint small mut" style="margin-top:6px">Yüklenen görsel 128 px'e küçültülür.</div></div></div>
     <div class="fld"><label>Takım adı</label><input class="inp" id="tAd" value="${esc(t.ad)}"></div>
     <div class="fld"><label>Renk</label><input type="color" class="clr" id="tRenk" value="${esc(t.renk)}"></div>
+    <div class="fld"><label>Teknik direktör</label>
+      <div class="fotoalan" style="margin-bottom:0"><span id="tdOn" class="fotoon" style="width:60px;height:60px;font-size:30px">${td.foto?`<img src="${td.foto}">`:'👔'}</span>
+      <div style="flex:1;min-width:0"><input class="inp" id="tdAd" value="${esc(td.ad||'')}" placeholder="Örn. Ayşe Kaya (sınıf öğretmeni)">
+      <div class="row" style="margin-top:8px"><label class="btn sm" style="cursor:pointer">📷 Fotoğraf<input type="file" accept="image/*" hidden onchange="tdFotoSec(this)"></label><button class="btn sm r" onclick="window._tdFoto=null;document.getElementById('tdOn').innerHTML='👔'">Kaldır</button></div></div></div>
+      <div class="hint">Kura töreninde, takım sayfasında ve çıktılarda görünür. Fotoğrafı öğretmenin onayıyla ekleyin.</div></div>
     <div class="fld"><label>Simge</label><div class="emg">${TAKIM_LOGO.map(e=>`<button onclick="window._tl={logo:'${e}',logoImg:null};document.getElementById('tlOn').innerHTML=logo({logo:'${e}',renk:document.getElementById('tRenk').value},64)">${e}</button>`).join('')}</div></div>
     <button class="btn p blk" onclick="takimKaydet('${tk}')">Kaydet</button>`);
 }
@@ -1276,9 +1459,19 @@ async function logoYukle(inp, onId){
     if(inp._cb) inp._cb(url);
   }catch(e){ toast('Görsel okunamadı'); }
 }
+async function tdFotoSec(inp){
+  const f = inp.files[0]; if(!f) return;
+  try{ window._tdFoto = await gorselKucult(f, 240, 'image/jpeg', .82); document.getElementById('tdOn').innerHTML = `<img src="${window._tdFoto}">`; }catch(e){ toast('Fotoğraf okunamadı'); }
+}
+function tdGorsel(t, size){
+  const td = t.td || {};
+  if(td.foto) return `<img class="pfoto" src="${td.foto}" style="width:${size}px;height:${size}px" alt="">`;
+  return `<span class="pav" style="font-size:${Math.round(size*.7)}px">👔</span>`;
+}
 async function takimKaydet(tk){
   const ad = $('#tAd').value.trim(); if(!ad){ toast('Takım adı girin'); return; }
-  await Store.update({[tp(`takimlar/${tk}/ad`)]:ad, [tp(`takimlar/${tk}/renk`)]:$('#tRenk').value, [tp(`takimlar/${tk}/logo`)]:window._tl.logo, [tp(`takimlar/${tk}/logoImg`)]:window._tl.logoImg});
+  const tdAd = $('#tdAd').value.trim();
+  await Store.update({[tp(`takimlar/${tk}/td`)]:(tdAd || window._tdFoto) ? {ad:tdAd, foto:window._tdFoto||null} : null, [tp(`takimlar/${tk}/ad`)]:ad, [tp(`takimlar/${tk}/renk`)]:$('#tRenk').value, [tp(`takimlar/${tk}/logo`)]:window._tl.logo, [tp(`takimlar/${tk}/logoImg`)]:window._tl.logoImg});
   sheetKapat(); toast('Takım güncellendi');
 }
 
@@ -1653,11 +1846,16 @@ function wizardHtml(){
         <button class="btn ${a.ligDevre!==2?'p':''}" style="height:auto;padding:12px;flex-direction:column" onclick="W.ayar.ligDevre=1;render()"><b>Tek devre</b><span class="small" style="opacity:.8">Her takım birbiriyle 1 kez</span></button>
         <button class="btn ${a.ligDevre===2?'p':''}" style="height:auto;padding:12px;flex-direction:column" onclick="W.ayar.ligDevre=2;render()"><b>Çift devre</b><span class="small" style="opacity:.8">Ev sahibi + deplasman</span></button>
       </div></div>
-    <div class="fld"><label>Kura</label>
+    <div class="fld"><label>Kura çekimi</label>
+      <div class="grid2">
+        <button class="btn ${a.kuraTip!=='canli'?'p':''}" style="height:auto;padding:12px;flex-direction:column" onclick="W.ayar.kuraTip='hemen';render()"><b>🎲 Hemen çek</b><span class="small" style="opacity:.8">Oluşturunca fikstür hazır</span></button>
+        <button class="btn ${a.kuraTip==='canli'?'p':''}" style="height:auto;padding:12px;flex-direction:column" onclick="W.ayar.kuraTip='canli';render()"><b>🎬 Canlı kura töreni</b><span class="small" style="opacity:.8">Herkes ekrandan canlı izler</span></button>
+      </div></div>
+    ${a.kuraTip==='canli' ? `<div class="bilgi">Turnuva oluşturulunca fikstür çekilmez. Bugün ekranındaki <b>“Kura törenini başlat”</b> düğmesine bastığınızda kura; sesli ve animasyonlu olarak bağlantıyı açık tutan herkesin ekranında aynı anda çekilir. Teknik direktörleri törenden önce Takımlar ekranından ekleyebilirsiniz.</div>` : `<div class="fld"><label>Kura sırası</label>
       <div class="grid2">
         <button class="btn ${a.kura!=='sirali'?'p':''}" onclick="W.ayar.kura='rastgele';render()">🎲 Rastgele kura</button>
         <button class="btn ${a.kura==='sirali'?'p':''}" onclick="W.ayar.kura='sirali';render()">Listedeki sıra</button>
-      </div></div>
+      </div></div>`}
     <div class="sumg"><div><b>${tek*(a.ligDevre===2?2:1)}</b><span>Tur</span></div><div><b>${mac}</b><span>Toplam maç</span></div>
       <div><b>${n-1}${a.ligDevre===2?' × 2':''}</b><span>Takım başına maç</span></div><div><b>${n%2?'Var':'Yok'}</b><span>Bay geçme</span></div></div>
     <div class="bilgi">${a.ligDevre===2?'İkinci yarıda ilk yarının maçları ev sahibi ve deplasman yer değiştirerek tekrar oynanır.':'Ev sahibi/deplasman dağılımı takımlar arasında dengeli yapılır.'}</div>`;
@@ -1687,13 +1885,14 @@ function wizardHtml(){
       Günler: ${arr(a.gunler).map(n=>GUN_AD[n%7]).join(', ')} · Saatler: ${arr(a.slotlar).join(', ')}${+a.sahaSayisi>1?' · '+a.sahaSayisi+' saha':''}<br>
       Kadro ${a.kadro} · sahada ${a.sahada} · ${+a.sure?a.sure+' dk × '+a.macDevre+' devre':'süresiz'}
     </div>
-    <div class="bilgi">“Kura çek ve oluştur” dediğinizde fikstür çekilir ve tüm maçlar takvime yerleştirilir. Sonradan Ayarlar'dan saatleri/tatilleri değiştirip kalan maçları yeniden planlayabilirsiniz.</div>`;
+    ${a.kuraTip==='canli' ? `<div class="bilgi">🎬 <b>Canlı kura töreni:</b> Turnuva oluşturulur, fikstür törende çekilir. Tören saatini Bugün ekranından duyurabilir, “Kura törenini başlat” ile herkese canlı yayınlayabilirsiniz.</div>`
+      : `<div class="bilgi">“Kura çek ve oluştur” dediğinizde fikstür çekilir ve tüm maçlar takvime yerleştirilir. Sonradan Ayarlar'dan saatleri/tatilleri değiştirip kalan maçları yeniden planlayabilirsiniz.</div>`}`;
   }
   return `<div class="wz-steps">${ADIMLAR.map((_,j)=>`<i class="${j<=i?'on':''}"></i>`).join('')}</div>
     <div class="wz-head"><small>Yeni turnuva · Adım ${i+1}/${ADIMLAR.length}</small><h1>${ADIMLAR[i]}</h1></div>
     ${g}
     <div class="wz-foot"><button class="btn" onclick="wGeri()">${i===0?'Vazgeç':'← Geri'}</button>
-    ${i<ADIMLAR.length-1 ? `<button class="btn p" onclick="wIleri()">İleri →</button>` : `<button class="btn a" onclick="turnuvaOlustur()">🎲 Kura çek ve oluştur</button>`}</div>`;
+    ${i<ADIMLAR.length-1 ? `<button class="btn p" onclick="wIleri()">İleri →</button>` : `<button class="btn a" onclick="turnuvaOlustur()">${a.kuraTip==='canli' ? '🎬 Turnuvayı oluştur' : '🎲 Kura çek ve oluştur'}</button>`}</div>`;
 }
 function kuraAnimasyon(takimlar){
   return new Promise(res=>{
@@ -1707,8 +1906,9 @@ async function turnuvaOlustur(){
   const a = W.ayar, tid = 't'+uid();
   const takimlar = {}, ids = [];
   W.takimlar.forEach((t,i)=>{ const id = 'k'+uid(); ids.push(id); takimlar[id] = {ad:t.ad.trim(), renk:t.renk, logo:t.logo, logoImg:t.logoImg||null, sira:i, kisa:t.ad.trim().slice(0,12)}; });
-  await kuraAnimasyon(W.takimlar);
-  const turlar = fiksturUret(ids, a.ligDevre===2, a.kura!=='sirali');
+  const canli = a.kuraTip==='canli';
+  if(!canli) await kuraAnimasyon(W.takimlar);
+  const turlar = canli ? [] : fiksturUret(ids, a.ligDevre===2, a.kura!=='sirali');
   const maclar = {}, bek = [], baylar = {}; let sira = 0;
   turlar.forEach((tr,ri)=>{
     if(tr.bay) baylar['t'+(ri+1)] = tr.bay;
@@ -1718,11 +1918,12 @@ async function turnuvaOlustur(){
   Object.entries(plan.atama).forEach(([id,x])=>{ Object.assign(maclar[id], x); if(!x.tarih) maclar[id].durum = 'ertelendi'; });
   const ayar = kopya(a); delete ayar.takimSayisi;
   const T = {ayar, takimlar, maclar, baylar, olusturma:Date.now()};
+  if(canli) T.kura = {durum:'bekliyor'};
   const up = {['t/'+tid]:T, ['liste/'+tid]:{ad:a.ad.trim(), tur:a.tur, logo:a.logo, olusturma:Date.now()}};
   if(!S.aktif || !S.liste[S.aktif]) up.aktif = tid;
   try{ await Store.update(up); }catch(e){ return; }
   W = null; S.view = 'bugun'; turnuvaAc(tid);
-  toast('Turnuva oluşturuldu: '+bek.length+' maç planlandı');
+  toast(canli ? 'Turnuva oluşturuldu, kura töreni bekleniyor' : 'Turnuva oluşturuldu: '+bek.length+' maç planlandı');
 }
 
 /* ===================== AYARLAR ===================== */
@@ -1774,7 +1975,7 @@ function ayarlarHtml(){
 
   <details class="card acc" ${accAcik('veri')} ontoggle="accTog('veri',this)"><summary><span class="ai">💾</span><span class="at"><b>Veri</b><small>Yedek, fikstürü yeniden çek, sil</small></span></summary><div class="ab">
     <button class="btn blk" onclick="yedekIndir()">⬇️ Yedek indir (JSON)</button>
-    ${!oynanan ? `<button class="btn blk" style="margin-top:10px" onclick="fiksturYeniden()">🎲 Fikstürü yeniden çek</button><p class="hint small mut">Henüz maç oynanmadığı için kura yeniden çekilebilir.</p>` : ''}
+    ${!oynanan ? `<button class="btn a blk" style="margin-top:10px" onclick="kuraHazirla()">🎬 Canlı kura töreniyle yeniden çek</button><button class="btn blk" style="margin-top:8px" onclick="fiksturYeniden()">🎲 Fikstürü hemen yeniden çek</button><p class="hint small mut">Henüz maç oynanmadığı için kura yeniden çekilebilir.</p>` : ''}
     <button class="btn r blk" style="margin-top:10px" onclick="turnuvaSil()">Turnuvayı sil</button>
   </div></details>
   <details class="card acc" ${accAcik('rapor')} ontoggle="accTog('rapor',this)"><summary><span class="ai">📄</span><span class="at"><b>Raporlar ve çıktılar</b><small>PDF ve Excel</small></span></summary><div class="ab">${ciktiSatirlari(['tablo','fikstur','gunluk','istatistik','kadro','kartlar','foy','rapor'])}</div></details>`;
@@ -2168,8 +2369,8 @@ function vIstatistik(){
 function vKadro(tk){
   const ts = tk ? [takim(tk)] : Object.values(S.T.takimlar).sort((a,b)=>(a.sira||0)-(b.sira||0));
   const sat = [];
-  ts.forEach(t=>oyuncuSirali(t).forEach(p=>{ const s = oyuncuIstat(t.id, p.id); sat.push([t.ad, p.no || '', oyuncuAd(p), s.mac, s.gol, s.mvp]); }));
-  return {ad:'Kadrolar', baslik: tk ? takim(tk).ad + ' Kadrosu' : 'Takım Kadroları', kolonlar:[{ad:'Takım', w:18, al:'left', b:1}, {ad:'Forma', w:7}, {ad:'Ad Soyad', w:26, al:'left'}, {ad:'Maç', w:6}, {ad:skorAd(), w:7}, {ad:'Maçın Oyuncusu', w:10}], satirlar:sat};
+  ts.forEach(t=>oyuncuSirali(t).forEach(p=>{ const s = oyuncuIstat(t.id, p.id); sat.push([t.ad, (t.td && t.td.ad) || '', p.no || '', oyuncuAd(p), s.mac, s.gol, s.mvp]); }));
+  return {ad:'Kadrolar', baslik: tk ? takim(tk).ad + ' Kadrosu' : 'Takım Kadroları', kolonlar:[{ad:'Takım', w:18, al:'left', b:1}, {ad:'Teknik Direktör', w:22, al:'left'}, {ad:'Forma', w:7}, {ad:'Ad Soyad', w:26, al:'left'}, {ad:'Maç', w:6}, {ad:skorAd(), w:7}, {ad:'Maçın Oyuncusu', w:10}], satirlar:sat};
 }
 function oyuncuSirali(t){ return Object.values(t.oyuncular || {}).sort((a,b)=>(+a.no||99)-(+b.no||99) || (a.ad||'').localeCompare(b.ad||'', 'tr')); }
 
@@ -2251,7 +2452,7 @@ function pIstatistik(){
 function pKadro(tk){
   const ts = tk ? [takim(tk)] : Object.values(S.T.takimlar).sort((a,b)=>(a.sira||0)-(b.sira||0));
   return `<div class="${tk ? '' : 'iki'}">${ts.map(t=>{ const oy = oyuncuSirali(t);
-    return `<div class="blok"><div class="tbas" style="background:${esc(t.renk)}">${logo(t,30)}<b>${esc(t.ad)}</b><span class="say">${oy.length} oyuncu</span></div>
+    return `<div class="blok"><div class="tbas" style="background:${esc(t.renk)}">${logo(t,30)}<b>${esc(t.ad)}</b><span class="say">${t.td && t.td.ad ? 'TD: '+esc(t.td.ad)+' · ' : ''}${oy.length} oyuncu</span></div>
       <table><thead><tr><th>No</th><th class="l">Ad Soyad</th><th>Maç</th><th>${esc(skorAd())}</th><th>⭐</th></tr></thead><tbody>
       ${oy.map(p=>{ const s = oyuncuIstat(t.id, p.id); return `<tr><td class="b">${esc(p.no||'')}</td><td class="l"><span class="tkp">${oyuncuGorsel(p,22)}${esc(oyuncuAd(p))}</span></td><td>${s.mac}</td><td>${s.gol}</td><td>${s.mvp}</td></tr>`; }).join('') || '<tr><td colspan="5">Oyuncu eklenmemiş</td></tr>'}
       </tbody></table></div>`; }).join('')}</div>`;
@@ -2280,8 +2481,8 @@ function pFoy(arg){
         <div class="ft">${logo(d,54)}<b>${esc(d.ad)}</b><span class="rol">Deplasman</span></div></div>
       ${devre > 1 ? `<table class="devre"><tr>${Array.from({length:devre},(_,j)=>`<td><b>${j+1}. devre</b><br><span class="kutu"></span> - <span class="kutu"></span></td>`).join('')}</tr></table>` : ''}
       <div class="iki">
-        <div class="blok"><div class="tbas" style="background:${esc(e.renk)}">${logo(e,26)}<b>${esc(e.ad)}</b></div><table><thead><tr><th>No</th><th class="l">Ad Soyad</th><th>${esc(sa)} (çentik)</th></tr></thead><tbody>${satir(e)}</tbody></table></div>
-        <div class="blok"><div class="tbas" style="background:${esc(d.renk)}">${logo(d,26)}<b>${esc(d.ad)}</b></div><table><thead><tr><th>No</th><th class="l">Ad Soyad</th><th>${esc(sa)} (çentik)</th></tr></thead><tbody>${satir(d)}</tbody></table></div>
+        <div class="blok"><div class="tbas" style="background:${esc(e.renk)}">${logo(e,26)}<b>${esc(e.ad)}</b>${e.td && e.td.ad ? `<span class="say">TD: ${esc(e.td.ad)}</span>` : ''}</div><table><thead><tr><th>No</th><th class="l">Ad Soyad</th><th>${esc(sa)} (çentik)</th></tr></thead><tbody>${satir(e)}</tbody></table></div>
+        <div class="blok"><div class="tbas" style="background:${esc(d.renk)}">${logo(d,26)}<b>${esc(d.ad)}</b>${d.td && d.td.ad ? `<span class="say">TD: ${esc(d.td.ad)}</span>` : ''}</div><table><thead><tr><th>No</th><th class="l">Ad Soyad</th><th>${esc(sa)} (çentik)</th></tr></thead><tbody>${satir(d)}</tbody></table></div>
       </div>
       <div class="foyalt"><div><b>⭐ Maçın Oyuncusu:</b> <span class="cizgi"></span></div><div><b>Notlar:</b><div class="not"></div><div class="not"></div></div></div>
       <div class="imza"><div>Hakem</div><div>${esc(e.ad)} Kaptanı</div><div>${esc(d.ad)} Kaptanı</div></div></div>`; }).join('');
@@ -2380,6 +2581,330 @@ function tvRender(){
       <button class="tvoto" onclick="tvOtoDegis()" title="Otomatik geçiş">${tvOto ? '⏸ Otomatik' : '▶ Otomatik'}</button>
     </div>`;
 }
+
+/* ===================== CANLI KURA TÖRENİ ===================== */
+/* Tören, sunucu saatine bağlı tek bir zaman çizelgesidir: kura.baslangic + geçen süre.
+   Herkes aynı anı görür; sonradan katılan kaldığı yerden izler. */
+let sunucuFark = 0;
+const simdiMs = () => Date.now() + sunucuFark;
+
+/* ---------- Ses motoru (Web Audio, dosya gerektirmez) ---------- */
+const Ses = {
+  c:null, g:null, acik:false, pad:null, _buf:null,
+  hazir(){
+    try{
+      const AC = window.AudioContext || window.webkitAudioContext; if(!AC) return false;
+      if(!this.c){ this.c = new AC(); this.g = this.c.createGain(); this.g.gain.value = .6; this.g.connect(this.c.destination); }
+      if(this.c.state === 'suspended') this.c.resume();
+      this.acik = true; return true;
+    }catch(e){ return false; }
+  },
+  kapat(){ this.padDur(); this.acik = false; },
+  _osc(f, t, d, tip, v, hedef){
+    const c = this.c, o = c.createOscillator(), g = c.createGain();
+    o.type = tip || 'sine'; o.frequency.setValueAtTime(f, t);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(v, t + .015); g.gain.exponentialRampToValueAtTime(.0001, t + d);
+    o.connect(g); g.connect(hedef || this.g); o.start(t); o.stop(t + d + .05); return o;
+  },
+  _gur(t, d, v, f, q, tip){
+    const c = this.c;
+    if(!this._buf){ const b = c.createBuffer(1, c.sampleRate, c.sampleRate), x = b.getChannelData(0); for(let i=0;i<x.length;i++) x[i] = Math.random()*2 - 1; this._buf = b; }
+    const s = c.createBufferSource(); s.buffer = this._buf;
+    const fl = c.createBiquadFilter(); fl.type = tip || 'bandpass'; fl.frequency.value = f; fl.Q.value = q || 1;
+    const g = c.createGain(); g.gain.setValueAtTime(v, t); g.gain.exponentialRampToValueAtTime(.0001, t + d);
+    s.connect(fl); fl.connect(g); g.connect(this.g); s.start(t, Math.random()*.5); s.stop(t + d + .05);
+    return {fl, g};
+  },
+  _bando(f, t, d, v){
+    const c = this.c, o = c.createOscillator(), lp = c.createBiquadFilter(), g = c.createGain();
+    o.type = 'sawtooth'; o.frequency.value = f; lp.type = 'lowpass'; lp.frequency.setValueAtTime(900, t); lp.frequency.linearRampToValueAtTime(2600, t + .08);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(v, t + .03); g.gain.setValueAtTime(v, t + d*.7); g.gain.exponentialRampToValueAtTime(.0001, t + d);
+    o.connect(lp); lp.connect(g); g.connect(this.g); o.start(t); o.stop(t + d + .05);
+  },
+  calis(ad){
+    if(!this.acik || !this.c) return;
+    const t = this.c.currentTime + .01;
+    try{
+      if(ad==='bip') this._osc(880, t, .18, 'sine', .3);
+      else if(ad==='bipSon'){ this._osc(1320, t, .5, 'sine', .3); this._osc(660, t, .5, 'triangle', .15); }
+      else if(ad==='davul'){ for(let k=0;k<16;k++) this._gur(t + k*.045, .06, .08 + k*.012, 1700, .9); this._osc(95, t + .74, .35, 'sine', .55); this._gur(t + .74, .25, .25, 160, .8, 'lowpass'); }
+      else if(ad==='ding'){ this._osc(1046.5, t, 1.3, 'sine', .28); this._osc(1568, t, 1, 'sine', .13); this._osc(2093, t, .7, 'triangle', .06); }
+      else if(ad==='whoosh'){ const n = this._gur(t, .7, .3, 300, .7); n.fl.frequency.exponentialRampToValueAtTime(4500, t + .55); }
+      else if(ad==='yerles'){ this._osc(660, t, .1, 'triangle', .16); this._osc(990, t + .06, .14, 'triangle', .12); }
+      else if(ad==='tik'){ this._osc(1400, t, .05, 'square', .05); this._gur(t, .08, .1, 3000, 2); }
+      else if(ad==='akor'){ [523.25, 659.25, 783.99].forEach((f,i)=>this._osc(f, t + i*.04, 1.6, 'triangle', .1)); }
+      else if(ad==='fanfar'){
+        [[392,0],[523.25,.18],[659.25,.36],[783.99,.54]].forEach(([f,d])=>this._bando(f, t + d, .24, .09));
+        [523.25, 659.25, 783.99, 1046.5].forEach(f=>this._bando(f, t + .8, 1.8, .07));
+        this._gur(t + .8, 1.8, .22, 7000, .6, 'highpass'); this._osc(130.8, t + .8, 1.4, 'sine', .35);
+      }
+    }catch(e){}
+  },
+  padBasla(){
+    if(!this.acik || !this.c || this.pad) return;
+    const c = this.c, t = c.currentTime, g = c.createGain(), lp = c.createBiquadFilter();
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.045, t + 2.5);
+    lp.type = 'lowpass'; lp.frequency.value = 480;
+    const os = [110, 164.81, 220].map((f,i)=>{ const o = c.createOscillator(); o.type = i===2 ? 'triangle' : 'sawtooth'; o.frequency.value = f; o.detune.value = (i-1)*7; o.connect(lp); o.start(); return o; });
+    const lfo = c.createOscillator(), lg = c.createGain(); lfo.frequency.value = .12; lg.gain.value = 220; lfo.connect(lg); lg.connect(lp.frequency); lfo.start();
+    const ritim = setInterval(()=>{ if(this.acik && this.c){ const tt = this.c.currentTime; this._osc(55, tt, .3, 'sine', .22); this._gur(tt, .12, .05, 2200, 1); } }, 1000);
+    lp.connect(g); g.connect(this.g); this.pad = {g, os:[...os, lfo], ritim};
+  },
+  padDur(){
+    if(!this.pad || !this.c) return;
+    const t = this.c.currentTime, p = this.pad; this.pad = null; clearInterval(p.ritim);
+    try{ p.g.gain.cancelScheduledValues(t); p.g.gain.setValueAtTime(Math.max(.0001, p.g.gain.value), t); p.g.gain.exponentialRampToValueAtTime(.0001, t + .9); }catch(e){}
+    setTimeout(()=>p.os.forEach(o=>{ try{ o.stop(); }catch(e){} }), 1000);
+  }
+};
+
+/* ---------- Zaman çizelgesi ---------- */
+function turGrup(T){
+  const g = {}; Object.values(T.maclar || {}).forEach(m=>{ (g[m.tur] = g[m.tur] || []).push(m); });
+  return Object.keys(g).map(Number).sort((a,b)=>a-b).map(t=>({tur:t, maclar:g[t].sort((a,b)=>(a.sira||0)-(b.sira||0)), bay:(T.baylar || {})['t'+t] || null}));
+}
+function kuraPlan(T){
+  const sira = arr(T.kura && T.kura.sira).filter(id=>T.takimlar[id]);
+  const n = sira.length, D = n > 16 ? 2200 : n > 10 ? 2600 : 3000;
+  const INTRO = 5400, cekBit = INTRO + n*D;
+  const turlar = turGrup(T), R = turlar.length;
+  const F = cekBit + 2200, T1 = Math.max(4200, 1600 + (turlar[0] ? turlar[0].maclar.length : 0)*300), TX = R > 16 ? 950 : R > 8 ? 1300 : 1800;
+  const finale = F + (R ? T1 + (R-1)*TX : 0) + 300;
+  return {sira, n, D, INTRO, cekBit, turlar, R, F, T1, TX, finale, son:finale + 9000};
+}
+function kuraOlaylar(P){
+  const o = [], ek = (t, f) => o.push({t, f});
+  ek(0, h=>ktIntro(h));
+  [1700, 2700, 3700].forEach((t,k)=>ek(t, h=>ktSayac(3-k, h)));
+  ek(4700, h=>ktSayac(0, h));
+  ek(P.INTRO, h=>ktCekimBasla(h));
+  P.sira.forEach((id, i)=>{ const t0 = P.INTRO + i*P.D; ek(t0, h=>ktTopFirla(i, h)); ek(t0 + 850, h=>ktKartAc(i, h)); ek(t0 + P.D - 420, h=>ktYerles(i, h)); });
+  ek(P.cekBit + 300, h=>ktCekimBitti(h));
+  P.turlar.forEach((tr, r)=>ek(r===0 ? P.F : P.F + P.T1 + (r-1)*P.TX, h=>ktTur(r, h)));
+  ek(P.finale, h=>ktFinal(h));
+  return o.sort((a,b)=>a.t - b.t);
+}
+
+/* ---------- Oynatıcı ---------- */
+const KT = {acik:false, P:null, olay:[], idx:0, t0:0, raf:null, baslangic:null, tekrar:false};
+function kuraKontrol(){
+  const k = S.T && S.T.kura;
+  if(!k || k.durum !== 'cekiliyor' || typeof k.baslangic !== 'number') return;
+  if(KT.acik) return;
+  const P = kuraPlan(S.T), gecen = simdiMs() - k.baslangic;
+  if(gecen > P.son || gecen < -120000 || !P.n) return;
+  let kap = null; try{ kap = localStorage.getItem('tm_kuraKapat'); }catch(e){}
+  if(String(kap) === String(k.baslangic)) return;
+  kuraGoster(Math.max(0, gecen), false);
+}
+function kuraGoster(gecen, tekrar){
+  if(!S.T || !S.T.kura) return;
+  const P = kuraPlan(S.T); if(!P.n){ toast('Kura bilgisi bulunamadı'); return; }
+  sheetKapat(); if($('#tv').classList.contains('ac')) tvKapat();
+  kuraKapat(true);
+  Object.assign(KT, {acik:true, P, olay:kuraOlaylar(P), idx:0, tekrar:!!tekrar, baslangic:S.T.kura.baslangic || 0});
+  ktIskelet(P);
+  KT.t0 = performance.now() - (gecen || 0);
+  ktIlerle(true);
+  if(Ses.acik && ktGecen() < P.finale) Ses.padBasla();
+  KT.raf = requestAnimationFrame(ktDongu);
+}
+function ktGecen(){ return performance.now() - KT.t0; }
+function ktIlerle(hizli){
+  const e = ktGecen();
+  while(KT.idx < KT.olay.length && KT.olay[KT.idx].t <= e){
+    const ol = KT.olay[KT.idx++];
+    try{ ol.f(hizli || e - ol.t > 1500); }catch(err){ console.error(err); }
+  }
+  const bar = $('#ktBar'); if(bar) bar.style.width = Math.min(100, e / KT.P.finale * 100) + '%';
+}
+function ktDongu(){ if(!KT.acik) return; ktIlerle(false); KT.raf = requestAnimationFrame(ktDongu); }
+function ktAtla(){
+  if(!KT.acik) return;
+  KT.t0 = performance.now() - (KT.P.finale - 30);
+  ktIlerle(true);
+}
+function kuraKapat(sessiz){
+  if(KT.raf) cancelAnimationFrame(KT.raf); KT.raf = null;
+  const el = $('#kuraT'); if(el){ el.className = ''; el.innerHTML = ''; }
+  Ses.padDur(); document.body.style.overflow = '';
+  if(KT.acik && !sessiz && !KT.tekrar && KT.baslangic){ try{ localStorage.setItem('tm_kuraKapat', String(KT.baslangic)); }catch(e){} }
+  KT.acik = false;
+}
+function ktSesAc(){
+  if(Ses.hazir() && KT.acik && ktGecen() < KT.P.finale) Ses.padBasla();
+  const b = $('#ktSesAc'); if(b) b.remove();
+  const s = $('#ktSes'); if(s) s.textContent = '🔊';
+}
+function ktSesDegis(){ if(Ses.acik){ Ses.kapat(); $('#ktSes').textContent = '🔇'; } else ktSesAc(); }
+
+/* ---------- Sahneler ---------- */
+function ktFaz(f){ const el = $('#kuraT'); if(el) el.dataset.faz = f; }
+function ktDurum(t){ const el = $('#ktDurum'); if(el) el.textContent = t; }
+function ktIskelet(P){
+  const k = S.kurum || {}, a = S.T.ayar;
+  let el = $('#kuraT'); if(!el){ el = document.createElement('div'); el.id = 'kuraT'; document.body.appendChild(el); }
+  const rnd = (i, s) => { const x = Math.sin(i*12.9898 + s*78.233)*43758.5453; return x - Math.floor(x); };
+  const toplar = P.sira.map((id, i)=>{ const t = takim(id), ang = rnd(i,1)*Math.PI*2, r = Math.sqrt(rnd(i,2))*30;
+    return `<i class="kt-top" id="ktTop${i}" style="left:${(42.5 + Math.cos(ang)*r).toFixed(1)}%;top:${(48 + Math.sin(ang)*r*.8).toFixed(1)}%;background:${esc(t.renk)};--x:${Math.round(rnd(i,3)*30-15)}px;--y:${Math.round(rnd(i,4)*30-15)}px;animation-delay:-${(rnd(i,5)*1.4).toFixed(2)}s"></i>`; }).join('');
+  el.innerHTML = `
+    <div class="kt-bg"><i class="isik i1"></i><i class="isik i2"></i><i class="isik i3"></i></div>
+    <canvas id="ktKonfeti"></canvas>
+    <header class="kt-ust">${k.logoImg ? `<img src="${k.logoImg}" alt="">` : `<span class="kt-ue">${esc(a.logo || '🏆')}</span>`}
+      <div class="kt-ub"><small>${esc(k.ad || a.tur || '')}</small><b>${esc(a.ad)}</b></div>
+      <span class="kt-canli">${KT.tekrar ? '↺ TEKRAR' : '● CANLI'} · KURA ÇEKİMİ</span>
+      <div class="kt-btn"><button id="ktSes" onclick="ktSesDegis()" title="Ses">${Ses.acik ? '🔊' : '🔇'}</button><button onclick="ktAtla()" title="Sona atla">⏭</button><button onclick="kuraKapat()" title="Kapat">✕</button></div></header>
+    <main class="kt-sahne">
+      <section class="kt-intro" id="ktIntro"></section>
+      <section class="kt-cek" id="ktCek">
+        <div class="kt-sol"><div class="kt-torba" id="ktTorba"><div class="kt-cam">${toplar}<i class="kt-parilti"></i></div><div class="kt-ayak"></div><i class="kt-firla" id="ktFirla"></i></div><div class="kt-sayac" id="ktSayac">0 / ${P.n}</div></div>
+        <div class="kt-orta"><div class="kt-kart bos" id="ktKart"><span>?</span></div></div>
+        <div class="kt-sag"><h3>Kura Sırası</h3><div class="kt-slotlar">${P.sira.map((_, i)=>`<div class="kt-slot" id="ktSlot${i}"><b>${i+1}</b><span></span></div>`).join('')}</div></div>
+      </section>
+      <section class="kt-fik" id="ktFik"></section>
+      <section class="kt-final" id="ktFinal"></section>
+    </main>
+    <footer class="kt-alt"><span id="ktDurum">Tören başlıyor</span><div class="kt-bar"><i id="ktBar"></i></div></footer>
+    ${Ses.acik ? '' : `<button class="kt-sesac" id="ktSesAc" onclick="ktSesAc()">🔊 Sesli izlemek için dokunun</button>`}`;
+  el.className = 'ac'; document.body.style.overflow = 'hidden';
+}
+function ktIntro(h){
+  ktFaz('intro');
+  const k = S.kurum || {}, a = S.T.ayar;
+  $('#ktIntro').innerHTML = `<div class="ki-logo">${k.logoImg ? `<img src="${k.logoImg}" alt="">` : esc(a.logo || '🏆')}</div>
+    ${k.ad ? `<div class="ki-ust">${esc(k.ad)}</div>` : ''}<h1>${esc(a.ad)}</h1><div class="ki-alt">CANLI KURA ÇEKİMİ</div>
+    <div class="ki-bilgi">${KT.P.n} takım · ${a.ligDevre===2 ? 'çift' : 'tek'} devre lig usulü${a.aciklama ? ' · ' + esc(a.aciklama) : ''}</div><div class="ki-sayac" id="kiSayac"></div>`;
+  ktDurum('Tören başlıyor');
+  if(!h) Ses.calis('akor');
+}
+function ktSayac(n, h){
+  const el = $('#kiSayac'); if(!el) return;
+  el.textContent = n || 'BAŞLIYOR!'; el.classList.toggle('yazi', !n);
+  el.classList.remove('vur'); void el.offsetWidth; el.classList.add('vur');
+  if(!h) Ses.calis(n ? 'bip' : 'bipSon');
+}
+function ktCekimBasla(h){
+  ktFaz('cek'); $('#ktTorba').classList.add('karis'); ktDurum('Kura çekiliyor');
+  if(!h) Ses.calis('whoosh');
+}
+function ktTopFirla(i, h){
+  const P = KT.P, top = $('#ktTop'+i); if(top) top.classList.add('cikti');
+  $('#ktSayac').textContent = `${i+1} / ${P.n}`; ktDurum(`Kura çekiliyor · ${i+1}. takım`);
+  if(h) return;
+  const t = takim(P.sira[i]), f = $('#ktFirla');
+  f.style.background = t.renk; f.classList.remove('git'); void f.offsetWidth; f.classList.add('git');
+  const torba = $('#ktTorba'); torba.classList.remove('salla'); void torba.offsetWidth; torba.classList.add('salla');
+  const kart = $('#ktKart'); kart.className = 'kt-kart bos bekle'; kart.style.removeProperty('--tc'); kart.innerHTML = '<span>?</span>';
+  Ses.calis('davul');
+}
+function ktKartAc(i, h){
+  const t = takim(KT.P.sira[i]), td = t.td || {}, kart = $('#ktKart');
+  kart.style.setProperty('--tc', t.renk);
+  kart.className = 'kt-kart' + (h ? '' : ' ac');
+  kart.innerHTML = `<div class="kk-no">KURA NO<b>${i+1}</b></div><div class="kk-logo">${logo(t,104)}</div><div class="kk-ad">${esc(t.ad)}</div>
+    ${td.ad ? `<div class="kk-td">${td.foto ? `<img src="${td.foto}" alt="">` : '<span>👔</span>'}<div><small>TEKNİK DİREKTÖR</small><b>${esc(td.ad)}</b></div></div>` : ''}`;
+  if(!h) Ses.calis('ding');
+}
+function ktYerles(i, h){
+  const t = takim(KT.P.sira[i]), s = $('#ktSlot'+i); if(!s) return;
+  s.className = 'kt-slot dolu' + (h ? '' : ' yeni');
+  s.innerHTML = `<b>${i+1}</b>${logo(t,24)}<span>${esc(t.ad)}</span>`;
+  if(!h){ Ses.calis('yerles'); const kart = $('#ktKart'); if(kart) kart.classList.add('gidiyor'); }
+}
+function ktCekimBitti(h){
+  $('#ktTorba').classList.remove('karis');
+  const kart = $('#ktKart'); kart.className = 'kt-kart tamam' + (h ? '' : ' ac'); kart.style.removeProperty('--tc');
+  kart.innerHTML = `<div class="kk-tamam">✔</div><div class="kk-ad" style="font-size:1.5em">Kura tamamlandı</div><div class="kk-alt">Fikstür açıklanıyor…</div>`;
+  ktDurum('Kura tamamlandı'); if(!h) Ses.calis('akor');
+}
+function ktTur(r, h){
+  ktFaz('fik');
+  const P = KT.P, tr = P.turlar[r], ilk = r===0;
+  const tarihler = [...new Set(tr.maclar.map(m=>m.tarih).filter(Boolean))].sort();
+  const gec = j => h ? 0 : (ilk ? 350 + j*280 : j*60);
+  $('#ktFik').innerHTML = `<div class="kf-kart ${h ? '' : 'ac'}">
+    <div class="kf-bas"><span>FİKSTÜR · ${P.R} TUR</span><h2>${tr.tur}. TUR</h2><small>${tarihler.length ? tarihYaz(tarihler[0], true) + (tarihler.length > 1 ? ' – ' + tarihYaz(tarihler[tarihler.length-1]) : '') : ''}</small></div>
+    <div class="kf-liste">${tr.maclar.map((m, j)=>{ const e = takim(m.ev), d = takim(m.dep);
+      return `<div class="kf-sat" style="animation-delay:${gec(j)}ms"><span class="kf-e"><span class="kf-ad">${esc(e.ad)}</span>${logo(e,30)}</span><b>${m.saat ? esc(m.saat) : 'VS'}</b><span class="kf-d">${logo(d,30)}<span class="kf-ad">${esc(d.ad)}</span></span></div>`; }).join('')}
+      ${tr.bay ? `<div class="kf-bay" style="animation-delay:${gec(tr.maclar.length)}ms">${logo(takim(tr.bay),22)} ${esc(takim(tr.bay).ad)} bu tur <b>BAY</b></div>` : ''}</div>
+    <div class="kf-nok">${P.turlar.map((_, k)=>`<i class="${k < r ? 'gec' : k===r ? 'on' : ''}"></i>`).join('')}</div></div>`;
+  ktDurum(`Fikstür açıklanıyor · ${tr.tur}. tur / ${P.R}`);
+  if(!h) Ses.calis(ilk ? 'whoosh' : 'tik');
+}
+function ktFinal(h){
+  ktFaz('final');
+  const P = KT.P, ms = macListe(), ilk = ms.find(m=>m.tarih), top = ms.length;
+  $('#ktFinal').innerHTML = `<div class="kfin"><div class="kfin-kupa">🏆</div><h1>FİKSTÜR HAZIR</h1>
+    <div class="kfin-chips"><span>${P.n} takım</span><span>${P.R} tur</span><span>${top} maç</span></div>
+    ${ilk ? `<div class="kfin-ilk"><small>İLK MAÇ · ${tarihYaz(ilk.tarih, true)}${ilk.saat ? ' · ' + esc(ilk.saat) : ''}</small>
+      <div class="kfin-mac"><span>${esc(takim(ilk.ev).ad)} ${logo(takim(ilk.ev),38)}</span><b>VS</b><span>${logo(takim(ilk.dep),38)} ${esc(takim(ilk.dep).ad)}</span></div></div>` : ''}
+    <div class="kfin-btn"><button class="btn a" onclick="kuraKapat();S.view='fikstur';S.fTur=null;S.fTakim='';render()">📅 Fikstürü gör</button><button class="btn" onclick="kuraGoster(0,true)">↺ Tekrar izle</button></div></div>`;
+  ktDurum('Fikstür hazır · İyi şanslar!');
+  if(!h){ Ses.calis('fanfar'); ktKonfeti(); setTimeout(()=>Ses.padDur(), 1200); }
+  else Ses.padDur();
+  if(yonetici() && !KT.tekrar && S.T.kura && S.T.kura.durum === 'cekiliyor') Store.set(tp('kura/durum'), 'bitti').catch(()=>{});
+}
+function ktKonfeti(){
+  const c = $('#ktKonfeti'); if(!c) return;
+  const x = c.getContext('2d'), W = c.width = innerWidth, H = c.height = innerHeight;
+  const renk = ['#f4c430', '#ffffff', '#1f8a55', '#e63946', '#2563eb', '#f59e0b', '#7c3aed'];
+  const p = Array.from({length:200}, ()=>({x:Math.random()*W, y:-Math.random()*H*.7, w:6 + Math.random()*7, h:9 + Math.random()*10, vy:2.2 + Math.random()*3.8, vx:-1.6 + Math.random()*3.2, r:Math.random()*6, vr:-.2 + Math.random()*.4, c:renk[Math.floor(Math.random()*renk.length)]}));
+  const bas = performance.now();
+  (function ciz(t){
+    if(!KT.acik) return;
+    const g = t - bas; x.clearRect(0, 0, W, H);
+    p.forEach(q=>{ q.x += q.vx + Math.sin((g + q.y)/300)*.6; q.y += q.vy; q.r += q.vr; x.save(); x.translate(q.x, q.y); x.rotate(q.r); x.globalAlpha = Math.max(0, 1 - g/7000); x.fillStyle = q.c; x.fillRect(-q.w/2, -q.h/2, q.w, q.h); x.restore(); });
+    if(g < 7000) requestAnimationFrame(ciz); else x.clearRect(0, 0, W, H);
+  })(bas);
+}
+
+/* ---------- Başlatma ve bekleme ekranı ---------- */
+async function kuraBaslat(){
+  if(!yonetici() || !S.T) return;
+  const T = S.T, ids = Object.values(T.takimlar).sort((a,b)=>(a.sira||0)-(b.sira||0)).map(t=>t.id);
+  if(ids.length < 2){ toast('En az 2 takım gerekli'); return; }
+  if(!confirm('Canlı kura töreni şimdi başlasın mı?\nBağlantıyı açık tutan herkes töreni aynı anda izleyecek.')) return;
+  Ses.hazir();
+  const sira = karistir(ids.slice()), a = T.ayar;
+  const turlar = fiksturUret(sira, a.ligDevre===2, false);
+  const maclar = {}, bek = [], baylar = {}; let s = 0;
+  turlar.forEach((tr, ri)=>{
+    if(tr.bay) baylar['t'+(ri+1)] = tr.bay;
+    tr.maclar.forEach(m=>{ const id = 'm'+String(++s).padStart(3,'0'); maclar[id] = {tur:ri+1, ev:m.ev, dep:m.dep, durum:'planli', evGol:0, depGol:0, sira:s}; bek.push({id, ev:m.ev, dep:m.dep}); });
+  });
+  const bas = (a.baslangic && a.baslangic > bugun()) ? a.baslangic : bugun();
+  const p = planla(bek, a, [], bas);
+  Object.entries(p.atama).forEach(([id, x])=>{ Object.assign(maclar[id], x); if(!x.tarih) maclar[id].durum = 'ertelendi'; });
+  try{ localStorage.removeItem('tm_kuraKapat'); }catch(e){}
+  await Store.update({[tp('maclar')]:maclar, [tp('baylar')]:Object.keys(baylar).length ? baylar : null,
+    [tp('kura')]:{durum:'cekiliyor', sira, planlanan:(T.kura && T.kura.planlanan) || null, baslangic:Store.mod==='bulut' ? {'.sv':'timestamp'} : Date.now()}});
+  S.fTur = null;
+}
+async function kuraHazirla(){
+  if(!confirm('Mevcut fikstür silinecek ve turnuva canlı kura törenine hazırlanacak. Devam edilsin mi?')) return;
+  await Store.update({[tp('maclar')]:null, [tp('baylar')]:null, [tp('kura')]:{durum:'bekliyor'}});
+  S.view = 'bugun'; S.fTur = null; render(); toast('Turnuva kura törenine hazır');
+}
+async function kuraPlanKaydet(){
+  const v = $('#kuraPlan').value;
+  await Store.set(tp('kura/planlanan'), v ? new Date(v).getTime() : null);
+  toast(v ? 'Tören saati duyuruldu' : 'Tören saati kaldırıldı');
+}
+function geriYaz(ms){ const s = Math.floor(ms/1000), g = Math.floor(s/86400), sa = Math.floor(s%86400/3600), d = Math.floor(s%3600/60), sn = s%60; return (g ? g+' gün ' : '') + pad(sa)+':'+pad(d)+':'+pad(sn); }
+function yerelTS(ms){ const d = new Date(ms); return fmtD(d) + 'T' + pad(d.getHours()) + ':' + pad(d.getMinutes()); }
+function kuraBekleKart(){
+  const k = S.T && S.T.kura; if(!k || k.durum !== 'bekliyor' || Object.keys(S.T.maclar).length) return '';
+  const pl = k.planlanan, ts = Object.values(S.T.takimlar);
+  return `<div class="kurabekle"><div class="kb-ik">🎬</div><small>${esc(S.T.ayar.ad)}</small><h2>Canlı Kura Töreni</h2>
+    <p>Fikstür canlı kura töreniyle çekilecek. Tören başladığında bu ekran <b>kendiliğinden açılır</b>; sesli izlemek için ses açık olsun.</p>
+    ${pl ? `<div class="kb-tarih">${new Date(pl).toLocaleString('tr-TR', {day:'numeric', month:'long', weekday:'long', hour:'2-digit', minute:'2-digit'})}</div><div class="kb-geri" id="kuraGeri" data-t="${pl}">${pl > simdiMs() ? geriYaz(pl - simdiMs()) : 'Tören birazdan başlıyor'}</div>` : ''}
+    <div class="kb-takim">${ts.map(t=>`<span>${logo(t,22)}${esc(t.ad)}</span>`).join('')}</div>
+    ${yonetici() ? `<div class="kb-yon"><div class="row"><input class="inp" type="datetime-local" id="kuraPlan" value="${pl ? yerelTS(pl) : ''}"><button class="btn sm" onclick="kuraPlanKaydet()">Saati duyur</button></div>
+      <button class="btn a blk" style="height:52px;font-size:17px" onclick="kuraBaslat()">🎬 Kura törenini başlat</button>
+      <p class="small" style="margin:8px 0 0;opacity:.8">Teknik direktörleri Takımlar ekranından ekleyin; törende kartlarda görünür.</p></div>` : ''}</div>`;
+}
+setInterval(()=>{ const el = document.getElementById('kuraGeri'); if(!el) return; const t = +el.dataset.t - simdiMs(); el.textContent = t > 0 ? geriYaz(t) : 'Tören birazdan başlıyor'; }, 1000);
+
 
 /* ===================== UYGULAMA OLARAK YÜKLE ===================== */
 let kurIstem = null;
