@@ -1276,6 +1276,14 @@ details.acc .ab{padding:14px}
 .kb2-plan .btn{height:40px;flex:none;padding:0 12px;font-size:13.5px}
 .kb2-bas{height:48px;font-size:16px}
 @media(min-width:700px){.kurabekle.kb2{padding:22px 20px 18px}.kurabekle.kb2 h2{font-size:32px}.kb2-sayac>div{width:76px}.kb2-sayac b{font-size:36px}.kb2-takim span{width:40px;height:40px}.kb2-yon{max-width:520px;margin-left:auto;margin-right:auto}}
+
+/* v18: fanus fiziği + çekilen top karta uçar */
+.kt-top{left:0!important;top:0!important;animation:none!important;will-change:transform}
+.kt-firla{display:none!important}
+.kt-ucan{position:fixed;left:0;top:0;z-index:7;border-radius:50%;display:grid;place-items:center;overflow:hidden;line-height:1;font-style:normal;pointer-events:none;will-change:transform;
+  box-shadow:inset -4px -6px 10px rgba(0,0,0,.35),inset 4px 4px 8px rgba(255,255,255,.6),0 0 22px rgba(255,236,160,.85)}
+.kt-ucan img{width:76%;height:76%;object-fit:contain}
+.kt-ucan span{filter:drop-shadow(0 1px 1px rgba(0,0,0,.25))}
 </style>
 </head>
 <body>
@@ -3542,7 +3550,7 @@ function ktIlerle(hizli){
   }
   const bar = $('#ktBar'); if(bar) bar.style.width = Math.min(100, e / KT.P.finale * 100) + '%';
 }
-function ktDongu(){ if(!KT.acik) return; ktIlerle(false); KT.raf = requestAnimationFrame(ktDongu); }
+function ktDongu(now){ if(!KT.acik) return; ktIlerle(false); try{ ktFizik(now || performance.now()); }catch(e){} KT.raf = requestAnimationFrame(ktDongu); }
 function ktAtla(){
   if(!KT.acik) return;
   KT.t0 = performance.now() - (KT.P.finale - 30);
@@ -3569,8 +3577,9 @@ function ktIskelet(P){
   const k = S.kurum || {}, a = S.T.ayar;
   let el = $('#kuraT'); if(!el){ el = document.createElement('div'); el.id = 'kuraT'; document.body.appendChild(el); }
   const rnd = (i, s) => { const x = Math.sin(i*12.9898 + s*78.233)*43758.5453; return x - Math.floor(x); };
-  const toplar = P.sira.map((id, i)=>{ const t = takim(id), ang = rnd(i,1)*Math.PI*2, r = Math.sqrt(rnd(i,2))*27;
-    return `<i class="kt-top" id="ktTop${i}" style="left:${(40.5 + Math.cos(ang)*r).toFixed(1)}%;top:${(41 + Math.sin(ang)*r*.8).toFixed(1)}%;background:${esc(t.renk)};--x:${Math.round(rnd(i,3)*24-12)}px;--y:${Math.round(rnd(i,4)*24-12)}px;animation-delay:-${(rnd(i,5)*1.4).toFixed(2)}s">${topIc(t)}</i>`; }).join('');
+  const cap = Math.min(.19, .6 / Math.sqrt(Math.max(P.n, 1)));
+  const toplar = P.sira.map((id, i)=>{ const t = takim(id);
+    return `<i class="kt-top" id="ktTop${i}" style="width:${(cap*100).toFixed(2)}%;font-size:${(cap*58).toFixed(2)}cqw;background:${esc(t.renk)}">${topIc(t)}</i>`; }).join('');
   el.innerHTML = `
     <div class="kt-bg"><i class="isik i1"></i><i class="isik i2"></i><i class="isik i3"></i></div>
     <canvas id="ktKonfeti"></canvas>
@@ -3591,19 +3600,61 @@ function ktIskelet(P){
     <footer class="kt-alt"><span id="ktDurum">Tören başlıyor</span><div class="kt-bar"><i id="ktBar"></i></div></footer>
     ${Ses.acik ? '' : `<button class="kt-sesac" id="ktSesAc" onclick="ktSesAc()">🔊 Sesli izlemek için dokunun</button>`}`;
   el.className = 'ac'; document.body.style.overflow = 'hidden';
+  ktFizikKur(P, cap, rnd);
   requestAnimationFrame(ktSigdir);
+}
+/* ---------- Kura fanusu: gerçek karışım fiziği ---------- */
+function ktFizikKur(P, cap, rnd){
+  const r = cap/2, R = .5 - .03 - r;
+  KT.fz = {r, R, son:0, toplar:P.sira.map((_, i)=>{
+    const ang = rnd(i,1)*Math.PI*2, d = Math.sqrt(rnd(i,2))*R*.9;
+    return {el:document.getElementById('ktTop'+i), x:.5 + Math.cos(ang)*d, y:.5 + Math.sin(ang)*d*.6 + R*.35, vx:0, vy:0, a:rnd(i,3)*360, cik:false};
+  })};
+}
+function ktFizik(now){
+  const F = KT.fz, torba = document.getElementById('ktTorba'); if(!F || !torba) return;
+  const W = torba.clientWidth; if(!W) { F.son = now; return; }
+  let dt = F.son ? (now - F.son)/1000 : 0; F.son = now; if(dt <= 0) return; dt = Math.min(dt, 1/30);
+  const karis = torba.classList.contains('karis'), T = F.toplar.filter(b=>!b.cik), r = F.r, R = F.R;
+  for(const b of T){
+    b.vy += 2.4*dt;                                   // yerçekimi
+    if(karis){                                        // alttan üfleyen hava + girdap
+      if(b.y > .5) b.vy -= (6 + Math.random()*5)*dt;
+      b.vx += ((Math.random()-.5)*9 + (.5 - b.y)*3.2)*dt;
+      b.vy += (b.x - .5)*2.2*dt;
+    }
+    const sp = Math.hypot(b.vx, b.vy), mx = karis ? 2.3 : 1.6; if(sp > mx){ b.vx *= mx/sp; b.vy *= mx/sp; }
+    b.vx *= karis ? .998 : .985; b.vy *= karis ? .998 : .985;
+    b.x += b.vx*dt; b.y += b.vy*dt;
+    const dx = b.x - .5, dy = b.y - .5, d = Math.hypot(dx, dy);
+    if(d > R){ const nx = dx/d, ny = dy/d; b.x = .5 + nx*R; b.y = .5 + ny*R; const vn = b.vx*nx + b.vy*ny; if(vn > 0){ b.vx -= 1.75*vn*nx; b.vy -= 1.75*vn*ny; } }
+  }
+  for(let i=0;i<T.length;i++) for(let j=i+1;j<T.length;j++){
+    const a = T[i], b = T[j], dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 1e-4;
+    if(d < 2*r){ const nx = dx/d, ny = dy/d, o = (2*r - d)/2; a.x -= nx*o; a.y -= ny*o; b.x += nx*o; b.y += ny*o;
+      const rv = (b.vx - a.vx)*nx + (b.vy - a.vy)*ny; if(rv < 0){ const k = -.9*rv; a.vx -= k*nx; a.vy -= k*ny; b.vx += k*nx; b.vy += k*ny; } }
+  }
+  const px = r*2*W;
+  for(const b of T){ b.a += b.vx*dt*420; b.el.style.transform = `translate(${(b.x*W - px/2).toFixed(1)}px,${(b.y*W - px/2).toFixed(1)}px) rotate(${b.a.toFixed(0)}deg)`; }
 }
 function ktSigdir(){
   if(!KT.acik) return;
   const dik = matchMedia('(max-aspect-ratio:1/1)').matches, yatay = !dik && innerHeight <= 520;
   const tasar = el => { let alt = 0;
     for(const c of el.children){ alt = Math.max(alt, c.offsetTop + c.offsetHeight); } if(alt > el.clientHeight + 1) return true;
-    const adlar = [...el.querySelectorAll('.kf-ad,.kt-slot span')];
+    const adlar = [...el.querySelectorAll('.kf-ad,.kt-slot>span:not(.lg)')];
     if(adlar.some(x=>x.scrollWidth > x.clientWidth + 1)) return true;
     return parseFloat(el.style.fontSize) > 11 && adlar.some(x=>x.scrollHeight > x.clientHeight + 1); };
   const sig = (el, max, min) => { if(!el || !el.offsetParent) return; el.style.fontSize = ''; el.style.position = 'relative'; if(!dik && !yatay) max = parseFloat(getComputedStyle(el).fontSize);
     for(let f = max; f >= min; f -= .5){ el.style.fontSize = f + 'px'; if(!tasar(el)) break; } };
-  if(dik || yatay) sig($('#kuraT .kt-slotlar'), dik ? 15 : 13, 8.5);
+  if(dik || yatay){
+    const sl = $('#kuraT .kt-slotlar');
+    if(sl && KT.P){ const geri = [];
+      KT.P.sira.forEach((id, i)=>{ const x = document.getElementById('ktSlot'+i); if(x && !x.classList.contains('dolu')){ geri.push([x, x.innerHTML]); const t = takim(id); x.innerHTML = `<b>${i+1}</b>${ktLogo(t,24)}<span>${esc(t.ad)}</span>`; } });
+      sig(sl, dik ? 15 : 13, 8.5);
+      geri.forEach(([x, h])=>x.innerHTML = h);
+    }
+  }
   sig($('#kuraT .kf-liste'), dik ? 15 : 14, 8.5);
 }
 addEventListener('resize', ()=>{ if(KT.acik) requestAnimationFrame(ktSigdir); });
@@ -3627,14 +3678,33 @@ function ktCekimBasla(h){
   if(!h) Ses.calis('whoosh');
 }
 function ktTopFirla(i, h){
-  const P = KT.P, top = $('#ktTop'+i); if(top) top.classList.add('cikti');
+  const P = KT.P, top = $('#ktTop'+i); if(KT.fz && KT.fz.toplar[i]) KT.fz.toplar[i].cik = true; if(top) top.classList.add('cikti');
   $('#ktSayac').textContent = `${i+1} / ${P.n}`; ktDurum(`Kura çekiliyor · ${i+1}. takım`);
   if(h) return;
-  const t = takim(P.sira[i]), f = $('#ktFirla');
-  f.style.background = t.renk; f.innerHTML = topIc(t); f.classList.remove('git'); void f.offsetWidth; f.classList.add('git');
+  const t = takim(P.sira[i]);
   const torba = $('#ktTorba'); torba.classList.remove('salla'); void torba.offsetWidth; torba.classList.add('salla');
   const kart = $('#ktKart'); kart.className = 'kt-kart bos bekle'; kart.style.removeProperty('--tc'); kart.innerHTML = '<span>?</span>';
+  ktUcur(top, t);
   Ses.calis('davul');
+}
+function ktUcur(top, t){
+  const kap = $('#kuraT'), kart = $('#ktKart'), cam = $('#ktTorba .kt-cam'); if(!kap || !kart || !cam || !top) return;
+  document.querySelectorAll('.kt-ucan').forEach(x=>x.remove());
+  const a = top.getBoundingClientRect(), k = kart.getBoundingClientRect(), c = cam.getBoundingClientRect(), s = a.width || c.width*.18;
+  const u = document.createElement('i'); u.className = 'kt-ucan';
+  u.style.cssText = `width:${s}px;height:${s}px;background:${t.renk};font-size:${getComputedStyle(top).fontSize}`; u.innerHTML = topIc(t);
+  kap.appendChild(u);
+  const tr = (x, y, sc) => `translate(${x - s/2}px,${y - s/2}px) scale(${sc})`;
+  const cx = c.left + c.width/2, alt = c.bottom - s*.62, kx = k.left + k.width/2, ky = k.top + k.height/2;
+  const son = Math.max(1.6, Math.min(k.width, k.height)*.5 / s);
+  const ani = u.animate([
+    {transform:tr(a.left + s/2, a.top + s/2, 1), offset:0},
+    {transform:tr(cx, alt, 1.1), offset:.28, easing:'ease-in'},
+    {transform:tr(cx, c.bottom + s*.35, 1.2), offset:.42},
+    {transform:tr((cx + kx)/2, Math.min(c.bottom, ky) - s*.4, (1.2 + son)/2), offset:.7},
+    {transform:tr(kx, ky, son), offset:1}
+  ], {duration:820, easing:'cubic-bezier(.3,.6,.4,1)', fill:'forwards'});
+  ani.onfinish = () => { const f = u.animate([{opacity:1}, {opacity:0, transform:tr(kx, ky, son*1.25)}], {duration:260, fill:'forwards'}); f.onfinish = () => u.remove(); };
 }
 function ktKartAc(i, h){
   const t = takim(KT.P.sira[i]), td = t.td || {}, kart = $('#ktKart');
