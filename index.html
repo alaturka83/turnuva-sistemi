@@ -15,7 +15,7 @@
 <title>Turnuva Merkezi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
@@ -25,11 +25,11 @@
   --bg:#eef2ef;--card:#fff;--ink:#11201a;--mut:#5f6f66;--line:#dfe6e1;--soft:#f5f8f6;
   --pri:#0b3d2a;--pri2:#13693f;--pri3:#1f8a55;--acc:#f4c430;--red:#d64545;--live:#e11d48;--blue:#2563eb;
   --r:14px;--sh:0 1px 2px rgba(0,0,0,.05),0 4px 14px rgba(10,40,25,.07);
-  --fd:'Barlow Condensed',system-ui,sans-serif;
+  --fd:'Barlow Condensed','Noto Color Emoji',system-ui,sans-serif;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0}
-body{font-family:Barlow,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.4;padding-bottom:calc(74px + env(safe-area-inset-bottom));min-height:100vh}
+body{font-family:Barlow,'Noto Color Emoji',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.4;padding-bottom:calc(74px + env(safe-area-inset-bottom));min-height:100vh}
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
 input,select,textarea{font:inherit;color:inherit}
 h1,h2,h3{font-family:var(--fd);letter-spacing:.3px;margin:0}
@@ -680,7 +680,7 @@ details.acc .ab{padding:14px}
 
 /* PDF şablonu */
 .pdfkap{position:fixed;left:-30000px;top:0;width:718px}
-.pdfd{width:718px;box-sizing:border-box;background:#fff;color:#14221a;font-family:Barlow,sans-serif;font-size:12.5px;line-height:1.35;padding:0}
+.pdfd{width:718px;box-sizing:border-box;font-family:Barlow,'Noto Color Emoji',sans-serif;background:#fff;color:#14221a;font-family:Barlow,sans-serif;font-size:12.5px;line-height:1.35;padding:0}
 .pdfd .ph{display:flex;align-items:center;gap:14px;padding-bottom:10px;border-bottom:3px solid #13693f}
 .pdfd .ph .kl{width:62px;height:62px;object-fit:contain}
 .pdfd .ph .kle{font-size:44px}
@@ -1771,6 +1771,15 @@ function wHizliDoldur(){
   isimler.slice(0,40).forEach((ad,i)=>W.takimlar[i].ad = ad);
   render(); toast(isimler.length+' takım dolduruldu');
 }
+function wTopluUygula(){
+  const satir = $('#wToplu').value.split(/\r?\n/).map(x=>x.replace(/^\s*\d+[.)\-]\s+/, '').trim()).filter(Boolean);
+  const ad = []; satir.forEach(x=>{ if(!ad.some(y=>y.toLocaleLowerCase('tr')===x.toLocaleLowerCase('tr'))) ad.push(x); });
+  if(ad.length < 2){ toast('En az 2 takım adı yazın'); return; }
+  if(ad.length > 40){ toast('En fazla 40 takım eklenebilir'); return; }
+  W.ayar.takimSayisi = ad.length; wTakimSay();
+  ad.forEach((x,i)=>{ W.takimlar[i].ad = x; });
+  render(); toast(ad.length + ' takım eklendi' + (satir.length > ad.length ? ' (tekrar edenler atlandı)' : ''));
+}
 function wKarisikSus(){ const r = karistir(RENK.slice()), l = karistir(TAKIM_LOGO.slice()); W.takimlar.forEach((t,i)=>{ t.renk = r[i%r.length]; if(!t.logoImg) t.logo = l[i%l.length]; }); render(); }
 function wLogo(i){
   const t = W.takimlar[i];
@@ -1821,6 +1830,9 @@ function wizardHtml(){
     <div class="card"><b>⚡ Sınıflardan hızlı doldur</b>
       <div class="grid2" style="margin-top:8px"><input class="inp" id="hSev" placeholder="Sınıf (ör. 3 veya 3,4)"><input class="inp" id="hSub" placeholder="Şubeler (ör. A-E)"></div>
       <button class="btn sm" style="margin-top:8px" onclick="wHizliDoldur()">Doldur</button></div>
+    <div class="card"><b>📋 Toplu ekle</b><div class="small mut" style="margin:2px 0 8px">Her satıra bir takım adı yazın ya da bir listeden kopyalayıp yapıştırın. Takım sayısı satır sayısına göre ayarlanır.</div>
+      <textarea class="inp" id="wToplu" rows="6" placeholder="3-A&#10;3-B&#10;3-C&#10;4-A">${esc(W.takimlar.map(t=>t.ad.trim()).filter(Boolean).join('\n'))}</textarea>
+      <button class="btn sm p" style="margin-top:8px" onclick="wTopluUygula()">✔ Listeyi uygula</button></div>
     <div class="sec"><h2>Takımlar</h2><button class="lnk" onclick="wKarisikSus()">🎲 Renk ve simgeleri karıştır</button></div>
     ${W.takimlar.map((t,j)=>`<div class="trow"><span class="no">${j+1}</span>
       <button class="lgbtn" style="background:${esc(t.renk)}" onclick="wLogo(${j})">${t.logoImg?`<img src="${t.logoImg}">`:esc(t.logo)}</button>
