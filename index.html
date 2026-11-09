@@ -530,10 +530,11 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
 #kuraT[data-faz=cek] .kt-cek{display:grid}
 .kt-intro{flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1vh;animation:kYuk .8s ease-out}
 @keyframes kYuk{from{transform:translateY(24px);opacity:0}}
-.ki-logo{width:min(22vh,36vw);height:min(22vh,36vw);border-radius:50%;background:radial-gradient(circle,#fff,#e6eee8);display:grid;place-items:center;font-size:min(13vh,21vw);box-shadow:0 0 0 6px rgba(244,196,48,.65),0 0 70px rgba(244,196,48,.45);animation:logoGir 1.3s cubic-bezier(.2,1.4,.4,1)}
+.ki-logo{width:min(27vh,40vw);height:min(27vh,40vw);border-radius:50%;background:radial-gradient(circle,#fff,#e6eee8);display:grid;place-items:center;font-size:min(13vh,21vw);box-shadow:0 0 0 6px rgba(244,196,48,.65),0 0 70px rgba(244,196,48,.45);animation:logoGir 1.3s cubic-bezier(.2,1.4,.4,1)}
 .ki-logo img{width:80%;height:80%;object-fit:contain}
 #kuraT .lg img{object-fit:contain}
 .ki-logo.resim{background:none}
+.ki-logo.resim img{width:94%;height:94%}
 @keyframes logoGir{from{transform:scale(.2) rotate(-25deg);opacity:0}}
 .ki-ust{font-weight:700;opacity:.8;letter-spacing:1px;margin-top:1.4vh}
 .kt-intro h1{font-size:clamp(28px,6.2vh,66px);line-height:1}
@@ -580,7 +581,7 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
 .kk-no{font-size:12.5px;font-weight:800;letter-spacing:2.5px;opacity:.9}
 .kk-no b{display:block;font-family:var(--fd);font-size:min(7.5vh,56px);line-height:1;color:var(--acc);text-shadow:0 2px 12px rgba(0,0,0,.4)}
 .kk-logo .lg{filter:drop-shadow(0 8px 16px rgba(0,0,0,.4))}
-.kk-ad{font-family:var(--fd);font-weight:800;font-size:clamp(26px,5.6vh,54px);line-height:1;text-shadow:0 3px 14px rgba(0,0,0,.35)}
+.kk-ad{font-family:var(--fd);font-weight:800;font-size:clamp(26px,5.6vh,54px);line-height:1;max-width:100%;overflow:hidden;overflow-wrap:normal;word-break:normal;text-shadow:0 3px 14px rgba(0,0,0,.35)}
 .kk-td{display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.25);border-radius:14px;padding:7px 14px 7px 7px;text-align:left;max-width:100%}
 .kk-td img,.kk-td>span{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.85);display:grid;place-items:center;font-size:23px;background:rgba(255,255,255,.15);flex:none}
 .kk-td div{min-width:0}
@@ -1174,7 +1175,7 @@ details.acc .ab{padding:14px}
   .kt-sesac{font-size:13.5px;padding:10px 18px;bottom:calc(30px + env(safe-area-inset-bottom))}
   /* giriş */
   .kt-intro{gap:.6vh}
-  .ki-logo{width:min(17vh,38vw);height:min(17vh,38vw)}
+  .ki-logo{width:min(23vh,56vw);height:min(23vh,56vw)}
   .ki-ust{font-size:12px;margin-top:1vh}
   .kt-intro h1{font-size:clamp(24px,4.6vh,40px);padding:0 4px}
   .ki-alt{font-size:clamp(13px,2.2vh,20px);letter-spacing:4px}
@@ -1196,7 +1197,7 @@ details.acc .ab{padding:14px}
   .kk-no b{display:inline;font-size:24px}
   .kk-logo{grid-area:lg}
   .kk-logo .lg{width:min(64px,16vw)!important;height:min(64px,16vw)!important;font-size:min(54px,13.5vw)!important}
-  .kk-ad{grid-area:ad;font-size:clamp(16px,2.7vh,22px);line-height:1.08;align-self:start;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:break-word}
+  .kk-ad{grid-area:ad;font-size:clamp(16px,2.7vh,22px);line-height:1.08;align-self:start;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:normal;overflow-wrap:normal;hyphens:none}
   .kk-td{grid-area:td;justify-self:stretch;padding:4px 8px 4px 4px;gap:7px;border-radius:11px}
   .kk-td img,.kk-td>span{width:26px;height:26px;font-size:15px;border-width:1.5px}
   .kk-td small{font-size:8.5px}.kk-td b{font-size:12.5px}
@@ -1206,7 +1207,7 @@ details.acc .ab{padding:14px}
   .kt-slot{font-size:1em;padding:3px 6px;gap:5px;border-radius:8px;min-height:calc(2.25em + 6px)}
   .kt-slot>b{width:1.55em;height:1.55em;border-radius:6px;font-size:.85em}
   .kt-slot .lg{width:1.55em!important;height:1.55em!important;font-size:1.3em!important}
-  .kt-slot span{white-space:normal;line-height:1.1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:break-word}
+  .kt-slot span{white-space:normal;line-height:1.1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:normal;overflow-wrap:normal;hyphens:none}
   /* fikstür */
   .kf-kart{width:100%;padding:12px 10px 10px;border-radius:16px}
   .kf-bas{margin-bottom:8px}
@@ -1217,7 +1218,7 @@ details.acc .ab{padding:14px}
   .kf-sat{font-size:1em;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:6px;padding:.3em 7px;border-radius:9px;min-height:calc(2.2em + .6em)}
   .kf-sat .lg{width:1.5em!important;height:1.5em!important;font-size:1.25em!important}
   .kf-e,.kf-d{gap:5px}
-  .kf-ad{white-space:normal;line-height:1.1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:break-word}
+  .kf-ad{white-space:normal;line-height:1.1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:normal;overflow-wrap:normal;hyphens:none}
   .kf-e .kf-ad{text-align:right}
   .kf-sat>b{font-size:.9em;min-width:2.9em}
   .kf-bay{font-size:12px}
@@ -3395,8 +3396,25 @@ const Ses = {
       }
     }catch(e){}
   },
+  muzik:null, _mzBoz:false,
   padBasla(){
     if(!this.acik || !this.c || this.pad) return;
+    if(!this._mzBoz){
+      try{
+        if(!this.muzik){
+          const a = new Audio('kura-muzik.mp3'); a.loop = true; a.preload = 'auto';
+          a.addEventListener('error', ()=>{ this._mzBoz = true; if(this.pad && this.pad.mz){ this.pad = null; this.padBasla(); } });
+          this.muzik = a;
+        }
+        const a = this.muzik; clearInterval(a._fade); a.volume = 0;
+        const bas = ()=>{ try{ if(a.duration && typeof KT!=='undefined' && KT.acik) a.currentTime = (ktGecen()/1000) % a.duration; }catch(e){} };
+        if(a.readyState >= 1) bas(); else a.addEventListener('loadedmetadata', bas, {once:true});
+        const pr = a.play(); this.pad = {mz:true};
+        let v = 0; a._fade = setInterval(()=>{ v = Math.min(.55, v + .05); a.volume = v; if(v >= .55) clearInterval(a._fade); }, 120);
+        if(pr && pr.catch) pr.catch(()=>{ clearInterval(a._fade); if(this.pad && this.pad.mz) this.pad = null; });
+        return;
+      }catch(e){ this._mzBoz = true; }
+    }
     const c = this.c, t = c.currentTime, g = c.createGain(), lp = c.createBiquadFilter();
     g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.045, t + 2.5);
     lp.type = 'lowpass'; lp.frequency.value = 480;
@@ -3405,7 +3423,13 @@ const Ses = {
     const ritim = setInterval(()=>{ if(this.acik && this.c){ const tt = this.c.currentTime; this._osc(55, tt, .3, 'sine', .22); this._gur(tt, .12, .05, 2200, 1); } }, 1000);
     lp.connect(g); g.connect(this.g); this.pad = {g, os:[...os, lfo], ritim};
   },
-  padDur(){
+  padDur(yavas){
+    if(this.pad && this.pad.mz){
+      this.pad = null; const a = this.muzik; if(!a) return; clearInterval(a._fade);
+      const adim = a.volume / ((yavas ? 3500 : 900) / 100);
+      a._fade = setInterval(()=>{ const v = a.volume - adim; if(v <= .01){ a.volume = 0; a.pause(); clearInterval(a._fade); } else a.volume = v; }, 100);
+      return;
+    }
     if(!this.pad || !this.c) return;
     const t = this.c.currentTime, p = this.pad; this.pad = null; clearInterval(p.ritim);
     try{ p.g.gain.cancelScheduledValues(t); p.g.gain.setValueAtTime(Math.max(.0001, p.g.gain.value), t); p.g.gain.exponentialRampToValueAtTime(.0001, t + .9); }catch(e){}
@@ -3550,8 +3574,10 @@ function ktSigdir(){
   const dik = matchMedia('(max-aspect-ratio:1/1)').matches, yatay = !dik && innerHeight <= 520;
   const tasar = el => { let alt = 0;
     for(const c of el.children){ alt = Math.max(alt, c.offsetTop + c.offsetHeight); } if(alt > el.clientHeight + 1) return true;
-    return parseFloat(el.style.fontSize) > 11 && [...el.querySelectorAll('.kf-ad,.kt-slot span')].some(x=>x.scrollHeight > x.clientHeight + 1 || x.scrollWidth > x.clientWidth + 1); };
-  const sig = (el, max, min) => { if(!el) return; el.style.fontSize = ''; el.style.position = 'relative'; if(!dik && !yatay) max = parseFloat(getComputedStyle(el).fontSize);
+    const adlar = [...el.querySelectorAll('.kf-ad,.kt-slot span')];
+    if(adlar.some(x=>x.scrollWidth > x.clientWidth + 1)) return true;
+    return parseFloat(el.style.fontSize) > 11 && adlar.some(x=>x.scrollHeight > x.clientHeight + 1); };
+  const sig = (el, max, min) => { if(!el || !el.offsetParent) return; el.style.fontSize = ''; el.style.position = 'relative'; if(!dik && !yatay) max = parseFloat(getComputedStyle(el).fontSize);
     for(let f = max; f >= min; f -= .5){ el.style.fontSize = f + 'px'; if(!tasar(el)) break; } };
   if(dik || yatay) sig($('#kuraT .kt-slotlar'), dik ? 15 : 13, 8.5);
   sig($('#kuraT .kf-liste'), dik ? 15 : 14, 8.5);
@@ -3592,7 +3618,13 @@ function ktKartAc(i, h){
   kart.className = 'kt-kart' + (h ? '' : ' ac');
   kart.innerHTML = `<div class="kk-no">KURA NO<b>${i+1}</b></div><div class="kk-logo">${ktLogo(t,104)}</div><div class="kk-ad">${esc(t.ad)}</div>
     ${td.ad ? `<div class="kk-td">${td.foto ? `<img src="${td.foto}" alt="">` : '<span>👔</span>'}<div><small>TEKNİK DİREKTÖR</small><b>${esc(td.ad)}</b></div></div>` : ''}`;
+  ktAdSigdir(kart.querySelector('.kk-ad'));
   if(!h) Ses.calis('ding');
+}
+function ktAdSigdir(el){
+  if(!el) return; el.style.fontSize = '';
+  let f = parseFloat(getComputedStyle(el).fontSize);
+  while(f > 11 && (el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 1)){ f -= 1; el.style.fontSize = f + 'px'; }
 }
 function ktYerles(i, h){
   const t = takim(KT.P.sira[i]), s = $('#ktSlot'+i); if(!s) return;
@@ -3630,7 +3662,7 @@ function ktFinal(h){
       <div class="kfin-mac"><span>${esc(takim(ilk.ev).ad)} ${ktLogo(takim(ilk.ev),38)}</span><b>VS</b><span>${ktLogo(takim(ilk.dep),38)} ${esc(takim(ilk.dep).ad)}</span></div></div>` : ''}
     <div class="kfin-btn"><button class="btn a" onclick="kuraKapat();S.view='fikstur';S.fTur=null;S.fTakim='';render()">📅 Fikstürü gör</button><button class="btn" onclick="kuraGoster(0,true)">↺ Tekrar izle</button></div></div>`;
   ktDurum('Fikstür hazır · İyi şanslar!');
-  if(!h){ Ses.calis('fanfar'); ktKonfeti(); setTimeout(()=>Ses.padDur(), 1200); }
+  if(!h){ Ses.calis('fanfar'); ktKonfeti(); setTimeout(()=>Ses.padDur(true), 2500); }
   else Ses.padDur();
   if(yonetici() && !KT.tekrar && S.T.kura && S.T.kura.durum === 'cekiliyor') Store.set(tp('kura/durum'), 'bitti').catch(()=>{});
 }
