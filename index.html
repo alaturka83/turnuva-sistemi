@@ -6,6 +6,12 @@
 <meta name="theme-color" content="#0b3d2a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Turnuva">
+<meta name="application-name" content="Turnuva Merkezi">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <title>Turnuva Merkezi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -323,6 +329,10 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
 #toast.ac{opacity:1;transform:translateX(-50%)}
 #qr{display:inline-block;background:#fff;padding:10px;border-radius:12px;border:1px solid var(--line)}
 #qr img,#qr canvas{display:block}
+.kurkart{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.kurkart img{width:52px;height:52px;border-radius:13px;flex:none}
+.kurkart .kurb{display:flex;gap:6px}
+.kurl{margin:6px 0 0;padding-left:20px;font-size:14.5px;line-height:1.6}
 /* v2 */
 .ibtn{width:40px;height:40px;border-radius:11px;background:#fff;border:1px solid var(--line);font-size:17px;flex:none}
 .hero .hk{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;opacity:.9;margin-bottom:6px;position:relative}
@@ -952,6 +962,7 @@ function bugunHtml(){
   if(ert.length && yonetici()) h += `<div class="uyari">⚠️ ${ert.length} maçın tarihi yok (ertelenmiş). Ayarlar → Takvim bölümünden yeniden planlayabilirsiniz.</div>`;
   if(son.length) h += `<div class="sec"><h2>Son sonuçlar</h2><button class="lnk" onclick="git('fikstur')">Tümü →</button></div>` + son.map(m=>macKart(m)).join('');
   if(sira.length) h += `<div class="sec"><h2>Puan durumu</h2><button class="lnk" onclick="git('tablo')">Tam tablo →</button></div><div class="card">${tabloTablo(sira.slice(0,5), false)}</div>`;
+  h += kurKart(false);
   return h;
 }
 
@@ -1791,6 +1802,7 @@ function ayarAnaHtml(){
   ${S.T ? `<div class="sec"><h2>Raporlar ve çıktılar</h2><span class="mut small">${esc(S.T.ayar.ad)}</span></div>
   <div class="card">${ciktiSatirlari(['tablo','fikstur','gunluk','istatistik','kadro','kartlar','foy','rapor'])}</div>` : ''}
 
+  ${kurKart(true) ? `<div class="sec"><h2>Uygulama</h2></div>${kurKart(true)}` : ''}
   <div class="sec"><h2>Gizlilik ve görünüm</h2></div>
   <div class="card">
     ${kurumToggle('fotoGoster', 'İzleyicide oyuncu fotoğraflarını göster', 'Kapalıyken herkese açık sayfada fotoğraf yerine avatar görünür. Açmadan önce veli izni alınması önerilir.', false)}
@@ -2175,6 +2187,29 @@ function tvRender(){
   $('#tv').innerHTML = `<div class="tvh"><span style="font-size:5vh">${esc(S.T.ayar.logo||'🏆')}</span><h1>${esc(S.T.ayar.ad)}</h1><button class="x" onclick="tvKapat()">Kapat ✕</button></div>
     <div class="tvb">${b}</div><div class="tvdots">${[0,1,2].map(i=>`<i class="${i===tvI?'on':''}"></i>`).join('')}</div>`;
 }
+
+/* ===================== UYGULAMA OLARAK YÜKLE ===================== */
+let kurIstem = null;
+const kurulu = () => (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+const iosMu = () => /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform==='MacIntel' && navigator.maxTouchPoints > 1);
+window.addEventListener('beforeinstallprompt', e=>{ e.preventDefault(); kurIstem = e; if(S.view==='bugun' || S.view==='ayarlar') render(); });
+window.addEventListener('appinstalled', ()=>{ kurIstem = null; toast('Uygulama yüklendi'); render(); });
+function kurKart(ayarda){
+  if(kurulu()) return '';
+  if(!ayarda){ try{ if(localStorage.getItem('tm_kurGizle')) return ''; }catch(e){} }
+  return `<div class="card kurkart"><img src="icon-192.png" alt="" onerror="this.style.display='none'"><div style="flex:1;min-width:0"><b>Uygulama olarak ekleyin</b><div class="small mut">Telefonun ana ekranında ya da bilgisayarda kendi simgesiyle açılır.</div></div>
+    <div class="kurb"><button class="btn sm p" onclick="uygulamaKur()">📲 Ekle</button>${ayarda ? '' : `<button class="btn sm" onclick="try{localStorage.setItem('tm_kurGizle','1')}catch(e){};render()">Gizle</button>`}</div></div>`;
+}
+async function uygulamaKur(){
+  if(kurIstem){ kurIstem.prompt(); try{ await kurIstem.userChoice; }catch(e){} kurIstem = null; render(); return; }
+  const ios = iosMu();
+  sheet(`<div class="sh"><h2>📲 Uygulama olarak ekle</h2><button class="x" onclick="sheetKapat()">✕</button></div>
+    <div class="card"><b>iPhone / iPad (Safari)</b><ol class="kurl"><li>Alttaki <b>Paylaş</b> simgesine (kutudan çıkan ok ⬆️) dokunun.</li><li><b>Ana Ekrana Ekle</b> seçin.</li><li>Sağ üstte <b>Ekle</b> deyin.</li></ol></div>
+    <div class="card"><b>Android (Chrome)</b><ol class="kurl"><li>Sağ üstteki <b>⋮</b> menüye dokunun.</li><li><b>Uygulamayı yükle</b> ya da <b>Ana ekrana ekle</b> seçin.</li></ol></div>
+    <div class="card"><b>Bilgisayar (Chrome / Edge)</b><ol class="kurl"><li>Adres çubuğunun sağındaki <b>yükle</b> simgesine (ekran + ok) tıklayın.</li><li>Ya da menüden <b>Uygulamayı yükle</b> / <b>Uygulamalar → Bu siteyi uygulama olarak yükle</b> seçin.</li></ol></div>
+    <p class="small mut">Bu seçenekler yayın adresinde (https) görünür; bilgisayardan dosya olarak açınca çıkmaz.</p>`);
+}
+if('serviceWorker' in navigator && location.protocol==='https:') window.addEventListener('load', ()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 
 /* ===================== BAŞLAT ===================== */
 Store.init();
