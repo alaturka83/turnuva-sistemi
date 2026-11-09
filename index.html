@@ -329,6 +329,109 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
 #toast.ac{opacity:1;transform:translateX(-50%)}
 #qr{display:inline-block;background:#fff;padding:10px;border-radius:12px;border:1px solid var(--line)}
 #qr img,#qr canvas{display:block}
+
+.mtp i{font-style:normal}
+.mtp i+i::before{content:" · "}
+@media(max-width:600px){
+  .mac{display:flex;align-items:center;gap:6px;padding:7px 8px}
+  .mac .mt{flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;width:56px;flex:none;margin:0;font-size:10.5px;line-height:1.2}
+  .mac .mtp{display:flex;flex-direction:column}
+  .mtp i+i::before{content:none}
+  .mac .mt .badge{font-size:9px;padding:1px 5px}
+  .mac .mrow{flex:1;min-width:0}
+}
+.grid2[style*="repeat(3"] .stp button{width:32px;font-size:19px}
+.grid2[style*="repeat(3"] .stp input{padding:0;font-size:17px}
+.stp input{padding:0}
+/* v3: TV tek ekran + mobil sıkı düzen */
+#tv{padding:calc(1.6vh + env(safe-area-inset-top)) 3vw 1.4vh}
+#tv .tvh{margin-bottom:1.2vh;gap:12px}
+#tv .tvh .tvlg{font-size:clamp(26px,5vh,54px);line-height:1}
+#tv .tvbas{min-width:0;flex:1}
+#tv .tvbas h1{font-size:clamp(18px,4vh,44px);line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#tv .tvbas small{display:block;color:var(--acc);font-weight:700;font-size:clamp(12px,2vh,22px)}
+#tv .tvh .x{margin-left:auto;width:44px;height:44px;padding:0;border-radius:12px;font-size:20px;flex:none}
+#tv .tvtab{width:100%;border-collapse:collapse;table-layout:auto}
+#tv .tvtab th{font-size:.62em;opacity:.7;padding:.3em 4px;text-align:center}
+#tv .tvtab td{border-bottom:1px solid rgba(255,255,255,.1);padding-top:0;padding-bottom:0;text-align:center;white-space:nowrap}
+#tv .tvtab td.l,#tv .tvtab th.l{text-align:left;width:52%}
+#tv .tvtk{display:inline-flex;align-items:center;gap:.5em;max-width:100%}
+#tv .tvtk>span:last-child{overflow:hidden;text-overflow:ellipsis}
+#tv .tvp{font-weight:800;color:var(--acc)}
+#tv tr.tvilk td{background:rgba(244,196,48,.13)}
+@media (max-aspect-ratio:1/1){#tv .tvcols{grid-template-columns:1fr;gap:2vh}}
+.mlist{background:#fff;border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;margin-bottom:12px}
+.mlist .mac{box-shadow:none;border-radius:0;margin:0;border-bottom:1px solid var(--line)}
+.mlist .mac:last-child{border-bottom:0}
+.mlist .mac:active{background:var(--soft)}
+details.acc{padding:0;overflow:hidden}
+details.acc>summary{list-style:none;display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc>summary::after{content:"";margin-left:auto;width:9px;height:9px;border-right:2.5px solid var(--mut);border-bottom:2.5px solid var(--mut);transform:rotate(45deg);transition:.2s;flex:none}
+details.acc[open]>summary::after{transform:rotate(-135deg)}
+details.acc[open]>summary{border-bottom:1px solid var(--line)}
+details.acc .ai{width:38px;height:38px;border-radius:11px;background:var(--soft);display:grid;place-items:center;font-size:19px;flex:none}
+details.acc .at{min-width:0}
+details.acc .at b{display:block;font-size:16px}
+details.acc .at small{display:block;color:var(--mut);font-size:12.5px}
+details.acc .ab{padding:14px}
+@media(max-width:600px){
+  body{padding-bottom:calc(60px + env(safe-area-inset-bottom));font-size:15px}
+  .wrap{padding:10px 10px 24px}
+  #hdr{padding:calc(5px + env(safe-area-inset-top)) 8px 5px;gap:6px}
+  .tsec{gap:8px;padding:2px}
+  .tsec .tl{width:32px;height:32px;font-size:18px;border-radius:9px}
+  .tsec b{font-size:17px}
+  .tsec small{font-size:11px}
+  .hbtn{height:32px;min-width:32px;padding:0 6px;border-radius:9px}
+  .hbtn svg{width:18px;height:18px}
+  #nav{padding:3px 2px calc(3px + env(safe-area-inset-bottom))}
+  #nav button{padding:4px 1px;gap:1px;font-size:10.5px}
+  #nav button svg{width:21px;height:21px}
+  .sec{margin:14px 2px 6px}
+  .sec h2{font-size:19px}
+  .card{padding:12px;margin-bottom:10px;border-radius:12px}
+  .hero{padding:12px 14px;border-radius:14px;margin-bottom:10px}
+  .hero h1{font-size:21px}
+  .hero .hs{gap:14px;margin-top:8px}
+  .hero .hs b{font-size:19px}
+  .prog{margin-top:8px;height:6px}
+  .mac{padding:7px 10px 8px}
+  .mac .mt{margin-bottom:4px;font-size:11.5px}
+  .mrow{gap:6px}
+  .tk{gap:6px;font-size:14.5px}
+  .tk .lg{width:24px!important;height:24px!important;font-size:15px!important}
+  .skor,.saat{font-size:19px;min-width:58px;padding:1px 6px;border-radius:8px}
+  .saat{font-size:16px}
+  .chip{height:32px;padding:0 12px;font-size:13px}
+  .seg button{height:30px;padding:0 11px;font-size:13px}
+  .ibtn{width:34px;height:34px;font-size:15px;border-radius:9px}
+  .inp{height:44px;font-size:15px;border-radius:10px}
+  select.inp{height:40px}
+  .stp{height:44px;border-radius:10px}
+  .btn{height:42px;padding:0 14px;border-radius:10px}
+  .btn.sm{height:34px;padding:0 10px;font-size:13.5px}
+  .tbl{font-size:14px}
+  .tbl td{padding:7px 3px}
+  .tbl th{padding:6px 3px}
+  .tgrid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+  .tcard{padding:10px 6px}
+  .tcard b{font-size:16px;margin-top:5px}
+  .tcard .lg{width:44px!important;height:44px!important;font-size:27px!important}
+  .thead{padding:14px;border-radius:14px}
+  .thead h1{font-size:23px}
+  .pgrid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+  .tiles{gap:8px}
+  .tile{padding:10px}
+  .tile b{font-size:23px}
+  .lst li{padding:8px 2px}
+  details.acc>summary{padding:10px 12px}
+  details.acc .ai{width:34px;height:34px;font-size:17px}
+  details.acc .ab{padding:12px}
+  .cikti{padding:8px 0}
+  #toast{bottom:calc(76px + env(safe-area-inset-bottom))}
+}
+
 .kurkart{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .kurkart img{width:52px;height:52px;border-radius:13px;flex:none}
 .kurkart .kurb{display:flex;gap:6px}
@@ -909,6 +1012,7 @@ function bosHtml(){
 }
 
 /* ===================== BUGÜN ===================== */
+function mList(a){ return a.length ? `<div class="mlist">${a.join('')}</div>` : ''; }
 function macKart(m, opt={}){
   const e = takim(m.ev), d = takim(m.dep), oyn = oynandi(m) || m.durum==='canli';
   const eg = +m.evGol||0, dg = +m.depGol||0;
@@ -919,9 +1023,9 @@ function macKart(m, opt={}){
   else if(m.durum==='hukmen') rozet = '<span class="badge hk">Hükmen</span>';
   else if(m.durum==='ertelendi') rozet = '<span class="badge er">Ertelendi</span>';
   else if(m.durum==='bitti') rozet = '<span class="badge">MS</span>';
-  const ust = [opt.tarihYok ? '' : (m.tarih ? tarihYaz(m.tarih) : 'Tarih yok'), oyn && m.saat && !opt.tarihYok ? m.saat : '', `${m.tur}. Tur`, (S.T.ayar.sahaSayisi>1 && m.saha) ? `Saha ${m.saha}` : ''].filter(Boolean).join(' · ');
+  const ust = [opt.tarihYok ? '' : (m.tarih ? tarihYaz(m.tarih) : 'Tarih yok'), oyn && m.saat && !opt.tarihYok ? m.saat : '', opt.turYok ? '' : `${m.tur}. Tur`, (S.T.ayar.sahaSayisi>1 && m.saha) ? `Saha ${m.saha}` : ''].filter(Boolean).map(x=>`<i>${x}</i>`).join('');
   return `<button class="mac" onclick="macDetay('${m.id}')">
-    <div class="mt"><span>${ust}</span>${rozet}</div>
+    <div class="mt"><span class="mtp">${ust}</span>${rozet}</div>
     <div class="mrow">
       <div class="tk ev ${kaz==='ev'?'kaz':kaz?'kyb':''}"><span class="tad">${esc(e.ad)}</span>${logo(e)}</div>
       ${orta}
@@ -954,13 +1058,13 @@ function bugunHtml(){
     </div>
     <div class="prog"><i style="width:${toplam?Math.round(oyn/toplam*100):0}%"></i></div>
   </div>`;
-  if(canli.length) h += `<div class="sec"><h2>🔴 Şu an oynanıyor</h2></div>` + canli.map(m=>macKart(m)).join('');
+  if(canli.length) h += `<div class="sec"><h2>🔴 Şu an oynanıyor</h2></div>` + mList(canli.map(m=>macKart(m)));
   h += `<div class="sec"><h2>Bugün · ${tarihYaz(bg)}</h2></div>`;
-  h += bugunM.length ? bugunM.map(m=>macKart(m,{tarihYok:true})).join('') : `<div class="card empty small">Bugün planlanmış maç yok.</div>`;
-  if(sonraki) h += `<div class="sec"><h2>Sıradaki maç günü</h2><span class="mut small">${tarihYaz(sonraki.g, true)}</span></div>` + sonraki.ms.map(m=>macKart(m,{tarihYok:true})).join('');
+  h += bugunM.length ? mList(bugunM.map(m=>macKart(m,{tarihYok:true}))) : `<div class="card empty small">Bugün planlanmış maç yok.</div>`;
+  if(sonraki) h += `<div class="sec"><h2>Sıradaki maç günü</h2><span class="mut small">${tarihYaz(sonraki.g, true)}</span></div>` + mList(sonraki.ms.map(m=>macKart(m,{tarihYok:true})));
   const ert = ms.filter(m=>m.durum==='ertelendi' || (!m.tarih && !oynandi(m) && m.durum!=='canli'));
   if(ert.length && yonetici()) h += `<div class="uyari">⚠️ ${ert.length} maçın tarihi yok (ertelenmiş). Ayarlar → Takvim bölümünden yeniden planlayabilirsiniz.</div>`;
-  if(son.length) h += `<div class="sec"><h2>Son sonuçlar</h2><button class="lnk" onclick="git('fikstur')">Tümü →</button></div>` + son.map(m=>macKart(m)).join('');
+  if(son.length) h += `<div class="sec"><h2>Son sonuçlar</h2><button class="lnk" onclick="git('fikstur')">Tümü →</button></div>` + mList(son.map(m=>macKart(m)));
   if(sira.length) h += `<div class="sec"><h2>Puan durumu</h2><button class="lnk" onclick="git('tablo')">Tam tablo →</button></div><div class="card">${tabloTablo(sira.slice(0,5), false)}</div>`;
   h += kurKart(false);
   return h;
@@ -1006,14 +1110,14 @@ function fiksturHtml(){
     const bay = S.T.baylar['t'+S.fTur];
     const yari = S.T.ayar.ligDevre===2 && turSay>1 ? (S.fTur > turSay/2 ? 'İkinci yarı' : 'İlk yarı') : '';
     h += `<div class="sec"><h2>${S.fTur}. Tur</h2><span class="mut small">${yari}</span></div>`;
-    h += tm.map(m=>macKart(m)).join('');
+    h += mList(tm.map(m=>macKart(m,{turYok:true})));
     if(bay) h += `<div class="card small row">${logo(takim(bay),26)}<span><b>${esc(takim(bay).ad)}</b> bu tur <b>BAY</b> geçiyor.</span></div>`;
   } else if(S.fMod==='tur'){
     for(let t=1; t<=turSay; t++){
       const tm = ms.filter(m=>m.tur===t && filtre(m));
       const bay = S.T.baylar['t'+t];
       h += `<div class="sec"><h2>${t}. Tur</h2></div>`;
-      h += tm.map(m=>macKart(m)).join('');
+      h += mList(tm.map(m=>macKart(m,{turYok:true})));
       if(bay===tk) h += `<div class="card small">Bu tur <b>BAY</b>.</div>`;
     }
   } else {
@@ -1021,7 +1125,7 @@ function fiksturHtml(){
     ms.filter(filtre).forEach(m=>{ const k = m.tarih || 'yok'; (gruplar[k] = gruplar[k] || []).push(m); });
     Object.keys(gruplar).forEach(k=>{
       h += `<div class="sec"><h2>${k==='yok' ? 'Tarihi belirsiz' : tarihYaz(k,true)}</h2>${k===bugun()?'<span class="badge live">Bugün</span>':''}</div>`;
-      h += gruplar[k].map(m=>macKart(m,{tarihYok:k!=='yok'})).join('');
+      h += mList(gruplar[k].map(m=>macKart(m,{tarihYok:k!=='yok'})));
     });
   }
   return h;
@@ -1050,7 +1154,7 @@ function takimDetayHtml(){
     <div class="sec"><h2>Oyuncular</h2><span class="mut small">${oy.length}${kadro?' / '+kadro:''}</span></div>
     ${kadro && oy.length>kadro ? `<div class="uyari">Kadro sınırı ${kadro} oyuncu, bu takımda ${oy.length} oyuncu var.</div>`:''}
     ${oy.length ? `<div class="pgrid">${oy.map(p=>oyuncuKart(t,p)).join('')}</div>` : `<div class="card empty small">Henüz oyuncu eklenmedi.${ad?' “+ Oyuncu” ile ekleyebilirsiniz.':''}</div>`}
-    <div class="sec"><h2>Maçları</h2></div>${ms.map(m=>macKart(m)).join('')}`;
+    <div class="sec"><h2>Maçları</h2></div>${mList(ms.map(m=>macKart(m)))}`;
 }
 function oyuncuKart(t, p){
   const s = oyuncuIstat(t.id, p.id);
@@ -1595,13 +1699,13 @@ function ayarlarHtml(){
   const link = izleyiciLink();
   return `<button class="btn sm" style="margin-bottom:10px" onclick="git('ayarlar')">← Ayarlar</button>
   <div class="sec" style="margin-top:4px"><h2>${esc(S.T.ayar.logo||'🏆')} ${esc(S.T.ayar.ad)}</h2><span class="mut small">Turnuva ayarları</span></div>
-  <div class="card"><h3 style="font-size:20px;margin-bottom:10px">Turnuva bilgileri</h3>
+  <details class="card acc" ${accAcik('genel')} ontoggle="accTog('genel',this)"><summary><span class="ai">📝</span><span class="at"><b>Turnuva bilgileri</b><small>Ad, açıklama, simge</small></span></summary><div class="ab">
     <div class="fld"><label>Turnuva adı</label><input class="inp" data-a="ad" value="${esc(A.ad)}"></div>
     <div class="fld"><label>Açıklama</label><input class="inp" data-a="aciklama" value="${esc(A.aciklama||'')}"></div>
     <div class="fld"><label>Simge</label><div class="emg">${['🏆','⚽','🥇','🏅','🎯','🏀','🏐','🏓','♟️','⭐','🔥','👑'].map(e=>`<button style="${A.logo===e?'outline:3px solid var(--pri3)':''}" onclick="A.logo='${e}';render()">${e}</button>`).join('')}</div></div>
-    <button class="btn p blk" onclick="ayarKaydet('genel')">Kaydet</button></div>
+    <button class="btn p blk" onclick="ayarKaydet('genel')">Kaydet</button></div></details>
 
-  <div class="card"><h3 style="font-size:20px;margin-bottom:10px">Kurallar ve puanlama</h3>
+  <details class="card acc" ${accAcik('kural')} ontoggle="accTog('kural',this)"><summary><span class="ai">⚖️</span><span class="at"><b>Kurallar ve puanlama</b><small>Puanlar, maç süresi, eşitlik kriterleri</small></span></summary><div class="ab">
     <div class="grid2" style="grid-template-columns:repeat(3,1fr)">
       <div class="fld"><label>Galibiyet</label>${stepper('a','puanG',0,10)}</div><div class="fld"><label>Beraberlik</label>${stepper('a','puanB',0,10)}</div><div class="fld"><label>Yenilgi</label>${stepper('a','puanM',0,10)}</div></div>
     <div class="grid2"><div class="fld"><label>Hükmen skoru</label>${stepper('a','hukmenSkor',1,20)}</div>
@@ -1610,9 +1714,9 @@ function ayarlarHtml(){
       <div class="fld"><label>Süre (dk, 0=süresiz)</label>${stepper('a','sure',0,90)}</div><div class="fld"><label>Devre sayısı</label>${stepper('a','macDevre',1,5)}</div></div>
     <div class="fld"><label>Puan eşitliğinde sıralama</label>${kriterEditor('a')}</div>
     ${toggle('a','soyadKisalt','İzleyicide soyadını kısalt','Herkese açık sayfada “Ali Y.” şeklinde görünür.')}
-    <button class="btn p blk" onclick="ayarKaydet('kural')">Kaydet</button></div>
+    <button class="btn p blk" onclick="ayarKaydet('kural')">Kaydet</button></div></details>
 
-  <div class="card"><h3 style="font-size:20px;margin-bottom:10px">Takvim ve maç saatleri</h3>
+  <details class="card acc" ${accAcik('takvim')} ontoggle="accTog('takvim',this)"><summary><span class="ai">🗓️</span><span class="at"><b>Takvim ve maç saatleri</b><small>Günler, saatler, tatiller, yeniden planlama</small></span></summary><div class="ab">
     <div class="fld"><label>Oyun günleri</label>${gunSecici('a')}</div>
     <div class="fld"><label>Maç saatleri</label>${slotEditor('a')}</div>
     <div class="grid2"><div class="fld"><label>Saha/masa sayısı</label>${stepper('a','sahaSayisi',1,10)}</div><div class="fld"><label>Takım günde en fazla</label>${stepper('a','gunlukMacMax',1,5)}</div>
@@ -1623,23 +1727,23 @@ function ayarlarHtml(){
     <b>Yeniden planla</b><p class="small mut" style="margin:4px 0 8px">Oynanmış maçlara dokunulmaz. ${ert?`<b style="color:#8a6400">${ert} maçın tarihi yok.</b>`:''}</p>
     <div class="fld"><label>Şu tarihten itibaren</label><input class="inp" type="date" id="ypBas" value="${bugun()}"></div>
     <div class="grid2"><button class="btn" onclick="yenidenPlanla('ertelenen')">Sadece ertelenenler</button><button class="btn a" onclick="yenidenPlanla('kalan')">Tüm kalan maçlar</button></div>
-  </div>
+  </div></details>
 
-  <div class="card"><h3 style="font-size:20px;margin-bottom:10px">Paylaşım</h3>
+  <details class="card acc" ${accAcik('paylas')} ontoggle="accTog('paylas',this)"><summary><span class="ai">🔗</span><span class="at"><b>Paylaşım</b><small>İzleyici bağlantısı, QR kod, TV modu</small></span></summary><div class="ab">
     ${link ? `<p class="small mut" style="margin-top:0">İzleyici bağlantısı (veliler, öğrenciler, öğretmenler):</p>
       <div class="row" style="margin-bottom:10px"><input class="inp" readonly value="${esc(link)}" onclick="this.select()"><button class="btn" onclick="navigator.clipboard.writeText('${esc(link)}');toast('Bağlantı kopyalandı')">Kopyala</button></div>
       <div style="text-align:center"><div id="qr"></div><p class="small mut">Okul panosuna asmak için QR kodu</p></div>
       <div class="grid2"><button class="btn" onclick="qrIndir()">QR indir</button><button class="btn" onclick="tvAc()">📺 TV modu</button></div>`
       : `<p class="small mut">Dosyayı GitHub Pages'e yükledikten sonra izleyici bağlantısı ve QR kodu burada görünür.</p><button class="btn" onclick="tvAc()">📺 TV modu</button>`}
     ${Store.mod==='bulut' ? `<div class="tog" style="margin-top:8px"><div><b style="font-size:15px">Varsayılan turnuva</b><div class="hint small mut">Bağlantıyı turnuva belirtmeden açanlar ${S.aktif===S.tid?'<b>bu turnuvayı</b>':'başka bir turnuvayı'} görür.</div></div>${S.aktif===S.tid?'<span class="badge" style="background:#e7f3ec;color:var(--pri2)">Yayında</span>':`<button class="btn sm" onclick="Store.set('aktif',S.tid);toast('Varsayılan yapıldı')">Bunu yap</button>`}</div>` : ''}
-  </div>
+  </div></details>
 
-  <div class="card"><h3 style="font-size:20px;margin-bottom:10px">Veri</h3>
+  <details class="card acc" ${accAcik('veri')} ontoggle="accTog('veri',this)"><summary><span class="ai">💾</span><span class="at"><b>Veri</b><small>Yedek, fikstürü yeniden çek, sil</small></span></summary><div class="ab">
     <button class="btn blk" onclick="yedekIndir()">⬇️ Yedek indir (JSON)</button>
     ${!oynanan ? `<button class="btn blk" style="margin-top:10px" onclick="fiksturYeniden()">🎲 Fikstürü yeniden çek</button><p class="hint small mut">Henüz maç oynanmadığı için kura yeniden çekilebilir.</p>` : ''}
     <button class="btn r blk" style="margin-top:10px" onclick="turnuvaSil()">Turnuvayı sil</button>
-  </div>
-  <div class="card"><h3 style="font-size:20px;margin-bottom:10px">Raporlar ve çıktılar</h3>${ciktiSatirlari(['tablo','fikstur','gunluk','istatistik','kadro','kartlar','foy','rapor'])}</div>`;
+  </div></details>
+  <details class="card acc" ${accAcik('rapor')} ontoggle="accTog('rapor',this)"><summary><span class="ai">📄</span><span class="at"><b>Raporlar ve çıktılar</b><small>PDF ve Excel</small></span></summary><div class="ab">${ciktiSatirlari(['tablo','fikstur','gunluk','istatistik','kadro','kartlar','foy','rapor'])}</div></details>`;
 }
 async function ayarKaydet(bolum){
   const alan = {genel:['ad','aciklama','logo'], kural:['puanG','puanB','puanM','hukmenSkor','skorAd','kadro','sahada','sure','macDevre','kriterler','soyadKisalt'], takvim:['gunler','slotlar','sahaSayisi','gunlukMacMax','bitis','tatiller']}[bolum];
@@ -1799,8 +1903,8 @@ function ayarAnaHtml(){
       <div style="margin-top:3px;display:flex;gap:4px;flex-wrap:wrap">${S.aktif===id ? '<span class="badge" style="background:#e7f3ec;color:var(--pri2)">Yayında</span>' : ''}${S.tid===id ? '<span class="badge">Açık</span>' : ''}</div></div>
       <span style="font-size:24px;color:var(--mut)">›</span></li>`; }).join('') || '<li class="mut small">Henüz turnuva yok. “+ Yeni turnuva” ile başlayın.</li>'}</ul></div>
 
-  ${S.T ? `<div class="sec"><h2>Raporlar ve çıktılar</h2><span class="mut small">${esc(S.T.ayar.ad)}</span></div>
-  <div class="card">${ciktiSatirlari(['tablo','fikstur','gunluk','istatistik','kadro','kartlar','foy','rapor'])}</div>` : ''}
+  ${S.T ? `<div class="sec"><h2>Raporlar ve çıktılar</h2></div>
+  <details class="card acc" ${accAcik('anaRapor')} ontoggle="accTog('anaRapor',this)"><summary><span class="ai">📄</span><span class="at"><b>${esc(S.T.ayar.ad)}</b><small>PDF ve Excel çıktıları</small></span></summary><div class="ab">${ciktiSatirlari(['tablo','fikstur','gunluk','istatistik','kadro','kartlar','foy','rapor'])}</div></details>` : ''}
 
   ${kurKart(true) ? `<div class="sec"><h2>Uygulama</h2></div>${kurKart(true)}` : ''}
   <div class="sec"><h2>Gizlilik ve görünüm</h2></div>
@@ -1817,6 +1921,8 @@ function ayarAnaHtml(){
   </div>
   <p class="small mut" style="text-align:center">${Store.mod==='bulut' ? 'Bulut bağlantısı: Firebase'+(Store.user?' · '+esc(Store.user.email):'') : 'Yerel mod'}</p>`;
 }
+function accAcik(k){ return (S.acik || {})[k] ? 'open' : ''; }
+function accTog(k, el){ S.acik = S.acik || {}; S.acik[k] = el.open; if(el.open && k==='paylas') setTimeout(qrCiz, 30); }
 function kurumToggle(key, label, hint, def){
   const k = S.kurum || {}, v = k[key]===undefined ? def : !!k[key];
   return `<div class="tog"><div><b style="font-size:15px">${label}</b><div class="hint small mut">${hint}</div></div><label class="sw"><input type="checkbox" ${v?'checked':''} onchange="Store.set('kurum/${key}',this.checked)"><i></i></label></div>`;
@@ -2167,12 +2273,20 @@ function pRapor(){
 /* ===================== TV MODU ===================== */
 let tvI = 0, tvT = null;
 function tvAc(){ if(!S.T) return; $('#tv').classList.add('ac'); tvI = 0; tvRender(); clearInterval(tvT); tvT = setInterval(()=>{ tvI = (tvI+1)%3; tvRender(); }, 12000); try{ document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); }catch(e){} }
+window.addEventListener('resize', ()=>{ if($('#tv').classList.contains('ac')) tvRender(); });
 function tvKapat(){ $('#tv').classList.remove('ac'); clearInterval(tvT); try{ document.fullscreenElement && document.exitFullscreen(); }catch(e){} }
 function tvRender(){
   if(!S.T) return;
   const sira = siralamaHesap(S.T), ms = macListe(), bg = bugun();
   let b = '';
-  if(tvI===0) b = `<h2>Puan Durumu</h2><table><tr><th>#</th><th style="text-align:left">Takım</th><th>O</th><th>G</th><th>B</th><th>M</th><th>AV</th><th>P</th></tr>${sira.map((s,i)=>{ const t = takim(s.id); return `<tr><td>${i+1}</td><td class="l"><span style="display:inline-flex;align-items:center;gap:1vw">${logo(t,36)}${esc(t.ad)}</span></td><td>${s.o}</td><td>${s.g}</td><td>${s.b}</td><td>${s.m}</td><td>${s.av>0?'+':''}${s.av}</td><td style="font-weight:800;color:var(--acc)">${s.p}</td></tr>`; }).join('')}</table>`;
+  if(tvI===0){
+    // Tüm takımlar tek ekrana: satır yüksekliği takım sayısına ve ekran boyuna göre
+    const n = Math.max(1, sira.length), H = window.innerHeight, W = window.innerWidth;
+    const alan = H*0.88 - 56;
+    const satir = Math.max(16, Math.min(H*0.085, alan/(n+1.3)));
+    const fs = Math.max(10, Math.min(satir*0.56, W<500 ? 21 : 38)), lg = Math.round(satir*0.74), pd = Math.max(1, (satir - lg)/2);
+    b = `<table class="tvtab" style="font-size:${fs}px"><tr><th>#</th><th class="l">Takım</th><th>O</th><th>G</th><th>B</th><th>M</th><th>AV</th><th>P</th></tr>${sira.map((s,i)=>{ const t = takim(s.id); return `<tr class="${i===0&&s.o?'tvilk':''}"><td style="padding:${pd}px 4px">${i+1}</td><td class="l" style="padding:${pd}px 4px"><span class="tvtk">${logo(t,lg)}<span>${esc(t.ad)}</span></span></td><td>${s.o}</td><td>${s.g}</td><td>${s.b}</td><td>${s.m}</td><td>${s.av>0?'+':''}${s.av}</td><td class="tvp">${s.p}</td></tr>`; }).join('')}</table>`;
+  }
   if(tvI===1){
     const son = ms.filter(oynandi).reverse().slice(0,6), gel = ms.filter(m=>!oynandi(m) && m.tarih && m.tarih>=bg).slice(0,6);
     const sat = (m, sk) => { const e = takim(m.ev), d = takim(m.dep); return `<div class="tvm"><div class="e">${esc(e.ad)} ${logo(e,30)}</div><div class="s">${sk?`${m.evGol}-${m.depGol}`:esc(m.saat||'')}</div><div>${logo(d,30)} ${esc(d.ad)}</div></div>`; };
@@ -2184,7 +2298,7 @@ function tvRender(){
     const sat = (x,v) => { const p = oyuncu(x.tk,x.p), t = takim(x.tk); return `<div class="tvm" style="grid-template-columns:auto 1fr auto">${oyuncuGorsel(p,46)}<div><b>${esc(oyuncuAd(p))}</b><div style="font-size:1.8vh;opacity:.7">${esc(t.ad)}</div></div><div class="s">${v}</div></div>`; };
     b = `<div class="tvcols"><div><h2>👑 ${esc(skorAd())} Krallığı</h2>${g.map(x=>sat(x,x.gol)).join('') || '<p style="opacity:.6">Henüz veri yok.</p>'}</div><div><h2>⭐ Maçın Oyuncusu</h2>${mv.map(x=>sat(x,x.n)).join('') || '<p style="opacity:.6">Henüz veri yok.</p>'}</div></div>`;
   }
-  $('#tv').innerHTML = `<div class="tvh"><span style="font-size:5vh">${esc(S.T.ayar.logo||'🏆')}</span><h1>${esc(S.T.ayar.ad)}</h1><button class="x" onclick="tvKapat()">Kapat ✕</button></div>
+  $('#tv').innerHTML = `<div class="tvh"><span class="tvlg">${esc(S.T.ayar.logo||'🏆')}</span><div class="tvbas"><h1>${esc(S.T.ayar.ad)}</h1><small>${['Puan Durumu','Sonuçlar ve Sıradaki Maçlar','Krallık Yarışı'][tvI]}</small></div><button class="x" onclick="tvKapat()" title="Kapat">✕</button></div>
     <div class="tvb">${b}</div><div class="tvdots">${[0,1,2].map(i=>`<i class="${i===tvI?'on':''}"></i>`).join('')}</div>`;
 }
 
