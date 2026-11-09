@@ -255,12 +255,12 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
 #sheet{position:fixed;inset:0;z-index:60;display:none}
 #sheet.ac{display:block}
 #sheet .bd{position:absolute;inset:0;background:rgba(5,20,12,.5);animation:fi .2s}
-#sheet .pn{position:absolute;left:0;right:0;bottom:0;max-height:92vh;overflow-y:auto;background:var(--bg);border-radius:20px 20px 0 0;padding:8px 14px calc(18px + env(safe-area-inset-bottom));animation:su .25s ease-out}
+#sheet>.pn{position:absolute;left:0;right:0;bottom:0;max-height:92vh;overflow-y:auto;background:var(--bg);border-radius:20px 20px 0 0;padding:8px 14px calc(18px + env(safe-area-inset-bottom));animation:su .25s ease-out}
 #sheet .grab{width:44px;height:5px;border-radius:5px;background:#c5cfc9;margin:4px auto 10px}
 #sheet .sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:10px}
 #sheet .sh h2{font-size:22px}
 #sheet .x{width:38px;height:38px;border-radius:11px;background:#fff;font-size:20px;flex:none}
-@media(min-width:700px){#sheet .pn{left:50%;right:auto;bottom:auto;top:50%;transform:translate(-50%,-50%);width:560px;border-radius:20px;max-height:88vh;animation:fi .2s}}
+@media(min-width:700px){#sheet>.pn{left:50%;right:auto;bottom:auto;top:50%;transform:translate(-50%,-50%);width:560px;border-radius:20px;max-height:88vh;animation:fi .2s}}
 @keyframes su{from{transform:translateY(100%)}}
 @keyframes fi{from{opacity:0}}
 .emg{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:6px}
@@ -1027,6 +1027,58 @@ details.acc .ab{padding:14px}
   .pb2-d{column-gap:8px}
   .bnot{font-size:10.5px}
 }
+
+/* v12: takım düzenle + eylem düğmeleri + oyuncu kartı */
+.td-on{--tc:#13693f;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;margin-bottom:12px;color:#fff;background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(0,0,0,.45)),var(--tc);box-shadow:0 6px 18px rgba(0,0,0,.15)}
+.td-on .lg{filter:drop-shadow(0 3px 6px rgba(0,0,0,.35))}
+.td-on-m{min-width:0}
+.td-on-m b{display:block;font-family:var(--fd);font-size:22px;line-height:1.1;overflow-wrap:break-word}
+.td-on-m small{display:block;opacity:.9;font-size:13px;margin-top:2px}
+.td-bl{background:#fff;border-radius:14px;padding:10px 12px;margin-bottom:8px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.td-et{display:block;font-size:12px;font-weight:800;color:#33443b;margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px}
+.td-ust{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.td-ust .td-et{margin:0}
+.td-bl .inp{height:42px}
+.td-renk{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+.td-renk button{width:28px;height:28px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line)}
+.td-renk button.on{box-shadow:0 0 0 2.5px var(--ink)}
+.td-ozel{position:relative;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--soft);border:1px dashed #b9c6be;font-size:15px;cursor:pointer;overflow:hidden}
+.td-ozel input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.td-simge{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,40px);grid-auto-columns:40px;gap:5px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.td-simge button{width:40px;height:40px;border-radius:10px;background:var(--soft);font-size:23px;border:2px solid transparent}
+.td-simge button.on{border-color:var(--pri3);background:#e7f3ec}
+.td-not{font-size:11.5px;color:var(--mut);margin-top:6px;line-height:1.35}
+.td-tdr{display:flex;align-items:center;gap:7px}
+.td-tdr .inp{flex:1;min-width:0}
+.td-foto{width:42px;height:42px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-size:22px;overflow:hidden;flex:none;border:1px solid var(--line)}
+.td-foto img{width:100%;height:100%;object-fit:cover}
+.td-ib{width:38px;height:42px;border-radius:10px;background:var(--soft);border:1px solid var(--line);display:grid;place-items:center;font-size:17px;flex:none;cursor:pointer}
+.td-ib.r{color:var(--red);font-weight:800}
+.td-alt{position:sticky;bottom:calc(-18px - env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr 2fr;gap:8px;padding:10px 0 4px;background:linear-gradient(transparent,var(--bg) 25%)}
+.tak-akt{display:flex;gap:6px;margin-bottom:8px}
+.tak-akt button{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 2px;border-radius:12px;background:#fff;border:1px solid var(--line);font-weight:700;font-size:12px;color:#33443b;white-space:nowrap}
+.tak-akt button span{font-size:19px;line-height:1}
+.tak-akt button.r{color:var(--red);flex:.7}
+.tak-akt button:active{background:var(--soft)}
+@media(min-width:700px){.tak-akt{max-width:560px}.tak-akt button{flex-direction:row;justify-content:center;gap:6px;font-size:13.5px;padding:9px 6px}.tak-akt button span{font-size:16px}}
+.pc{background:#fff!important;color:var(--ink)!important;border:1px solid var(--line);box-shadow:var(--sh);overflow:hidden;position:relative;isolation:isolate}
+.pc::before{content:"";position:absolute;left:0;right:0;top:0;height:44%;z-index:-1;background:linear-gradient(160deg,rgba(255,255,255,.18),rgba(0,0,0,.28)),var(--tc,#13693f)}
+.pc .rt{background:#fff;color:#4b5563;border-radius:7px;padding:2px 6px;font-size:15px!important;line-height:1.1;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.pc.altin .rt{background:linear-gradient(#ffe08a,#e0a91f);color:#3d2a00}
+.pc.gumus .rt{background:linear-gradient(#f1f5f9,#b6c2cc);color:#1f2a33}
+.pc.bronz .rt{background:linear-gradient(#f3c9a1,#c27a44);color:#3a1d07}
+.pc .no{color:#fff!important;opacity:.95!important;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.pc .av{margin-top:16px!important}
+.pc .pfoto{border:3px solid #fff!important;box-shadow:0 3px 8px rgba(0,0,0,.25)}
+.pc .pav{filter:drop-shadow(0 2px 3px rgba(0,0,0,.25))}
+.pc .pn{color:var(--ink)}
+.pc .ps,.pc .tm,.pc .stt span{color:var(--mut)!important;opacity:1!important}
+.pc .stt{border-top-color:var(--line)!important}
+.pc .stt b{color:var(--ink)}
+.bigcard .rt{font-size:22px!important;padding:3px 9px}
+.bigcard .av{margin-top:30px!important}
+.pdfd .pkart .rt{font-size:18px!important}
+.pdfd .pkart .kalt{color:var(--mut);opacity:1}
 </style>
 </head>
 <body>
@@ -1720,7 +1772,7 @@ function takimDetayHtml(){
   return `<button class="btn sm" style="margin-bottom:10px" onclick="git('takimlar')">← Takımlar</button>
     <div class="thead" style="background:linear-gradient(135deg,${esc(t.renk)},#0b3d2a)">${logo(t,64)}<div><h1>${esc(t.ad)}</h1>${t.td && t.td.ad ? `<div class="tdsat">${tdGorsel(t,26)}<span>Teknik Direktör: <b>${esc(t.td.ad)}</b></span></div>` : ''}
       <div class="tozet"><span class="g"><b>${st.g}</b> galibiyet</span><span class="b"><b>${st.b}</b> beraberlik</span><span class="m"><b>${st.m}</b> yenilgi</span></div></div></div>
-    ${ad ? `<div class="row" style="margin-bottom:6px;flex-wrap:wrap"><button class="btn sm" onclick="takimDuzenle('${t.id}')">✏️ Takımı düzenle</button>${!Object.keys(S.T.maclar).length ? `<button class="btn sm r" onclick="takimSil('${t.id}')">🗑 Sil</button>` : ''}<button class="btn sm" onclick="oyuncuForm('${t.id}')">+ Oyuncu</button><button class="btn sm" onclick="topluOyuncu('${t.id}')">📋 Toplu ekle</button><button class="btn sm" onclick="indirMenu('takim')">⬇️ Kadro / kartlar</button></div>` : ''}
+    ${ad ? `<div class="tak-akt"><button onclick="takimDuzenle('${t.id}')"><span>✏️</span>Düzenle</button><button onclick="oyuncuForm('${t.id}')"><span>➕</span>Oyuncu</button><button onclick="topluOyuncu('${t.id}')"><span>📋</span>Toplu ekle</button><button onclick="indirMenu('takim')"><span>⬇️</span>Kadro/Kart</button>${!Object.keys(S.T.maclar).length ? `<button class="r" onclick="takimSil('${t.id}')"><span>🗑</span>Sil</button>` : ''}</div>` : ''}
     <div class="sec"><h2>Oyuncular</h2><span class="mut small">${oy.length}${kadro?' / '+kadro:''}</span></div>
     ${kadro && oy.length>kadro ? `<div class="uyari">Kadro sınırı ${kadro} oyuncu, bu takımda ${oy.length} oyuncu var.</div>`:''}
     ${oy.length ? `<div class="pgrid">${oy.map(p=>oyuncuKart(t,p)).join('')}</div>` : `<div class="card empty small">Henüz oyuncu eklenmedi.${ad?' “+ Oyuncu” ile ekleyebilirsiniz.':''}</div>`}
@@ -1728,7 +1780,7 @@ function takimDetayHtml(){
 }
 function oyuncuKart(t, p){
   const s = oyuncuIstat(t.id, p.id);
-  return `<button class="pc ${s.tier}" onclick="oyuncuAc('${t.id}','${p.id}')"><span class="rt">${s.rt}</span><span class="no">${p.no?'#'+esc(p.no):''}</span>
+  return `<button class="pc ${s.tier}" style="--tc:${esc(t.renk)}" onclick="oyuncuAc('${t.id}','${p.id}')"><span class="rt">${s.rt}</span><span class="no">${p.no?'#'+esc(p.no):''}</span>
     <div class="av">${oyuncuGorsel(p,56)}</div><div class="pn">${esc(oyuncuAd(p))}</div>
     <div class="ps"><span>⚽ ${s.gol}</span><span>⭐ ${s.mvp}</span></div></button>`;
 }
@@ -1736,7 +1788,7 @@ function oyuncuAc(tk, pid){
   const t = takim(tk), p = oyuncu(tk, pid); if(!p) return;
   const s = oyuncuIstat(tk, pid);
   sheet(`<div class="sh"><h2>Oyuncu Kartı</h2><button class="x" onclick="sheetKapat()">✕</button></div>
-    <div class="pc bigcard ${s.tier}"><span class="rt">${s.rt}</span><span class="no">${p.no?'#'+esc(p.no):''}</span>
+    <div class="pc bigcard ${s.tier}" style="--tc:${esc(t.renk)}"><span class="rt">${s.rt}</span><span class="no">${p.no?'#'+esc(p.no):''}</span>
       <div class="av">${oyuncuGorsel(p,112)}</div><div class="pn">${esc(oyuncuAd(p))}</div><div class="tm">${esc(t.ad)}</div>
       <div class="stt"><div><b>${s.gol}</b><span>${esc(skorAd().toLocaleUpperCase('tr'))}</span></div><div><b>${s.mvp}</b><span>MAÇIN OYU.</span></div><div><b>${s.mac}</b><span>MAÇ</span></div></div></div>
     <p class="mut small" style="text-align:center">Kart puanı ${skorAd().toLowerCase()} ve “Maçın Oyuncusu” seçimleriyle yükselir: 80+ altın, 70+ gümüş.</p>
@@ -1795,25 +1847,47 @@ async function topluKaydet(tk){
 }
 function takimDuzenle(tk){
   const t = takim(tk); window._tl = {logo:t.logo, logoImg:t.logoImg||null}; const td = t.td || {}; window._tdFoto = td.foto || null;
+  const renkler = [...new Set([t.renk, ...RENK])].slice(0, 14);
   sheet(`<div class="sh"><h2>Takımı düzenle</h2><button class="x" onclick="sheetKapat()">✕</button></div>
-    <div class="row" style="margin-bottom:14px"><span id="tlOn">${logo(t,64)}</span><div style="flex:1"><label class="btn sm" style="cursor:pointer">🖼️ Logo yükle<input type="file" accept="image/*" hidden onchange="logoYukle(this,'tlOn')"></label>
-      <div class="hint small mut" style="margin-top:6px">Logo kırpılmadan, oranı korunarak standart boyuta getirilir; beyaz zemin otomatik temizlenir.</div></div></div>
-    <div class="fld"><label>Takım adı</label><input class="inp" id="tAd" value="${esc(t.ad)}"></div>
-    <div class="fld"><label>Renk</label><input type="color" class="clr" id="tRenk" value="${esc(t.renk)}"></div>
-    <div class="fld"><label>Teknik direktör</label>
-      <div class="fotoalan" style="margin-bottom:0"><span id="tdOn" class="fotoon" style="width:60px;height:60px;font-size:30px">${td.foto?`<img src="${td.foto}">`:'👔'}</span>
-      <div style="flex:1;min-width:0"><input class="inp" id="tdAd" value="${esc(td.ad||'')}" placeholder="Örn. Ayşe Kaya (sınıf öğretmeni)">
-      <div class="row" style="margin-top:8px"><label class="btn sm" style="cursor:pointer">📷 Fotoğraf<input type="file" accept="image/*" hidden onchange="tdFotoSec(this)"></label><button class="btn sm r" onclick="window._tdFoto=null;document.getElementById('tdOn').innerHTML='👔'">Kaldır</button></div></div></div>
-      <div class="hint">Kura töreninde, takım sayfasında ve çıktılarda görünür. Fotoğrafı öğretmenin onayıyla ekleyin.</div></div>
-    <div class="fld"><label>Simge</label><div class="emg">${TAKIM_LOGO.map(e=>`<button onclick="window._tl={logo:'${e}',logoImg:null};document.getElementById('tlOn').innerHTML=logo({logo:'${e}',renk:document.getElementById('tRenk').value},64)">${e}</button>`).join('')}</div></div>
-    <button class="btn p blk" onclick="takimKaydet('${tk}')">Kaydet</button>`);
+    <div class="td-on" id="tdKart" style="--tc:${esc(t.renk)}">
+      <span id="tlOn">${logo(t,58)}</span>
+      <div class="td-on-m"><b id="tdOnAd">${esc(t.ad)}</b><small id="tdOnTd">${td.ad ? '👔 ' + esc(td.ad) : 'Teknik direktör eklenmedi'}</small></div></div>
+
+    <div class="td-bl"><label class="td-et">Takım adı</label>
+      <input class="inp" id="tAd" value="${esc(t.ad)}" oninput="document.getElementById('tdOnAd').textContent=this.value||'—'"></div>
+
+    <div class="td-bl"><label class="td-et">Renk</label>
+      <div class="td-renk">${renkler.map(r=>`<button class="${r===t.renk?'on':''}" style="background:${r}" onclick="tdRenk('${r}',this)" aria-label="${r}"></button>`).join('')}
+        <label class="td-ozel" title="Özel renk">🎨<input type="color" id="tRenk" value="${esc(t.renk)}" oninput="tdRenk(this.value)"></label></div></div>
+
+    <div class="td-bl"><div class="td-ust"><label class="td-et">Logo</label><label class="btn sm" style="cursor:pointer">🖼️ Görsel yükle<input type="file" accept="image/*" hidden onchange="logoYukle(this,'tlOn')"></label></div>
+      <div class="td-simge">${TAKIM_LOGO.map(e=>`<button class="${!t.logoImg && t.logo===e ? 'on' : ''}" onclick="tdSimge('${e}',this)">${e}</button>`).join('')}</div>
+      <div class="td-not">Yüklenen logo kırpılmaz; oranı korunarak standart boyuta getirilir, beyaz zemini temizlenir. Simge seçilirse görsel kaldırılır.</div></div>
+
+    <div class="td-bl"><label class="td-et">Teknik direktör</label>
+      <div class="td-tdr"><span id="tdOn" class="td-foto">${td.foto?`<img src="${td.foto}">`:'👔'}</span>
+        <input class="inp" id="tdAd" value="${esc(td.ad||'')}" placeholder="Ad Soyad" oninput="document.getElementById('tdOnTd').textContent=this.value?'👔 '+this.value:'Teknik direktör eklenmedi'">
+        <label class="td-ib" title="Fotoğraf ekle">📷<input type="file" accept="image/*" hidden onchange="tdFotoSec(this)"></label>
+        <button class="td-ib r" title="Fotoğrafı kaldır" onclick="window._tdFoto=null;document.getElementById('tdOn').innerHTML='👔'">✕</button></div>
+      <div class="td-not">Kura töreninde, takım sayfasında ve çıktılarda görünür. Fotoğrafı öğretmenin onayıyla ekleyin.</div></div>
+
+    <div class="td-alt"><button class="btn" onclick="sheetKapat()">Vazgeç</button><button class="btn p" onclick="takimKaydet('${tk}')">Kaydet</button></div>`);
+}
+function tdRenk(r, btn){
+  $('#tRenk').value = r; $('#tdKart').style.setProperty('--tc', r);
+  document.querySelectorAll('.td-renk button').forEach(b=>b.classList.toggle('on', b===btn));
+}
+function tdSimge(e, btn){
+  window._tl = {logo:e, logoImg:null};
+  document.getElementById('tlOn').innerHTML = logo({logo:e}, 58);
+  document.querySelectorAll('.td-simge button').forEach(b=>b.classList.toggle('on', b===btn));
 }
 async function logoYukle(inp, onId){
   const f = inp.files[0]; if(!f) return;
   try{
     const url = await logoStandart(f, 256);
     window._tl = {logo:window._tl ? window._tl.logo : '⚽', logoImg:url};
-    if(onId){ const el = document.getElementById(onId); if(el) el.innerHTML = `<span class="lg" style="width:64px;height:64px"><img src="${url}"></span>`; }
+    if(onId){ const el = document.getElementById(onId); if(el) el.innerHTML = `<span class="lg" style="width:58px;height:58px"><img src="${url}"></span>`; document.querySelectorAll('.td-simge button').forEach(b=>b.classList.remove('on')); }
     if(inp._cb) inp._cb(url);
   }catch(e){ toast('Görsel okunamadı'); }
 }
@@ -2071,7 +2145,7 @@ async function bitirKaydet(tk, pid){
 
 /* ===================== SHEET ===================== */
 function sheet(html, koru){
-  const s = $('#sheet'), pn = s.querySelector('.pn'), sc = pn.scrollTop;
+  const s = $('#sheet'), pn = s.querySelector(':scope > .pn'), sc = pn.scrollTop;
   pn.innerHTML = '<div class="grab"></div>' + html; s.classList.add('ac');
   if(koru) pn.scrollTop = sc; else pn.scrollTop = 0;
 }
@@ -2956,7 +3030,7 @@ function pKartlar(tk){
   const ts = tk ? [takim(tk)] : Object.values(S.T.takimlar).sort((a,b)=>(a.sira||0)-(b.sira||0));
   const kartlar = [];
   ts.forEach(t=>oyuncuSirali(t).forEach(p=>{ const s = oyuncuIstat(t.id, p.id);
-    kartlar.push(`<div class="pc pkart ${s.tier}"><span class="rt">${s.rt}</span><span class="no">${p.no?'#'+esc(p.no):''}</span>
+    kartlar.push(`<div class="pc pkart ${s.tier}" style="--tc:${esc(t.renk)}"><span class="rt">${s.rt}</span><span class="no">${p.no?'#'+esc(p.no):''}</span>
       <div class="av">${oyuncuGorsel(p, 104)}</div><div class="pn">${esc(oyuncuAd(p))}</div><div class="tm">${logo(t,16)} ${esc(t.ad)}</div>
       <div class="stt"><div><b>${s.gol}</b><span>${esc(skorAd().toLocaleUpperCase('tr'))}</span></div><div><b>${s.mvp}</b><span>MAÇIN OY.</span></div><div><b>${s.mac}</b><span>MAÇ</span></div></div>
       <div class="kalt">${esc(S.T.ayar.ad)}</div></div>`); }));
