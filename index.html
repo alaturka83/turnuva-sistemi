@@ -1138,6 +1138,10 @@ details.acc .ab{padding:14px}
   .pgrid.pk5 .pc .ps{font-size:9.5px;gap:3px}
   .pgrid.pk3 .pc .pn{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.05;font-size:14px}
 }
+
+.sifirla{margin-top:12px;border:1px solid #f3c9c9;background:#fff6f6;border-radius:12px;padding:10px 12px}
+.sifirla b{color:#b42318;font-size:14.5px}
+.sifirla p{font-size:12.5px;color:#7a2a24;margin:4px 0 10px;line-height:1.4}
 </style>
 </head>
 <body>
@@ -2536,7 +2540,10 @@ function ayarlarHtml(){
 
   <details class="card acc" ${accAcik('veri')} ontoggle="accTog('veri',this)"><summary><span class="ai">💾</span><span class="at"><b>Veri</b><small>Yedek, fikstürü yeniden çek, sil</small></span></summary><div class="ab">
     <button class="btn blk" onclick="yedekIndir()">⬇️ Yedek indir (JSON)</button>
-    ${!oynanan ? `<button class="btn a blk" style="margin-top:10px" onclick="kuraHazirla()">🎬 Canlı kura töreniyle yeniden çek</button><button class="btn blk" style="margin-top:8px" onclick="fiksturYeniden()">🎲 Fikstürü hemen yeniden çek</button><p class="hint small mut">Henüz maç oynanmadığı için kura yeniden çekilebilir.</p>` : ''}
+    ${!oynanan ? `<button class="btn a blk" style="margin-top:10px" onclick="kuraHazirla()">🎬 Canlı kura töreniyle yeniden çek</button><button class="btn blk" style="margin-top:8px" onclick="fiksturYeniden()">🎲 Fikstürü hemen yeniden çek</button><p class="hint small mut">Henüz maç oynanmadığı için kura yeniden çekilebilir.</p>` : `
+    <div class="sifirla"><b>♻️ Sonuçları sıfırla ve yeniden çek</b>
+      <p>${oynanan} maçın sonucu girilmiş. Sıfırlarsanız tüm skorlar, goller ve maçın oyuncusu seçimleri silinir; takımlar, oyuncular ve ayarlar kalır. Öncesinde yedek almanız önerilir.</p>
+      <div class="grid2"><button class="btn a" onclick="turnuvaSifirla('canli')">🎬 Canlı kurayla</button><button class="btn" onclick="turnuvaSifirla('hemen')">🎲 Hemen çek</button></div></div>`}
     <button class="btn r blk" style="margin-top:10px" onclick="turnuvaSil()">Turnuvayı sil</button>
   </div></details>
   <details class="card acc" ${accAcik('rapor')} ontoggle="accTog('rapor',this)"><summary><span class="ai">📄</span><span class="at"><b>Raporlar ve çıktılar</b><small>PDF ve Excel</small></span></summary><div class="ab">${ciktiSatirlari(['tablo','fikstur','gunluk','istatistik','kadro','kartlar','foy','rapor'])}</div></details>`;
@@ -2563,8 +2570,19 @@ async function yenidenPlanla(tur){
   await Store.update(up);
   toast(`${bek.length - p.yerlesmeyen} maç planlandı${p.tasan?`, ${p.tasan} maç bitiş tarihini aşıyor`:''}`);
 }
-async function fiksturYeniden(){
-  if(!confirm('Kura yeniden çekilecek ve tüm maçlar yeniden planlanacak. Emin misiniz?')) return;
+async function turnuvaSifirla(mod){
+  const n = Object.values(S.T.maclar).filter(m=>oynandi(m) || m.durum==='canli').length;
+  if(prompt(`${n} maçın sonucu ve tüm istatistikler silinecek.\nBu işlem geri alınamaz (yedeğiniz yoksa).\n\nOnaylamak için SIFIRLA yazın:`) !== 'SIFIRLA'){ toast('İptal edildi'); return; }
+  try{ Object.keys(S.T.maclar).forEach(id=>localStorage.removeItem('tm_kr_'+id)); }catch(e){}
+  if(mod === 'canli'){
+    await Store.update({[tp('maclar')]:null, [tp('baylar')]:null, [tp('kura')]:{durum:'bekliyor'}});
+    S.view = 'bugun'; S.fTur = null; render(); toast('Sonuçlar sıfırlandı, turnuva canlı kura töreni bekliyor');
+  } else {
+    await fiksturYeniden(true);
+  }
+}
+async function fiksturYeniden(onayli){
+  if(!onayli && !confirm('Kura yeniden çekilecek ve tüm maçlar yeniden planlanacak. Emin misiniz?')) return;
   const ids = Object.values(S.T.takimlar).sort((a,b)=>(a.sira||0)-(b.sira||0)).map(t=>t.id), a = S.T.ayar;
   await kuraAnimasyon(ids.map(takim));
   const turlar = fiksturUret(ids, a.ligDevre===2, a.kura!=='sirali');
