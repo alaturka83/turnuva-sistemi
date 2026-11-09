@@ -919,6 +919,42 @@ details.acc .ab{padding:14px}
   .st-msat .st-skr{margin-left:24px}
   .lst li b{overflow-wrap:break-word}
 }
+
+/* v8: takımlar dikey otomatik sığdırma + ayarlar */
+@media(max-width:600px){
+  .tgrid.tgv{grid-template-columns:repeat(var(--c,3),minmax(0,1fr))!important;gap:6px!important}
+  .tgrid.tgv .tcard{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:var(--h,96px);padding:6px 4px 5px!important;text-align:center;border-radius:12px}
+  .tgrid.tgv .tcard::before{left:0!important;right:0!important;top:0!important;bottom:auto!important;width:auto!important;height:4px!important}
+  .tgrid.tgv .tcard .lg{grid-row:auto;width:var(--lg)!important;height:var(--lg)!important;font-size:calc(var(--lg) * .86)!important;flex:none}
+  .tgrid.tgv .tcard b{font-size:var(--fs)!important;line-height:1.1;margin:2px 0 0!important;text-align:center;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:break-word;max-width:100%}
+  .tgrid.tgv .tcard>*{align-self:center!important;grid-column:auto!important}
+  .tgrid.tgv .tcard .tdk{font-size:calc(var(--fs) - 3px);max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0}
+}
+.ay-dur{font-size:12px;font-weight:700;color:#8a6400;background:#fff4d6;border-radius:999px;padding:3px 10px}
+.ay-dur.on{color:var(--pri2);background:#e7f3ec}
+.ay-kurum{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px}
+.ay-km{flex:1;min-width:0}
+.ay-km b{display:block;font-size:16px;overflow-wrap:break-word}
+.ay-km small{display:block;color:var(--mut);font-size:12.5px;line-height:1.3;margin-top:1px}
+.ay-ok{flex:none;width:32px;height:32px;border-radius:10px;background:var(--soft);display:grid;place-items:center;font-size:16px;color:var(--mut)}
+.ay-tl{padding:4px 10px}
+.ay-t{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:9px 2px;border-bottom:1px solid var(--line)}
+.ay-t:last-child{border-bottom:0}
+.ay-t.acik .ay-tlg{box-shadow:0 0 0 2px var(--pri3)}
+.ay-tlg{width:40px;height:40px;border-radius:12px;background:var(--soft);display:grid;place-items:center;font-size:23px;flex:none}
+.ay-tm{flex:1;min-width:0}
+.ay-tm b{display:block;font-size:15px;line-height:1.2;overflow-wrap:break-word}
+.ay-tm small{display:block;color:var(--mut);font-size:12px}
+.ay-r{flex:none;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.3px;padding:2px 7px;border-radius:6px;background:var(--soft);color:var(--mut)}
+.ay-r.yay{background:#e7f3ec;color:var(--pri2)}
+@media(max-width:600px){
+  .ay-kurum{padding:10px}
+  .ay-t{padding:8px 0;gap:8px}
+  .ay-tlg{width:36px;height:36px;font-size:20px}
+  .ay-r{font-size:9.5px;padding:2px 5px}
+  details.acc .ab .cikti .cb .btn{height:34px}
+  .sec .btn.sm{height:30px;padding:0 10px;font-size:13px}
+}
 </style>
 </head>
 <body>
@@ -1516,9 +1552,26 @@ function takimlarHtml(){
   const sira = siralamaHesap(S.T), pos = {}; sira.forEach((s,i)=>pos[s.id]=i+1);
   const ts = Object.values(S.T.takimlar).sort((a,b)=>(a.sira||0)-(b.sira||0));
   return `<div class="sec" style="margin-top:4px"><h2>Takımlar</h2><span class="mut small">${ts.length} takım</span></div>
-    <div class="tgrid ${ts.length > 15 ? 'k4' : ''}">${ts.map(t=>`<button class="tcard" style="--tc:${esc(t.renk)}" onclick="takimAc('${t.id}')">${logo(t,58)}<b>${esc(t.ad)}</b><span class="tdk">${t.td && t.td.ad ? '👔 ' + esc(t.td.ad) : '<i>Teknik direktör yok</i>'}</span></button>`).join('')}</div>
+    <div class="tgrid tgv" style="${takimGridStil(ts.length)}">${ts.map(t=>`<button class="tcard" style="--tc:${esc(t.renk)}" onclick="takimAc('${t.id}')">${logo(t,58)}<b>${esc(t.ad)}</b><span class="tdk">${t.td && t.td.ad ? '👔 ' + esc(t.td.ad) : '<i>Teknik direktör yok</i>'}</span></button>`).join('')}</div>
     ${yonetici() ? takimTopluKart() : ''}`;
 }
+function takimGridStil(n){
+  if(window.innerWidth > 600 || !n) return '';
+  const hd = ($('#hdr') || {}).offsetHeight || 46, nv = ($('#nav') || {}).offsetHeight || 60;
+  const H = window.innerHeight - hd - nv - 66, W = window.innerWidth - 20, G = 6;
+  let sec = null;
+  for(const c of [3, 4, 5]){
+    const r = Math.ceil(n / c), h = Math.floor((H - (r - 1) * G) / r), w = (W - (c - 1) * G) / c;
+    const minH = c === 3 ? 82 : c === 4 ? 74 : 66;
+    sec = {c, h:Math.min(h, Math.round(w * 1.35), 170), w};
+    if(h >= minH) break;
+  }
+  const lg = Math.max(22, Math.min(64, Math.round(sec.h * .4), Math.round(sec.w * .5)));
+  const fs = sec.c === 3 ? 13.5 : sec.c === 4 ? 12 : 10.5;
+  return `--c:${sec.c};--h:${Math.max(56, sec.h)}px;--lg:${lg}px;--fs:${fs}px`;
+}
+let takimRsz = null;
+window.addEventListener('resize', ()=>{ clearTimeout(takimRsz); takimRsz = setTimeout(()=>{ const ae = document.activeElement; if(S.view==='takimlar' && !(ae && /INPUT|TEXTAREA/.test(ae.tagName))) render(); }, 150); });
 function takimTopluKart(){
   const oyn = Object.values(S.T.maclar).some(m=>oynandi(m) || m.durum==='canli');
   if(oyn) return `<div class="card small mut" style="margin-top:12px">Maçlar başladığı için bu turnuvaya yeni takım eklenemez.</div>`;
@@ -2392,40 +2445,33 @@ function ayarAnaHtml(){
   const k = S.kurum || {};
   const ks = Object.keys(S.liste).sort((a,b)=>(S.liste[b].olusturma||0)-(S.liste[a].olusturma||0));
   const yer = [k.ilce, k.il].filter(Boolean).join(' / ');
-  return `<div class="sec" style="margin-top:4px"><h2>Ayarlar</h2></div>
-  ${Store.mod==='yerel' ? `<div class="uyari"><b>Yerel mod:</b> Veriler yalnızca bu tarayıcıda. İzleyicilerin takip edebilmesi için Firebase bağlantısı kurulmalı.</div>` : ''}
-  <div class="card">
-    <div class="row" style="justify-content:space-between;margin-bottom:10px"><h3 style="font-size:20px">Kurum bilgileri</h3><button class="btn sm" onclick="kurumForm()">✏️ Düzenle</button></div>
-    <div class="row">${kurumLogo(58) || '<span class="lg" style="width:58px;height:58px;background:var(--soft);font-size:28px">🏫</span>'}
-      <div style="min-width:0"><b style="font-size:17px">${esc(k.ad || 'Kurum adı girilmedi')}</b>
-      <div class="small mut">${esc(k.altBaslik || 'Alt başlık yok')}</div>
-      ${yer || k.egitimYili ? `<div class="small mut">${esc([yer, k.egitimYili ? k.egitimYili+' Eğitim-Öğretim Yılı' : ''].filter(Boolean).join(' · '))}</div>` : ''}</div></div>
-    <p class="hint small mut" style="margin-bottom:0">Kurum adı, logosu ve imza bilgileri PDF/Excel çıktılarının başlığında ve izleyici sayfasında kullanılır.</p>
-  </div>
+  const ac = (key, ik, bas, alt, ic) => `<details class="card acc" ${accAcik(key)} ontoggle="accTog('${key}',this)"><summary><span class="ai">${ik}</span><span class="at"><b>${bas}</b><small>${alt}</small></span></summary><div class="ab">${ic}</div></details>`;
+  const kur = kurKart(true);
+  return `<div class="sec" style="margin-top:4px"><h2>Ayarlar</h2>${Store.mod==='bulut' ? `<span class="ay-dur on">● Bulut</span>` : `<span class="ay-dur">● Yerel mod</span>`}</div>
+  ${Store.mod==='yerel' ? `<div class="uyari small" style="padding:8px 10px">Veriler yalnızca bu tarayıcıda. İzleyicilerin takip edebilmesi için Firebase bağlantısı gerekli.</div>` : ''}
+  <button class="card ay-kurum" onclick="kurumForm()">
+    ${kurumLogo(46) || '<span class="lg" style="width:46px;height:46px;font-size:36px">🏫</span>'}
+    <span class="ay-km"><b>${esc(k.ad || 'Kurum adı girilmedi')}</b><small>${esc([k.altBaslik, yer, k.egitimYili ? k.egitimYili + ' Eğitim-Öğretim Yılı' : ''].filter(Boolean).join(' · ') || 'Logo, ad ve alt başlığı ekleyin')}</small></span>
+    <span class="ay-ok">✏️</span></button>
 
-  <div class="sec"><h2>Turnuvalar</h2><button class="lnk" onclick="wizardBaslat()">+ Yeni turnuva</button></div>
-  <div class="card" style="padding:4px 14px"><ul class="lst">${ks.map(id=>{ const l = S.liste[id]; return `<li class="tli" onclick="turnuvaAyarAc('${id}')">
-      <span class="tlogo">${esc(l.logo||'🏆')}</span>
-      <div style="min-width:0;flex:1"><b>${esc(l.ad)}</b><div class="small mut">${esc(l.tur||'')}${l.olusturma ? ' · '+new Date(l.olusturma).toLocaleDateString('tr-TR') : ''}</div>
-      <div style="margin-top:3px;display:flex;gap:4px;flex-wrap:wrap">${S.aktif===id ? '<span class="badge" style="background:#e7f3ec;color:var(--pri2)">Yayında</span>' : ''}${S.tid===id ? '<span class="badge">Açık</span>' : ''}</div></div>
-      <span style="font-size:24px;color:var(--mut)">›</span></li>`; }).join('') || '<li class="mut small">Henüz turnuva yok. “+ Yeni turnuva” ile başlayın.</li>'}</ul></div>
+  <div class="sec"><h2>Turnuvalar</h2><button class="btn sm p" onclick="wizardBaslat()">+ Yeni</button></div>
+  <div class="card ay-tl">${ks.map(id=>{ const l = S.liste[id];
+    return `<button class="ay-t ${S.tid===id ? 'acik' : ''}" onclick="turnuvaAyarAc('${id}')"><span class="ay-tlg">${esc(l.logo||'🏆')}</span>
+      <span class="ay-tm"><b>${esc(l.ad)}</b><small>${esc(l.tur||'')}${l.olusturma ? ' · ' + new Date(l.olusturma).toLocaleDateString('tr-TR') : ''}</small></span>
+      ${S.aktif===id ? '<span class="ay-r yay">Yayında</span>' : ''}${S.tid===id ? '<span class="ay-r">Açık</span>' : ''}<span class="ay-ok">›</span></button>`; }).join('') || '<div class="mut small" style="padding:10px 4px">Henüz turnuva yok. “+ Yeni” ile başlayın.</div>'}</div>
 
-  ${S.T ? `<div class="sec"><h2>Raporlar ve çıktılar</h2></div>
-  <details class="card acc" ${accAcik('anaRapor')} ontoggle="accTog('anaRapor',this)"><summary><span class="ai">📄</span><span class="at"><b>${esc(S.T.ayar.ad)}</b><small>PDF ve Excel çıktıları</small></span></summary><div class="ab">${ciktiSatirlari(['tablo','fikstur','gunluk','istatistik','kadro','kartlar','foy','rapor'])}</div></details>` : ''}
-
-  ${kurKart(true) ? `<div class="sec"><h2>Uygulama</h2></div>${kurKart(true)}` : ''}
-  <div class="sec"><h2>Gizlilik ve görünüm</h2></div>
-  <div class="card">
-    ${kurumToggle('fotoGoster', 'İzleyicide oyuncu fotoğraflarını göster', 'Kapalıyken herkese açık sayfada fotoğraf yerine avatar görünür. Açmadan önce veli izni alınması önerilir.', false)}
-  </div>
-
-  <div class="sec"><h2>Veri</h2></div>
-  <div class="card">
-    <div class="cikti"><span class="ci">💾</span><div class="cm"><b>Tüm sistemin yedeği</b><div class="small mut">Kurum bilgileri, bütün turnuvalar, takımlar, oyuncular, fotoğraflar ve maç sonuçları tek dosyada.</div></div></div>
-    <div class="grid2" style="margin-top:4px"><button class="btn p" onclick="tamYedekIndir()">⬇️ Yedek al</button><label class="btn" style="cursor:pointer">⬆️ Geri yükle<input type="file" accept=".json,application/json" hidden onchange="yedekYukle(this)"></label></div>
-    <p class="hint small mut" style="margin-bottom:0">${sonYedek() ? 'Bu cihazdan alınan son yedek: <b>' + esc(sonYedek()) + '</b>. ' : 'Bu cihazdan henüz yedek alınmadı. '}Geri yüklemede “birleştir” ya da “tümünü değiştir” seçilir. Tek turnuva yedekleri de buradan yüklenebilir.</p>
-  </div>
-  <p class="small mut" style="text-align:center">${Store.mod==='bulut' ? 'Bulut bağlantısı: Firebase'+(Store.user?' · '+esc(Store.user.email):'') : 'Yerel mod'}</p>`;
+  <div class="sec"><h2>Genel</h2></div>
+  ${S.T ? ac('anaRapor', '📄', 'Raporlar ve çıktılar', esc(S.T.ayar.ad) + ' · PDF ve Excel', ciktiSatirlari(['tablo','fikstur','gunluk','istatistik','kadro','kartlar','foy','rapor'])) : ''}
+  ${ac('anaYedek', '💾', 'Yedekleme', sonYedek() ? 'Son yedek: ' + esc(sonYedek()) : 'Henüz yedek alınmadı',
+    `<p class="small mut" style="margin:0 0 10px">Kurum bilgileri, bütün turnuvalar, takımlar, oyuncular, fotoğraflar ve maç sonuçları tek dosyada saklanır.</p>
+     <div class="grid2"><button class="btn p" onclick="tamYedekIndir()">⬇️ Yedek al</button><label class="btn" style="cursor:pointer">⬆️ Geri yükle<input type="file" accept=".json,application/json" hidden onchange="yedekYukle(this)"></label></div>
+     <p class="hint small mut" style="margin:8px 0 0">Geri yüklemede “birleştir” ya da “tümünü değiştir” seçilir. Tek turnuva yedekleri de buradan yüklenebilir.</p>`)}
+  ${ac('anaGizli', '🔒', 'Gizlilik', (k.fotoGoster ? 'Oyuncu fotoğrafları izleyicide görünür' : 'İzleyicide fotoğraf yerine avatar'),
+    kurumToggle('fotoGoster', 'İzleyicide oyuncu fotoğraflarını göster', 'Kapalıyken herkese açık sayfada fotoğraf yerine avatar görünür. Açmadan önce veli izni alınması önerilir.', false))}
+  ${kur ? ac('anaUyg', '📲', 'Uygulama olarak ekle', 'Ana ekrana ya da masaüstüne kısayol', kur) : ''}
+  ${Store.mod==='bulut' ? ac('anaHesap', '👤', 'Hesap', Store.user ? esc(Store.user.email) : 'Giriş yapılmadı',
+    Store.user ? `<p class="small mut" style="margin:0 0 10px">Yönetici olarak giriş yaptınız. Veri girişi ve ayarlar bu hesapla yapılır.</p><button class="btn r blk" onclick="cikis()">Çıkış yap</button>` : `<button class="btn p blk" onclick="girisAc()">Giriş yap</button>`) : ''}
+  <p class="small mut" style="text-align:center;margin-top:14px">Turnuva Merkezi</p>`;
 }
 function accAcik(k){ return (S.acik || {})[k] ? 'open' : ''; }
 function accTog(k, el){ S.acik = S.acik || {}; S.acik[k] = el.open; if(el.open && k==='paylas') setTimeout(qrCiz, 30); }
