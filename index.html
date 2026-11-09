@@ -107,8 +107,8 @@ svg.i{fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke
 @keyframes pulse{50%{opacity:.25}}
 
 /* LOGO */
-.lg{display:inline-grid;place-items:center;border-radius:30%;flex:none;overflow:hidden;color:#fff;line-height:1}
-.lg img{width:100%;height:100%;object-fit:cover}
+.lg{display:inline-grid;place-items:center;flex:none;overflow:visible;line-height:1}
+.lg img{width:100%;height:100%;object-fit:contain}
 
 /* MATCH CARD */
 .mac{display:block;width:100%;text-align:left;background:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:10px 12px 12px;margin-bottom:10px}
@@ -241,8 +241,8 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
 .trow{display:flex;gap:8px;align-items:center;margin-bottom:8px}
 .trow .no{width:22px;color:var(--mut);font-weight:700;text-align:center;font-size:14px}
 .trow .inp{flex:1}
-.lgbtn{width:48px;height:48px;border-radius:12px;font-size:24px;flex:none;display:grid;place-items:center;overflow:hidden}
-.lgbtn img{width:100%;height:100%;object-fit:cover}
+.lgbtn{width:48px;height:48px;border-radius:12px;font-size:30px;flex:none;display:grid;place-items:center;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.lgbtn img{width:100%;height:100%;object-fit:contain}
 .clr{width:48px;height:48px;border-radius:12px;border:1px solid #cfd9d3;padding:4px;background:#fff;flex:none}
 .sumg{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}
 .sumg div{background:var(--soft);border-radius:12px;padding:10px}
@@ -334,7 +334,9 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
 .mtp i+i::before{content:" · "}
 @media(max-width:600px){
   .mac{display:flex;align-items:center;gap:6px;padding:7px 8px}
-  .mac .mt{flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;width:56px;flex:none;margin:0;font-size:10.5px;line-height:1.2}
+  .mac .mt{flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;width:64px;flex:none;margin:0;font-size:10.5px;line-height:1.2;min-width:0}
+  .mac .mtp{max-width:64px}
+  .mac .mtp i{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;max-width:64px}
   .mac .mtp{display:flex;flex-direction:column}
   .mtp i+i::before{content:none}
   .mac .mt .badge{font-size:9px;padding:1px 5px}
@@ -438,7 +440,7 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
 @keyframes kartGit{to{transform:translateX(35%) scale(.55);opacity:0}}
 .kk-no{font-size:12.5px;font-weight:800;letter-spacing:2.5px;opacity:.9}
 .kk-no b{display:block;font-family:var(--fd);font-size:min(7.5vh,56px);line-height:1;color:var(--acc);text-shadow:0 2px 12px rgba(0,0,0,.4)}
-.kk-logo .lg{box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.kk-logo .lg{filter:drop-shadow(0 8px 16px rgba(0,0,0,.4))}
 .kk-ad{font-family:var(--fd);font-weight:800;font-size:clamp(26px,5.6vh,54px);line-height:1;text-shadow:0 3px 14px rgba(0,0,0,.35)}
 .kk-td{display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.25);border-radius:14px;padding:7px 14px 7px 7px;text-align:left;max-width:100%}
 .kk-td img,.kk-td>span{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.85);display:grid;place-items:center;font-size:23px;background:rgba(255,255,255,.15);flex:none}
@@ -506,17 +508,17 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
   .kt-sag{grid-column:1/-1;grid-row:2}
   .kt-torba{width:36vw}
   .kt-kart{width:min(54vw,40vh);padding:10px;gap:.8vh;border-radius:18px}
-  .kk-logo .lg{width:min(76px,18vw)!important;height:min(76px,18vw)!important;font-size:min(46px,11vw)!important}
+  .kk-logo .lg{width:min(76px,18vw)!important;height:min(76px,18vw)!important;font-size:min(64px,15vw)!important}
   .kk-ad{font-size:clamp(22px,4vh,40px)}
   .kk-no b{font-size:min(5.5vh,40px)}
   .kk-td{padding:5px 10px 5px 5px;gap:7px}.kk-td img,.kk-td>span{width:32px;height:32px;font-size:18px}.kk-td b{font-size:13px}.kk-td small{font-size:9px}
   .kt-slotlar{grid-template-columns:repeat(3,1fr);gap:5px}
   .kt-slot{font-size:12.5px;padding:4px 6px;min-height:32px;gap:5px}
-  .kt-slot .lg{width:20px!important;height:20px!important;font-size:13px!important}
+  .kt-slot .lg{width:20px!important;height:20px!important;font-size:17px!important}
   .kt-sag h3{font-size:17px;margin-bottom:6px}
   .kf-kart{padding:2vh 3.4vw}
   .kf-sat{gap:6px;padding:.6vh 8px}
-  .kf-sat .lg{width:24px!important;height:24px!important;font-size:15px!important}
+  .kf-sat .lg{width:24px!important;height:24px!important;font-size:20px!important}
 }
 .kurabekle .btn,.kfin-btn .btn{color:var(--ink)}
 .kurabekle .btn.a,.kfin-btn .btn.a{color:#2a2100}
@@ -612,7 +614,7 @@ details.acc .ab{padding:14px}
   .mac .mt{margin-bottom:4px;font-size:11.5px}
   .mrow{gap:6px}
   .tk{gap:6px;font-size:14.5px}
-  .tk .lg{width:24px!important;height:24px!important;font-size:15px!important}
+  .tk .lg{width:24px!important;height:24px!important;font-size:20px!important}
   .skor,.saat{font-size:19px;min-width:58px;padding:1px 6px;border-radius:8px}
   .saat{font-size:16px}
   .chip{height:32px;padding:0 12px;font-size:13px}
@@ -629,7 +631,7 @@ details.acc .ab{padding:14px}
   .tgrid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
   .tcard{padding:10px 6px}
   .tcard b{font-size:16px;margin-top:5px}
-  .tcard .lg{width:44px!important;height:44px!important;font-size:27px!important}
+  .tcard .lg{width:44px!important;height:44px!important;font-size:37px!important}
   .thead{padding:14px;border-radius:14px}
   .thead h1{font-size:23px}
   .pgrid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
@@ -680,6 +682,7 @@ details.acc .ab{padding:14px}
 
 /* PDF şablonu */
 .pdfkap{position:fixed;left:-30000px;top:0;width:718px}
+.html2pdf__container{margin:0!important;left:0!important;right:auto!important}
 .pdfd{width:718px;box-sizing:border-box;font-family:Barlow,'Noto Color Emoji',sans-serif;background:#fff;color:#14221a;font-family:Barlow,sans-serif;font-size:12.5px;line-height:1.35;padding:0}
 .pdfd .ph{display:flex;align-items:center;gap:14px;padding-bottom:10px;border-bottom:3px solid #13693f}
 .pdfd .ph .kl{width:62px;height:62px;object-fit:contain}
@@ -715,7 +718,7 @@ details.acc .ab{padding:14px}
 .pdfd .tbas{display:flex;align-items:center;gap:8px;color:#fff;padding:7px 10px;border-radius:8px 8px 0 0;margin-top:10px}
 .pdfd .tbas b{font-family:'Barlow Condensed',sans-serif;font-size:17px}
 .pdfd .tbas .say{margin-left:auto;font-size:11px;opacity:.9}
-.pdfd .tbas .lg{border:2px solid rgba(255,255,255,.7)}
+.pdfd .tbas .lg{filter:drop-shadow(0 1px 2px rgba(0,0,0,.3))}
 .pdfd .imza{display:flex;justify-content:space-around;margin-top:46px;text-align:center;page-break-inside:avoid}
 .pdfd .imza div{width:200px;border-top:1px solid #333;padding-top:6px;font-size:11.5px}
 .pdfd .pnot{margin-top:18px;font-size:10px;color:#6b7a71;text-align:center;border-top:1px dashed #cfd9d3;padding-top:6px}
@@ -1141,9 +1144,9 @@ function oyuncuAd(p){
 }
 function oyuncu(tkId, pid){ const t = S.T.takimlar[tkId]; return t && t.oyuncular[pid]; }
 function logo(t, size=30){
-  const fs = Math.round(size*.62);
-  if(t.logoImg) return `<span class="lg" style="width:${size}px;height:${size}px;background:${esc(t.renk)}"><img src="${t.logoImg}" alt=""></span>`;
-  return `<span class="lg" style="width:${size}px;height:${size}px;font-size:${fs}px;background:${esc(t.renk||'#9aa')}">${esc(t.logo||'⚽')}</span>`;
+  const fs = Math.round(size*.84);
+  if(t.logoImg) return `<span class="lg" style="width:${size}px;height:${size}px"><img src="${t.logoImg}" alt=""></span>`;
+  return `<span class="lg" style="width:${size}px;height:${size}px;font-size:${fs}px">${esc(t.logo||'⚽')}</span>`;
 }
 function golcuListesi(){
   const g = {};
@@ -1237,7 +1240,7 @@ function macKart(m, opt={}){
   else if(m.durum==='hukmen') rozet = '<span class="badge hk">Hükmen</span>';
   else if(m.durum==='ertelendi') rozet = '<span class="badge er">Ertelendi</span>';
   else if(m.durum==='bitti') rozet = '<span class="badge">MS</span>';
-  const ust = [opt.tarihYok ? '' : (m.tarih ? tarihYaz(m.tarih) : 'Tarih yok'), oyn && m.saat && !opt.tarihYok ? m.saat : '', opt.turYok ? '' : `${m.tur}. Tur`, (S.T.ayar.sahaSayisi>1 && m.saha) ? `${esc(takim(m.ev).ad)} sahası` : ''].filter(Boolean).map(x=>`<i>${x}</i>`).join('');
+  const ust = [opt.tarihYok ? '' : (m.tarih ? tarihYaz(m.tarih) : 'Tarih yok'), oyn && m.saat && !opt.tarihYok ? m.saat : '', opt.turYok ? '' : `${m.tur}. Tur`, (S.T.ayar.sahaSayisi>1 && m.saha) ? `🏟 ${esc(takim(m.ev).ad)}` : ''].filter(Boolean).map(x=>`<i title="${x.startsWith('🏟') ? x.slice(3)+' sahası' : ''}">${x}</i>`).join('');
   return `<button class="mac" onclick="macDetay('${m.id}')">
     <div class="mt"><span class="mtp">${ust}</span>${rozet}</div>
     <div class="mrow">
@@ -1870,7 +1873,7 @@ function wizardHtml(){
       <button class="btn sm p" style="margin-top:8px" onclick="wTopluUygula()">✔ Listeyi uygula</button></div>
     <div class="sec"><h2>Takımlar</h2><button class="lnk" onclick="wKarisikSus()">🎲 Renk ve simgeleri karıştır</button></div>
     ${W.takimlar.map((t,j)=>`<div class="trow"><span class="no">${j+1}</span>
-      <button class="lgbtn" style="background:${esc(t.renk)}" onclick="wLogo(${j})">${t.logoImg?`<img src="${t.logoImg}">`:esc(t.logo)}</button>
+      <button class="lgbtn" onclick="wLogo(${j})">${t.logoImg?`<img src="${t.logoImg}">`:esc(t.logo)}</button>
       <input class="inp" data-w="takimlar.${j}.ad" value="${esc(t.ad)}" placeholder="Takım ${j+1} adı">
       <input type="color" class="clr" data-w="takimlar.${j}.renk" value="${esc(t.renk)}" onchange="render()"></div>`).join('')}
     <p class="hint mut small">Oyuncuları turnuva oluştuktan sonra Takımlar ekranından ekleyebilirsiniz (toplu yapıştırma destekli).</p>`;
@@ -2198,7 +2201,6 @@ function ayarAnaHtml(){
   <div class="sec"><h2>Gizlilik ve görünüm</h2></div>
   <div class="card">
     ${kurumToggle('fotoGoster', 'İzleyicide oyuncu fotoğraflarını göster', 'Kapalıyken herkese açık sayfada fotoğraf yerine avatar görünür. Açmadan önce veli izni alınması önerilir.', false)}
-    ${kurumToggle('imzaGoster', 'PDF çıktılarında imza alanı', 'Puan tablosu, istatistik, kadro ve raporun altına turnuva sorumlusu ve okul müdürü imza alanı ekler.', true)}
   </div>
 
   <div class="sec"><h2>Veri</h2></div>
@@ -2232,7 +2234,6 @@ function kurumForm(){
     ${f('kAlt','Alt başlık','Örn. Sınıflar Arası Spor Turnuvaları', k.altBaslik)}
     <div class="grid2">${f('kIl','İl','İstanbul', k.il)}${f('kIlce','İlçe','Esenler', k.ilce)}</div>
     ${f('kYil','Eğitim-öğretim yılı','2026-2027', k.egitimYili)}
-    <div class="grid2">${f('kMudur','Okul müdürü','Ad Soyad', k.mudur, 'PDF imza alanında')}${f('kSorumlu','Turnuva sorumlusu','Ad Soyad', k.sorumlu, 'PDF imza alanında')}</div>
     ${f('kNot','PDF alt bilgi notu','Örn. Bu belge okul spor kulübü tarafından hazırlanmıştır.', k.pdfNot)}
     ${f('kWeb','Web / iletişim','Örn. yunusemreilkokulu.meb.k12.tr', k.web)}
     <button class="btn p blk" onclick="kurumKaydet()">Kaydet</button>`);
@@ -2284,7 +2285,7 @@ async function logoBeyazKaldir(){
 }
 async function kurumKaydet(){
   const v = id => $('#'+id).value.trim();
-  const k = Object.assign({}, S.kurum || {}, {ad:v('kAd'), altBaslik:v('kAlt'), il:v('kIl'), ilce:v('kIlce'), egitimYili:v('kYil'), mudur:v('kMudur'), sorumlu:v('kSorumlu'), pdfNot:v('kNot'), web:v('kWeb'), logoImg:window._kl||null});
+  const k = Object.assign({}, S.kurum || {}, {ad:v('kAd'), altBaslik:v('kAlt'), il:v('kIl'), ilce:v('kIlce'), egitimYili:v('kYil'), pdfNot:v('kNot'), web:v('kWeb'), logoImg:window._kl||null});
   await Store.set('kurum', k); sheetKapat(); toast('Kurum bilgileri kaydedildi');
 }
 
@@ -2374,11 +2375,11 @@ async function cikti(tip, fmt, arg){
       await excelYaz(dosyaAdi(tip==='kadro' && arg ? takim(arg).ad+'_kadro' : {tablo:'puan_tablosu',fikstur:'fikstur',istatistik:'istatistik',kadro:'kadrolar',rapor:'turnuva_raporu'}[tip]), s);
     } else {
       const P = {
-        tablo:()=>['PUAN TABLOSU', pTablo(), {imza:1}, 'puan_tablosu'],
+        tablo:()=>['PUAN TABLOSU', pTablo(), {tek:1}, 'puan_tablosu'],
         fikstur:()=>['FİKSTÜR VE SONUÇLAR', pFikstur(), {}, 'fikstur'],
-        gunluk:()=>['GÜNLÜK MAÇ PROGRAMI', pGunluk(arg), {meta:tarihYaz(arg,true)}, 'program_'+arg],
-        istatistik:()=>['İSTATİSTİKLER', pIstatistik(), {imza:1}, 'istatistik'],
-        kadro:()=>['TAKIM KADROLARI', pKadro(arg), {imza:1}, arg ? takim(arg).ad+'_kadro' : 'kadrolar'],
+        gunluk:()=>['GÜNLÜK MAÇ PROGRAMI', pGunluk(arg), {meta:tarihYaz(arg,true), tek:1}, 'program_'+arg],
+        istatistik:()=>['İSTATİSTİKLER', pIstatistik(), {tek:1}, 'istatistik'],
+        kadro:()=>['TAKIM KADROLARI', pKadro(arg), {tek:1}, arg ? takim(arg).ad+'_kadro' : 'kadrolar'],
         kartlar:()=>['OYUNCU KARTLARI', pKartlar(arg), {}, arg ? takim(arg).ad+'_kartlar' : 'oyuncu_kartlari'],
         foy:()=>[null, pFoy(arg), {}, 'mac_foyleri'],
         rapor:()=>['TURNUVA RAPORU', pRapor(), {imza:1}, 'turnuva_raporu']
@@ -2476,11 +2477,7 @@ function pdfBaslik(baslik, meta){
     <div class="phr"><div class="pt">${esc(baslik)}</div>${k.ad ? `<div class="ptu">${esc(a.logo || '')} ${esc(a.ad)}</div>` : ''}</div></div>
     <div class="pm"><span>${esc(meta || (k.egitimYili ? k.egitimYili + ' Eğitim-Öğretim Yılı' : a.tur || ''))}</span><span>Oluşturma: ${simdiYaz()}</span></div>`;
 }
-function pdfImza(){
-  const k = S.kurum || {};
-  if(k.imzaGoster === false) return '';
-  return `<div class="imza"><div><b>${esc(k.sorumlu || '')}</b><br>Turnuva Sorumlusu</div><div><b>${esc(k.mudur || '')}</b><br>Okul Müdürü</div></div>`;
-}
+function pdfImza(){ return ''; }
 function pTk(id, size=20){ const t = takim(id); return `<span class="tkp">${logo(t, size)}${esc(t.ad)}</span>`; }
 async function pdfYaz(baslik, govde, opt, dosya){
   await kutuphane('pdf');
@@ -2491,13 +2488,24 @@ async function pdfYaz(baslik, govde, opt, dosya){
     + (k.pdfNot || k.web ? `<div class="pnot">${esc([k.pdfNot, k.web].filter(Boolean).join('  ·  '))}</div>` : '');
   const kap = document.createElement('div'); kap.className = 'pdfkap'; kap.appendChild(el);
   document.body.appendChild(kap);
+  // Tek sayfa: içerik A4 yüksekliğini biraz aşıyorsa belgeyi genişletip orantılı küçült
+  const SAYFA_H = 718 * 274 / 190;
+  let gen = 718;
+  if(opt.tek){
+    for(let d=0; d<4; d++){
+      const h = el.scrollHeight;
+      if(h <= SAYFA_H * gen / 718) break;
+      gen = Math.min(718 * 1.75, Math.ceil(718 * h / SAYFA_H) + 2);
+      el.style.width = gen + 'px'; kap.style.width = gen + 'px';
+    }
+  }
   try{
     await html2pdf().set({
       margin:[10, 10, 13, 10], filename:dosya + '.pdf',
       image:{type:'jpeg', quality:.96},
-      html2canvas:{scale:2, useCORS:true, backgroundColor:'#ffffff', width:718, windowWidth:Math.max(718, window.innerWidth), scrollX:0, scrollY:0},
+      html2canvas:{scale:2, useCORS:true, backgroundColor:'#ffffff', width:gen, windowWidth:Math.max(gen, window.innerWidth), scrollX:0, scrollY:0, x:0, y:0},
       jsPDF:{unit:'mm', format:'a4', orientation:'portrait'},
-      pagebreak:{mode:['css', 'legacy'], avoid:['tr', '.pc', '.blok', 'h3', '.ozet', '.imza']}
+      pagebreak:opt.tek ? {mode:[]} : {mode:['css', 'legacy'], avoid:['tr', '.pc', '.blok', 'h3', '.ozet', '.imza']}
     }).from(el).toPdf().get('pdf').then(pdf=>{
       const n = pdf.internal.getNumberOfPages(), w = pdf.internal.pageSize.getWidth(), h = pdf.internal.pageSize.getHeight();
       for(let i=1; i<=n; i++){ pdf.setPage(i); pdf.setFontSize(8); pdf.setTextColor(130); pdf.text('Sayfa ' + i + ' / ' + n, w - 10, h - 6, {align:'right'}); }
@@ -2769,7 +2777,7 @@ function temizUrl(url){
 function ltImg(url, cls){ return `<img src="${temizUrl(url)}" data-lt="${LT.key[url] || ''}" alt=""${cls ? ` class="${cls}"` : ''}>`; }
 function ktLogo(t, size){
   if(!t.logoImg) return logo(t, size);
-  return `<span class="lg" style="width:${size}px;height:${size}px;background:${esc(t.renk)}">${ltImg(t.logoImg)}</span>`;
+  return `<span class="lg" style="width:${size}px;height:${size}px">${ltImg(t.logoImg)}</span>`;
 }
 function topIc(t){ return t.logoImg ? ltImg(t.logoImg) : `<span>${esc(t.logo || '⚽')}</span>`; }
 
