@@ -374,7 +374,7 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
 @keyframes isik{from{transform:rotate(-32deg)}to{transform:rotate(32deg)}}
 #ktKonfeti{position:absolute;inset:0;pointer-events:none;z-index:5}
 .kt-ust{position:relative;z-index:3;display:flex;align-items:center;gap:12px;flex:none}
-.kt-ust img{width:44px;height:44px;object-fit:contain;background:#fff;border-radius:12px;padding:3px;flex:none}
+.kt-ust img{width:44px;height:44px;object-fit:contain;flex:none}
 .kt-ue{font-size:34px;flex:none}
 .kt-ub{min-width:0}
 .kt-ub small{display:block;font-size:12px;opacity:.75;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -391,6 +391,7 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
 @keyframes kYuk{from{transform:translateY(24px);opacity:0}}
 .ki-logo{width:min(22vh,36vw);height:min(22vh,36vw);border-radius:50%;background:radial-gradient(circle,#fff,#e6eee8);display:grid;place-items:center;font-size:min(13vh,21vw);box-shadow:0 0 0 6px rgba(244,196,48,.65),0 0 70px rgba(244,196,48,.45);animation:logoGir 1.3s cubic-bezier(.2,1.4,.4,1)}
 .ki-logo img{width:80%;height:80%;object-fit:contain}
+.ki-logo.resim{background:none}
 @keyframes logoGir{from{transform:scale(.2) rotate(-25deg);opacity:0}}
 .ki-ust{font-weight:700;opacity:.8;letter-spacing:1px;margin-top:1.4vh}
 .kt-intro h1{font-size:clamp(28px,6.2vh,66px);line-height:1}
@@ -2771,7 +2772,7 @@ function ktIskelet(P){
 function ktIntro(h){
   ktFaz('intro');
   const k = S.kurum || {}, a = S.T.ayar;
-  $('#ktIntro').innerHTML = `<div class="ki-logo">${k.logoImg ? `<img src="${k.logoImg}" alt="">` : esc(a.logo || '🏆')}</div>
+  $('#ktIntro').innerHTML = `<div class="ki-logo${k.logoImg ? ' resim' : ''}">${k.logoImg ? `<img src="${k.logoImg}" alt="">` : esc(a.logo || '🏆')}</div>
     ${k.ad ? `<div class="ki-ust">${esc(k.ad)}</div>` : ''}<h1>${esc(a.ad)}</h1><div class="ki-alt">CANLI KURA ÇEKİMİ</div>
     <div class="ki-bilgi">${KT.P.n} takım · ${a.ligDevre===2 ? 'çift' : 'tek'} devre lig usulü${a.aciklama ? ' · ' + esc(a.aciklama) : ''}</div><div class="ki-sayac" id="kiSayac"></div>`;
   ktDurum('Tören başlıyor');
