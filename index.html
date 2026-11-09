@@ -1006,6 +1006,27 @@ details.acc .ab{padding:14px}
   .st-tl .st-n{font-size:calc(var(--rf,12.5px) - 1.5px)}
   .st-tl-b .st-lej{font-size:11px}
 }
+
+/* v11: sade açıklama + mobil tablo */
+.pbilgi2{padding:10px 14px;display:grid;gap:7px;font-size:13px}
+.pb2-s{display:grid;grid-template-columns:86px minmax(0,1fr);gap:8px;align-items:baseline}
+.pb2-s+.pb2-s{border-top:1px dashed var(--line);padding-top:7px}
+.pb2-e{font-family:var(--fd);font-weight:700;font-size:14px;color:var(--pri)}
+.pb2-d{color:var(--mut);line-height:1.5;display:flex;flex-wrap:wrap;column-gap:10px;row-gap:2px}
+.pb2-d b{color:var(--ink);font-family:var(--fd);font-size:15px}
+.pb2-k{display:inline-flex;align-items:center;gap:5px}
+.pb2-k i{font-style:normal;width:17px;height:17px;border-radius:5px;background:var(--pri2);color:#fff;font-size:10.5px;font-weight:800;display:grid;place-items:center}
+.pb2-x b{color:var(--pri2)}
+.pb2-x{white-space:nowrap}
+.bnot{font-family:Barlow,sans-serif;font-size:11.5px;font-weight:500;color:var(--mut);letter-spacing:0}
+@media(max-width:600px){
+  .tseg{display:none!important}
+  .pbilgi2{font-size:12px;padding:9px 11px}
+  .pb2-s{grid-template-columns:72px minmax(0,1fr);gap:6px}
+  .pb2-e{font-size:13px}
+  .pb2-d{column-gap:8px}
+  .bnot{font-size:10.5px}
+}
 </style>
 </head>
 <body>
@@ -1553,15 +1574,12 @@ function tabloHtml(){
   const sira = siralamaHesap(S.T), a = S.T.ayar;
   const kr = arr(a.kriterler).filter(k=>KRITERLER[k]);
   return `<div class="sec" style="margin-top:4px"><h2>Puan Tablosu</h2>
-    <div class="row" style="gap:6px"><div class="seg"><button class="${!S.tDetay?'on':''}" onclick="S.tDetay=false;render()">Kısa</button><button class="${S.tDetay?'on':''}" onclick="S.tDetay=true;render()">Detaylı</button></div><button class="ibtn" title="İndir" onclick="indirMenu('tablo')">⬇️</button></div></div>
-    <div class="card">${tabloTablo(sira, S.tDetay)}</div>
-    <div class="card pbilgi">
-      <section><h4>Puanlama</h4>
-        <div class="pb-puan"><span class="g"><b>${a.puanG ?? 3}</b>Galibiyet</span><span class="b"><b>${a.puanB ?? 1}</b>Beraberlik</span><span class="m"><b>${a.puanM ?? 0}</b>Yenilgi</span></div></section>
-      <section><h4>Puan eşitliğinde sıralama</h4>
-        <ol class="pb-kr">${kr.length ? kr.map(k=>`<li>${KRITERLER[k]}</li>`).join('') : '<li>Takım adı</li>'}</ol></section>
-      <section><h4>Kısaltmalar</h4>
-        <dl class="pb-kis">${[['O','Oynanan maç'],['G','Galibiyet'],['B','Beraberlik'],['M','Mağlubiyet'],['A','Atılan '+esc(skorAd().toLocaleLowerCase('tr'))],['Y','Yenilen '+esc(skorAd().toLocaleLowerCase('tr'))],['AV','Averaj'],['P','Puan']].map(([x,y])=>`<div><dt>${x}</dt><dd>${y}</dd></div>`).join('')}</dl></section>
+    <div class="row" style="gap:6px"><div class="seg tseg"><button class="${!S.tDetay?'on':''}" onclick="S.tDetay=false;render()">Kısa</button><button class="${S.tDetay?'on':''}" onclick="S.tDetay=true;render()">Detaylı</button></div><button class="ibtn" title="İndir" onclick="indirMenu('tablo')">⬇️</button></div></div>
+    <div class="card">${tabloTablo(sira, S.tDetay || window.innerWidth <= 600)}</div>
+    <div class="card pbilgi2">
+      <div class="pb2-s"><span class="pb2-e">Puanlama</span><span class="pb2-d"><span class="pb2-x">Galibiyet <b>${a.puanG ?? 3}</b></span><span class="pb2-x">Beraberlik <b>${a.puanB ?? 1}</b></span><span class="pb2-x">Yenilgi <b>${a.puanM ?? 0}</b></span></span></div>
+      <div class="pb2-s"><span class="pb2-e">Eşitlikte</span><span class="pb2-d">${kr.length ? kr.map((k,i)=>`<span class="pb2-k"><i>${i+1}</i>${KRITERLER[k]}</span>`).join('') : 'Takım adı'}</span></div>
+      <div class="pb2-s"><span class="pb2-e">Kısaltmalar</span><span class="pb2-d">${[['O','oynanan'],['G','galibiyet'],['B','beraberlik'],['M','mağlubiyet'],['A','atılan'],['Y','yenilen'],['AV','averaj'],['P','puan']].map(([x,y])=>`<span class="pb2-x"><b>${x}</b> ${y}</span>`).join('')}</span></div>
     </div>`;
 }
 
@@ -1607,7 +1625,8 @@ function fiksturHtml(){
 function takimlarHtml(){
   const sira = siralamaHesap(S.T), pos = {}; sira.forEach((s,i)=>pos[s.id]=i+1);
   const ts = Object.values(S.T.takimlar).sort((a,b)=>(a.sira||0)-(b.sira||0));
-  return `<div class="sec" style="margin-top:4px"><h2>Takımlar</h2><span class="mut small">${ts.length} takım</span></div>
+  const kilit = Object.values(S.T.maclar).some(m=>oynandi(m) || m.durum==='canli');
+  return `<div class="sec" style="margin-top:4px"><h2>Takımlar${kilit && yonetici() ? ' <small class="bnot">(Maçlar başladığı için yeni takım eklenemez)</small>' : ''}</h2><span class="mut small">${ts.length} takım</span></div>
     <div class="tgrid tgv" style="${takimGridStil(ts.length)}">${ts.map(t=>`<button class="tcard" style="--tc:${esc(t.renk)}" onclick="takimAc('${t.id}')">${logo(t,58)}<b>${esc(t.ad)}</b><span class="tdk">${t.td && t.td.ad ? '👔 ' + esc(t.td.ad) : '<i>Teknik direktör yok</i>'}</span></button>`).join('')}</div>
     ${yonetici() ? takimTopluKart() : ''}`;
 }
@@ -1658,7 +1677,7 @@ let takimRsz = null;
 window.addEventListener('resize', ()=>{ clearTimeout(takimRsz); takimRsz = setTimeout(()=>{ const ae = document.activeElement; if(S.view==='takimlar' && !(ae && /INPUT|TEXTAREA/.test(ae.tagName))) render(); }, 150); });
 function takimTopluKart(){
   const oyn = Object.values(S.T.maclar).some(m=>oynandi(m) || m.durum==='canli');
-  if(oyn) return `<div class="card small mut" style="margin-top:12px">Maçlar başladığı için bu turnuvaya yeni takım eklenemez.</div>`;
+  if(oyn) return '';
   const fikVar = Object.keys(S.T.maclar).length > 0;
   return `<div class="card" style="margin-top:12px"><b>📋 Toplu takım ekle</b>
     <div class="small mut" style="margin:2px 0 8px">Takım adlarını alt alta yazın ya da bir listeden yapıştırın. Var olan isimler atlanır.${fikVar ? ' <b style="color:#8a6400">Fikstür çekilmiş olduğu için ekleme sonrası fikstür silinir ve turnuva yeniden kura bekler.</b>' : ''}</div>
