@@ -2495,7 +2495,7 @@ async function pdfYaz(baslik, govde, opt, dosya){
     await html2pdf().set({
       margin:[10, 10, 13, 10], filename:dosya + '.pdf',
       image:{type:'jpeg', quality:.96},
-      html2canvas:{scale:2, useCORS:true, backgroundColor:'#ffffff', width:718, windowWidth:718, scrollX:0, scrollY:0},
+      html2canvas:{scale:2, useCORS:true, backgroundColor:'#ffffff', width:718, windowWidth:Math.max(718, window.innerWidth), scrollX:0, scrollY:0},
       jsPDF:{unit:'mm', format:'a4', orientation:'portrait'},
       pagebreak:{mode:['css', 'legacy'], avoid:['tr', '.pc', '.blok', 'h3', '.ozet', '.imza']}
     }).from(el).toPdf().get('pdf').then(pdf=>{
