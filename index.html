@@ -1142,6 +1142,22 @@ details.acc .ab{padding:14px}
 .sifirla{margin-top:12px;border:1px solid #f3c9c9;background:#fff6f6;border-radius:12px;padding:10px 12px}
 .sifirla b{color:#b42318;font-size:14.5px}
 .sifirla p{font-size:12.5px;color:#7a2a24;margin:4px 0 10px;line-height:1.4}
+
+/* v15: Bugün kartında okul logosu ve adı sağda */
+.hero.kur{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:14px;align-items:start}
+.hero.kur::after{display:none}
+.hero.kur h1{grid-column:1;grid-row:1}
+.hero.kur .hs{grid-column:1;grid-row:2}
+.hero.kur .prog{grid-column:1/-1;grid-row:3}
+.hero.kur .hk{grid-column:2;grid-row:1/3;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:6px;margin:0;text-align:right;max-width:200px;align-self:center}
+.hero.kur .hk .lg{width:72px!important;height:72px!important;filter:drop-shadow(0 4px 10px rgba(0,0,0,.35))}
+.hero.kur .hk span{font-family:var(--fd);font-weight:700;font-size:18px;line-height:1.1;letter-spacing:.3px;opacity:1}
+@media(max-width:600px){
+  .hero.kur{column-gap:10px}
+  .hero.kur .hk{max-width:118px;gap:4px}
+  .hero.kur .hk .lg{width:54px!important;height:54px!important}
+  .hero.kur .hk span{font-size:13.5px}
+}
 </style>
 </head>
 <body>
@@ -1652,8 +1668,8 @@ function bugunHtml(){
   const kr = S.kurum || {};
   const kb = kuraBekleKart();
   if(kb) return kb + (sira.length ? `<div class="sec"><h2>Takımlar</h2><button class="lnk" onclick="git('takimlar')">Tümü →</button></div><div class="card">${tabloTablo(sira, false)}</div>` : '');
-  let h = `<div class="hero">
-    ${kr.ad ? `<div class="hk">${kurumLogo(26)}<span>${esc(kr.ad)}</span></div>` : ''}
+  let h = `<div class="hero${kr.ad || kr.logoImg ? ' kur' : ''}">
+    ${kr.ad || kr.logoImg ? `<div class="hk">${kurumLogo(72)}${kr.ad ? `<span>${esc(kr.ad)}</span>` : ''}</div>` : ''}
     <h1>${bitti && lider ? '🏆 Şampiyon: '+esc(lider.ad) : esc(T.ayar.ad)}</h1>
     <div class="hs">
       <div><b>${oyn}/${toplam}</b>Oynanan maç</div>
