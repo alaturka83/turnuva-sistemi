@@ -1797,7 +1797,7 @@ function takimDuzenle(tk){
   const t = takim(tk); window._tl = {logo:t.logo, logoImg:t.logoImg||null}; const td = t.td || {}; window._tdFoto = td.foto || null;
   sheet(`<div class="sh"><h2>Takımı düzenle</h2><button class="x" onclick="sheetKapat()">✕</button></div>
     <div class="row" style="margin-bottom:14px"><span id="tlOn">${logo(t,64)}</span><div style="flex:1"><label class="btn sm" style="cursor:pointer">🖼️ Logo yükle<input type="file" accept="image/*" hidden onchange="logoYukle(this,'tlOn')"></label>
-      <div class="hint small mut" style="margin-top:6px">Yüklenen görsel 128 px'e küçültülür.</div></div></div>
+      <div class="hint small mut" style="margin-top:6px">Logo kırpılmadan, oranı korunarak standart boyuta getirilir; beyaz zemin otomatik temizlenir.</div></div></div>
     <div class="fld"><label>Takım adı</label><input class="inp" id="tAd" value="${esc(t.ad)}"></div>
     <div class="fld"><label>Renk</label><input type="color" class="clr" id="tRenk" value="${esc(t.renk)}"></div>
     <div class="fld"><label>Teknik direktör</label>
@@ -1811,8 +1811,7 @@ function takimDuzenle(tk){
 async function logoYukle(inp, onId){
   const f = inp.files[0]; if(!f) return;
   try{
-    let url = await gorselKucult(f, 128, 'image/png');
-    try{ const r = await beyazTemizle(url); if(r.oran > .005) url = r.url; }catch(e){}
+    const url = await logoStandart(f, 256);
     window._tl = {logo:window._tl ? window._tl.logo : '⚽', logoImg:url};
     if(onId){ const el = document.getElementById(onId); if(el) el.innerHTML = `<span class="lg" style="width:64px;height:64px"><img src="${url}"></span>`; }
     if(inp._cb) inp._cb(url);
@@ -2606,7 +2605,7 @@ function kurumForm(){
 }
 async function kurumLogoSec(inp){
   const f = inp.files[0]; if(!f) return;
-  try{ window._kl = await gorselKucult(f, 256, 'image/png'); try{ const r = await beyazTemizle(window._kl); if(r.oran > .005) window._kl = r.url; }catch(e){} document.getElementById('klOn').innerHTML = `<img src="${window._kl}">`; }
+  try{ window._kl = await logoStandart(f, 320); document.getElementById('klOn').innerHTML = `<img src="${window._kl}">`; }
   catch(e){ toast('Görsel okunamadı'); }
 }
 /* Logonun kenarlarına bağlı beyaz zemini şeffaf yapar; logonun içindeki beyazlara dokunmaz */
@@ -2656,6 +2655,34 @@ async function kurumKaydet(){
 }
 
 /* ===================== GÖRSEL ===================== */
+/* Logo standartlaştırma: kırpmadan — beyaz zemin temizlenir, boş kenarlar atılır,
+   oran korunarak şeffaf kare tuvale ortalanır. Her boyuttaki logo aynı ölçüde ve tam görünür. */
+function resimYukle(src){ return new Promise((res, rej)=>{ const i = new Image(); i.onload = ()=>res(i); i.onerror = rej; i.src = src; }); }
+function dosyaOku(f){ return new Promise((res, rej)=>{ const r = new FileReader(); r.onload = ()=>res(r.result); r.onerror = rej; r.readAsDataURL(f); }); }
+async function logoStandart(file, boy = 256){
+  let img = await resimYukle(await dosyaOku(file));
+  // 1) Çok büyük görselleri işlenebilir boyuta indir (oran korunur)
+  const k = Math.min(1, 1200 / Math.max(img.naturalWidth, img.naturalHeight));
+  let c = document.createElement('canvas'); c.width = Math.max(1, Math.round(img.naturalWidth * k)); c.height = Math.max(1, Math.round(img.naturalHeight * k));
+  let x = c.getContext('2d'); x.imageSmoothingQuality = 'high'; x.drawImage(img, 0, 0, c.width, c.height);
+  // 2) Kenara bağlı beyaz zemini şeffaf yap
+  try{ const r = await beyazTemizle(c.toDataURL('image/png')); if(r.oran > .005){ img = await resimYukle(r.url); x.clearRect(0, 0, c.width, c.height); x.drawImage(img, 0, 0); } }catch(e){}
+  // 3) Boş (şeffaf) kenarları bul ve at
+  const d = x.getImageData(0, 0, c.width, c.height).data;
+  let x0 = c.width, y0 = c.height, x1 = -1, y1 = -1;
+  for(let y=0; y<c.height; y++) for(let xx=0; xx<c.width; xx++){
+    if(d[(y*c.width + xx)*4 + 3] > 12){ if(xx < x0) x0 = xx; if(xx > x1) x1 = xx; if(y < y0) y0 = y; if(y > y1) y1 = y; }
+  }
+  if(x1 < 0){ x0 = 0; y0 = 0; x1 = c.width - 1; y1 = c.height - 1; }
+  const w = x1 - x0 + 1, h = y1 - y0 + 1;
+  // 4) Oranı bozmadan şeffaf kareye ortala (küçük iç boşlukla)
+  const o = document.createElement('canvas'); o.width = o.height = boy;
+  const ox = o.getContext('2d'); ox.imageSmoothingQuality = 'high';
+  const ic = boy * .92, s = Math.min(ic / w, ic / h);
+  const dw = Math.round(w * s), dh = Math.round(h * s);
+  ox.drawImage(c, x0, y0, w, h, Math.round((boy - dw) / 2), Math.round((boy - dh) / 2), dw, dh);
+  return o.toDataURL('image/png');
+}
 function gorselKucult(file, size, tip='image/jpeg', q=.82){
   return new Promise((res, rej)=>{
     const r = new FileReader(); r.onerror = rej;
