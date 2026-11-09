@@ -1080,6 +1080,12 @@ details.acc .ab{padding:14px}
 .pdfd .pkart .rt{font-size:18px!important}
 .pdfd .pkart .kalt{color:var(--mut);opacity:1}
 
+
+/* v14: oyuncu kartları hizalı + tam isim */
+.pgrid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+.pgrid .pc{display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+.pgrid .pc .pn{white-space:normal!important;display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.1;min-height:2.2em;max-width:100%;overflow-wrap:break-word;text-overflow:clip}
+.pgrid .pc .ps{margin-top:auto;padding-top:3px}
 /* v13: mobil takım düzenle tek ekran + oyuncu kartı sütunları */
 @media(max-width:600px){
   #sheet>.pn:has(.td-on){padding-top:4px}
