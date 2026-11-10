@@ -1592,6 +1592,83 @@ body:has(#tv.ac) #bgmBtn,body:has(#kuraT.ac) #bgmBtn{display:none}
 .ku-btn{margin-top:1.4vh;animation:kuGir .6s 2.3s backwards}.ku-btn .btn{height:48px;padding:0 28px;font-size:16px}
 body:has(#kutla.ac) #bgmBtn{display:none}
 .karar.bekl ~ .mchips{display:none}
+
+/* v24: sihirbaz kompakt */
+.wz-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.usul3.us3k{grid-template-columns:repeat(3,1fr)!important}
+.us3k .usb{flex-direction:column!important;text-align:center!important;padding:9px 4px;gap:3px}
+.us3k .usb b{min-width:0!important;font-size:13.5px;line-height:1.1}
+.emg.emk{grid-template-columns:repeat(12,1fr)}
+.emk button{height:44px;font-size:24px}
+.emk button.on{outline:3px solid var(--pri3);background:#eef8f2}
+.wtk-ust{display:grid;grid-template-columns:minmax(0,1.1fr) auto auto;gap:8px;align-items:end;margin-bottom:8px}
+.wtk-ust .fld{margin:0}.wtk-ust .btn{height:48px;padding:0 12px;font-size:13.5px}
+.wtk-h{display:grid;grid-template-columns:1fr 1fr auto;gap:6px}
+.trg{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0 14px}
+.wk4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.wk3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.wk3 small{display:block;font-size:11.5px;color:var(--mut);font-weight:600;margin-bottom:2px;text-align:center}
+.wseg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.wseg button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;min-height:46px;padding:5px 6px;border-radius:12px;border:1.5px solid var(--line,#e3e8e5);background:#fff;font:inherit;color:inherit;cursor:pointer}
+.wseg b{font-size:14px}.wseg small{font-size:11px;color:var(--mut)}
+.wseg button.on{background:var(--pri2);border-color:var(--pri2);color:#fff}.wseg button.on small{color:rgba(255,255,255,.85)}
+.wdet{background:#fff;border:1px solid var(--line,#e3e8e5);border-radius:14px;padding:0 12px;margin-bottom:10px}
+.wdet summary{list-style:none;cursor:pointer;display:flex;flex-direction:column;padding:10px 26px 10px 0;position:relative}
+.wdet summary::-webkit-details-marker{display:none}
+.wdet summary::after{content:"⌄";position:absolute;right:2px;top:8px;font-size:20px;color:var(--mut);transition:transform .2s}
+.wdet[open] summary::after{transform:rotate(180deg)}
+.wdet summary b{font-size:14.5px}.wdet summary small{font-size:11.5px;color:var(--mut)}
+.wdet[open]{padding-bottom:10px}
+.wsl{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.wsl .tagl{display:contents}
+.wsl .row{margin:0;gap:6px;flex:none}
+.wsl .row .inp{width:118px;height:38px}.wsl .row .btn{height:38px;padding:0 12px}
+.sumg.alti{grid-template-columns:repeat(3,1fr)}
+.sumg.dort{grid-template-columns:repeat(4,1fr)}
+.sumg b.kck{font-size:16px;line-height:1.5}
+.wozet{padding:10px 12px}
+.woz-b{display:flex;align-items:center;gap:10px;padding-bottom:8px;margin-bottom:6px;border-bottom:1px solid var(--line,#e3e8e5)}
+.woz-b>span{font-size:28px}.woz-b b{display:block;font-family:var(--fd);font-size:18px;line-height:1.1}.woz-b small{color:var(--mut);font-size:12px}
+.woz-s{display:grid;grid-template-columns:58px 1fr;gap:8px;font-size:13px;padding:2.5px 0}
+.woz-s i{font-style:normal;color:var(--mut);font-weight:700;font-size:12px}
+@media(max-width:700px){
+  .wzc .wz-steps{margin-bottom:8px}
+  .wzc .wz-head{margin-bottom:8px}.wzc .wz-head h1{font-size:22px}.wzc .wz-head small{font-size:12px}
+  .wzc .fld{margin-bottom:9px}.wzc .fld>label{font-size:12px;margin-bottom:3px}
+  .wzc .inp{height:40px;font-size:14.5px}.wzc textarea.inp{height:auto}
+  .wzc .stp{height:40px}.wzc .stp button{width:32px;font-size:20px}.wzc .stp input{font-size:16px}
+  .wzc .hint{font-size:11.5px;margin-top:3px;line-height:1.3}
+  .wzc .grid2{gap:8px}
+  .wzc .bilgi,.wzc .uyari{padding:8px 10px;font-size:12.5px;line-height:1.35;margin-bottom:8px}
+  .wzc .sumg{gap:6px;margin-bottom:8px}.wzc .sumg div{padding:6px 8px;border-radius:10px}.wzc .sumg b{font-size:19px;line-height:1.15}.wzc .sumg span{font-size:10.5px;line-height:1.15;display:block}
+  .wzc .sumg b.kck{font-size:13px;line-height:1.7}
+  .wzc .card{padding:9px 11px;margin-bottom:8px}
+  .wzc .sec{margin:4px 0 6px}.wzc .sec h2{font-size:17px}
+  .wzc .trow{margin-bottom:5px;gap:6px}.wzc .trow .no{width:16px;font-size:12px}
+  .wzc .trow .lgbtn{width:38px;height:38px;font-size:21px}.wzc .trow .inp{height:38px}.wzc .trow .clr{width:32px;height:32px}
+  .wzc .trg{grid-template-columns:1fr}
+  .wzc .gunler{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.wzc .gunler button{height:36px;padding:0;min-width:0;font-size:12.5px}
+  .wzc .tog{padding:2px 0}
+  .wzc .emg.emk{grid-template-columns:repeat(6,1fr);gap:5px}.wzc .emk button{height:38px;font-size:21px}
+  .wzc .us3k .usb span{font-size:22px}.wzc .us3k .usb b{font-size:12.5px}
+  .wzc .wtk-ust{grid-template-columns:1fr 1fr}.wzc .wtk-ust .fld{grid-column:1/-1}.wzc .wtk-ust .btn{height:38px}
+  .wzc .wk4{grid-template-columns:1fr 1fr}
+  .wzc .wk3{gap:6px}
+  .wzc .btn[style*="flex-direction:column"]{padding:6px 6px!important;gap:0;min-height:46px}
+  .wzc .btn[style*="flex-direction:column"] b{font-size:14px}.wzc .btn[style*="flex-direction:column"] .small{font-size:10.5px;line-height:1.15}
+  .wzc .grid2>.btn{height:40px;font-size:13.5px}
+  .wzc .krl li{padding-top:4px;padding-bottom:4px}
+  .wz-foot{padding:6px 0}
+  .wzc .woz-s{font-size:12.5px}
+}
+
+@media(max-width:700px){
+  .wzc .gunler button{width:100%;min-width:0!important;flex:initial}
+  .wzc .wseg button{min-height:40px}.wzc .wseg small{display:none}
+  .wzc .wtogc .hint{display:none}
+  .wzc.wz2 .fld{margin-bottom:7px}
+  body:has(.wz-foot) #bgmBtn{display:none}
+}
 </style>
 </head>
 <body>
@@ -3180,50 +3257,55 @@ function wKuraBolum(){
 function wizardHtml(){
   const a = W.ayar, i = W.adim;
   let g = '';
-  if(i===0) g = `
+  if(i===0){ const US = [['lig','📊','Lig usulü','Herkes herkesle oynar; puan tablosu belirler.'],['eleme','⚔️','Eleme usulü','Kaybeden elenir, kazanan tur atlar.'],['grup','🧩','Gruplar + eleme','Önce gruplar, sonra çeyrek/yarı final/final.']];
+    g = `
     <div class="fld"><label>Turnuva adı</label><input class="inp" data-w="ad" value="${esc(a.ad)}" placeholder="Örn. 2026-2027 Çivi Futbolu Ligi"></div>
-    <div class="fld"><label>Turnuva türü</label><select class="inp" onchange="wTurDegis(this.value)">${Object.keys(TURLER).map(t=>`<option ${a.tur===t?'selected':''}>${t}</option>`).join('')}</select>
-      <div class="hint">Tür seçildiğinde kadro, süre ve skor birimi otomatik önerilir; sonraki adımda değiştirebilirsiniz.</div></div>
-    <div class="fld"><label>Turnuva usulü</label><div class="usul3">
-      ${[['lig','📊','Lig usulü','Herkes herkesle oynar, puan tablosu belirler'],['eleme','⚔️','Eleme usulü','Kaybeden elenir, kazanan tur atlar'],['grup','🧩','Gruplar + eleme','Önce gruplar, sonra çeyrek/yarı final/final']].map(([k,i,t,d])=>`<button class="usb ${a.usul===k?'on':''}" onclick="W.ayar.usul='${k}';render()"><span>${i}</span><b>${t}</b><small>${d}</small></button>`).join('')}
-    </div></div>
-    <div class="fld"><label>Turnuva simgesi</label><div class="emg">${['🏆','⚽','🥇','🏅','🎯','🏀','🏐','🏓','♟️','⭐','🔥','👑'].map(e=>`<button style="${a.logo===e?'outline:3px solid var(--pri3)':''}" onclick="W.ayar.logo='${e}';render()">${e}</button>`).join('')}</div></div>
-    <div class="fld"><label>Açıklama (isteğe bağlı)</label><input class="inp" data-w="aciklama" value="${esc(a.aciklama)}" placeholder="Örn. 3. ve 4. sınıflar arası"></div>`;
+    <div class="grid2">
+      <div class="fld"><label>Turnuva türü</label><select class="inp" onchange="wTurDegis(this.value)">${Object.keys(TURLER).map(t=>`<option ${a.tur===t?'selected':''}>${t}</option>`).join('')}</select></div>
+      <div class="fld"><label>Açıklama (isteğe bağlı)</label><input class="inp" data-w="aciklama" value="${esc(a.aciklama)}" placeholder="Örn. 3. sınıflar"></div>
+    </div>
+    <div class="fld"><label>Turnuva usulü</label><div class="usul3 us3k">
+      ${US.map(([k,ic,t])=>`<button class="usb ${a.usul===k?'on':''}" onclick="W.ayar.usul='${k}';render()"><span>${ic}</span><b>${t}</b></button>`).join('')}
+    </div><div class="hint">${(US.find(u=>u[0]===a.usul) || US[0])[3]}</div></div>
+    <div class="fld"><label>Turnuva simgesi</label><div class="emg emk">${['🏆','⚽','🥇','🏅','🎯','🏀','🏐','🏓','♟️','⭐','🔥','👑'].map(e=>`<button class="${a.logo===e?'on':''}" onclick="W.ayar.logo='${e}';render()">${e}</button>`).join('')}</div></div>`;
+  }
   if(i===1) g = `
-    <div class="fld"><label>Takım sayısı</label>${stepper('w','takimSayisi',2,40)}
-      <div class="hint">${a.usul==='eleme' ? (ikiKuvvet(a.takimSayisi)===+a.takimSayisi ? 'Bay geçen takım olmayacak.' : `İlk turda <b>${ikiKuvvet(a.takimSayisi)-a.takimSayisi}</b> takım kurayla <b>BAY</b> geçip doğrudan üst tura çıkacak.`) : a.usul==='grup' ? 'Takımlar kurayla gruplara dağıtılır.' : a.takimSayisi%2 ? `Tek sayı: her turda bir takım <b>BAY</b> geçecek.` : 'Çift sayı: bay geçen takım olmayacak.'}</div></div>
-    <div class="card"><b>⚡ Sınıflardan hızlı doldur</b>
-      <div class="grid2" style="margin-top:8px"><input class="inp" id="hSev" placeholder="Sınıf (ör. 3 veya 3,4)"><input class="inp" id="hSub" placeholder="Şubeler (ör. A-E)"></div>
-      <button class="btn sm" style="margin-top:8px" onclick="wHizliDoldur()">Doldur</button></div>
-    <div class="card"><b>📋 Toplu ekle</b><div class="small mut" style="margin:2px 0 8px">Her satıra bir takım adı yazın ya da bir listeden kopyalayıp yapıştırın. Takım sayısı satır sayısına göre ayarlanır.</div>
-      <textarea class="inp" id="wToplu" rows="6" placeholder="3-A&#10;3-B&#10;3-C&#10;4-A">${esc(W.takimlar.map(t=>t.ad.trim()).filter(Boolean).join('\n'))}</textarea>
-      <button class="btn sm p" style="margin-top:8px" onclick="wTopluUygula()">✔ Listeyi uygula</button></div>
-    <div class="sec"><h2>Takımlar</h2><button class="lnk" onclick="wKarisikSus()">🎲 Renk ve simgeleri karıştır</button></div>
-    ${W.takimlar.map((t,j)=>`<div class="trow"><span class="no">${j+1}</span>
+    <div class="wtk-ust"><div class="fld"><label>Takım sayısı</label>${stepper('w','takimSayisi',2,40)}</div>
+      <button class="btn ${W.tkP==='hizli'?'p':''}" onclick="W.tkP=W.tkP==='hizli'?'':'hizli';render()">⚡ Sınıftan doldur</button>
+      <button class="btn ${W.tkP==='toplu'?'p':''}" onclick="W.tkP=W.tkP==='toplu'?'':'toplu';render()">📋 Toplu ekle</button></div>
+    <div class="hint" style="margin:-2px 0 8px">${a.usul==='eleme' ? (ikiKuvvet(a.takimSayisi)===+a.takimSayisi ? 'Bay geçen takım olmayacak.' : `İlk turda <b>${ikiKuvvet(a.takimSayisi)-a.takimSayisi}</b> takım kurayla <b>BAY</b> geçip üst tura çıkacak.`) : a.usul==='grup' ? 'Takımlar kurayla gruplara dağıtılır.' : a.takimSayisi%2 ? `Tek sayı: her turda bir takım <b>BAY</b> geçecek.` : 'Çift sayı: bay geçen takım olmayacak.'}</div>
+    ${W.tkP==='hizli' ? `<div class="card"><div class="small mut" style="margin-bottom:6px">Sınıf ve şubeleri yazın; takım adları (3-A, 3-B…) otomatik oluşur.</div>
+      <div class="wtk-h"><input class="inp" id="hSev" placeholder="Sınıf (3 veya 3,4)"><input class="inp" id="hSub" placeholder="Şubeler (A-E)"><button class="btn p" onclick="wHizliDoldur()">Doldur</button></div></div>` : ''}
+    ${W.tkP==='toplu' ? `<div class="card"><div class="small mut" style="margin-bottom:6px">Her satıra bir takım adı yazın ya da listeden yapıştırın.</div>
+      <textarea class="inp" id="wToplu" rows="5" placeholder="3-A&#10;3-B&#10;3-C&#10;4-A">${esc(W.takimlar.map(t=>t.ad.trim()).filter(Boolean).join('\n'))}</textarea>
+      <button class="btn p blk" style="margin-top:6px;height:40px" onclick="wTopluUygula()">✔ Listeyi uygula</button></div>` : ''}
+    <div class="sec"><h2>Takımlar</h2><button class="lnk" onclick="wKarisikSus()">🎲 Simgeleri karıştır</button></div>
+    <div class="trg">${W.takimlar.map((t,j)=>`<div class="trow"><span class="no">${j+1}</span>
       <button class="lgbtn" onclick="wLogo(${j})">${t.logoImg?`<img src="${t.logoImg}">`:esc(t.logo)}</button>
       <input class="inp" data-w="takimlar.${j}.ad" value="${esc(t.ad)}" placeholder="Takım ${j+1} adı">
-      <input type="color" class="clr" data-w="takimlar.${j}.renk" value="${esc(t.renk)}" onchange="render()"></div>`).join('')}
-    <p class="hint mut small">Oyuncuları turnuva oluştuktan sonra Takımlar ekranından ekleyebilirsiniz (toplu yapıştırma destekli).</p>`;
+      <input type="color" class="clr" data-w="takimlar.${j}.renk" value="${esc(t.renk)}" onchange="render()"></div>`).join('')}</div>
+    <p class="hint mut small">Oyuncular turnuva oluştuktan sonra Takımlar ekranından eklenir.</p>`;
   if(i===2) g = `
-    <div class="grid2">
-      <div class="fld"><label>Kadro (takım başına oyuncu)</label>${stepper('w','kadro',1,40)}</div>
-      <div class="fld"><label>Sahadaki oyuncu</label>${stepper('w','sahada',1,20)}</div>
-      <div class="fld"><label>Maç / devre süresi (dk)</label>${stepper('w','sure',0,90)}<div class="hint">0 = süresiz</div></div>
-      <div class="fld"><label>Devre sayısı</label>${stepper('w','macDevre',1,5)}</div>
+    <div class="wk4">
+      <div class="fld"><label>Kadro</label>${stepper('w','kadro',1,40)}</div>
+      <div class="fld"><label>Sahada</label>${stepper('w','sahada',1,20)}</div>
+      <div class="fld"><label>Süre (dk, 0=yok)</label>${stepper('w','sure',0,90)}</div>
+      <div class="fld"><label>Devre</label>${stepper('w','macDevre',1,5)}</div>
     </div>
-    <div class="fld"><label>Skor birimi</label><select class="inp" onchange="W.ayar.skorAd=this.value;render()">${['Gol','Sayı','Set','Puan'].map(x=>`<option ${a.skorAd===x?'selected':''}>${x}</option>`).join('')}</select></div>
-    ${a.usul!=='eleme' ? `<div class="sec"><h2>Puanlama${a.usul==='grup' ? ' (grup maçları)' : ''}</h2></div>
-    <div class="grid2" style="grid-template-columns:repeat(3,1fr)">
-      <div class="fld"><label>Galibiyet</label>${stepper('w','puanG',0,10)}</div>
-      <div class="fld"><label>Beraberlik</label>${stepper('w','puanB',0,10)}</div>
-      <div class="fld"><label>Yenilgi</label>${stepper('w','puanM',0,10)}</div>
-    </div>` : ''}
-    <div class="fld"><label>Sonuç girişi</label><div class="grid2">
-      <button class="btn ${a.sonucTip!=='kazanan'?'p':''}" style="height:auto;padding:10px;flex-direction:column" onclick="W.ayar.sonucTip='skor';render()"><b>Skorlu</b><span class="small" style="opacity:.8">2-1, 3-0 gibi</span></button>
-      <button class="btn ${a.sonucTip==='kazanan'?'p':''}" style="height:auto;padding:10px;flex-direction:column" onclick="W.ayar.sonucTip='kazanan';render()"><b>Sadece kazanan</b><span class="small" style="opacity:.8">Yendi / yenildi</span></button></div></div>
-    <div class="fld" ${a.sonucTip==='kazanan' ? 'style="display:none"' : ''}><label>Hükmen galibiyet skoru</label>${stepper('w','hukmenSkor',1,20)}<div class="hint">Gelmeyen takım ${a.hukmenSkor}-0 yenik sayılır.</div></div>
-    ${a.usul!=='eleme' ? `<div class="sec"><h2>Puan eşitliğinde sıralama</h2></div>${kriterEditor('w')}` : `<div class="bilgi">Eleme usulünde puan tutulmaz. Berabere biten eşleşmede tur atlayan takımı yönetici seçer; nasıl belirlendiğini (penaltı, uzatma, ek oyun vb.) not olarak yazabilir.</div>`}
-    <div class="card" style="margin-top:14px">${toggle('w','soyadKisalt','İzleyicide soyadını kısalt','Herkese açık sayfada “Ali Y.” şeklinde görünür. Yönetici tam adı görür.')}</div>`;
+    <div class="fld"><label>Sonuç girişi</label><div class="wseg">
+      <button class="${a.sonucTip!=='kazanan'?'on':''}" onclick="W.ayar.sonucTip='skor';render()"><b>Skorlu</b><small>2-1, 3-0 gibi</small></button>
+      <button class="${a.sonucTip==='kazanan'?'on':''}" onclick="W.ayar.sonucTip='kazanan';render()"><b>Sadece kazanan</b><small>Yendi / yenildi</small></button></div></div>
+    ${a.sonucTip==='kazanan' ? '' : `<div class="grid2">
+      <div class="fld"><label>Skor birimi</label><select class="inp" onchange="W.ayar.skorAd=this.value;render()">${['Gol','Sayı','Set','Puan'].map(x=>`<option ${a.skorAd===x?'selected':''}>${x}</option>`).join('')}</select></div>
+      <div class="fld"><label>Hükmen skoru (${a.hukmenSkor}-0)</label>${stepper('w','hukmenSkor',1,20)}</div></div>`}
+    ${a.usul!=='eleme' ? `<div class="fld"><label>Puanlama${a.usul==='grup' ? ' (grup maçları)' : ''}</label>
+    <div class="wk3">
+      <div><small>Galibiyet</small>${stepper('w','puanG',0,10)}</div>
+      <div><small>Beraberlik</small>${stepper('w','puanB',0,10)}</div>
+      <div><small>Yenilgi</small>${stepper('w','puanM',0,10)}</div>
+    </div></div>
+    <details class="wdet" ${W.krA?'open':''} ontoggle="W.krA=this.open"><summary><b>Puan eşitliğinde sıralama</b><small>${arr(a.kriterler).length} kriter · değiştirmek için dokunun</small></summary>${kriterEditor('w')}</details>` : `<div class="bilgi">Eleme usulünde puan tutulmaz. Berabere biten eşleşmede tur atlayan takımı yönetici seçer.</div>`}
+    <div class="card wtogc">${toggle('w','soyadKisalt','İzleyicide soyadını kısalt','Herkese açık sayfada “Ali Y.” görünür.')}</div>`;
   if(i===3 && a.usul!=='lig'){
     const n = W.takimlar.length, gl = grupLimit(n, a);
     if(a.usul==='grup'){ a.grupSayisi = gl.G; a.grupCikan = gl.c; }
@@ -3251,9 +3333,9 @@ function wizardHtml(){
       ${wTog('ucunculuk', 'Üçüncülük maçı', 'Yarı finalde elenen iki takım üçüncülük için oynar.')}
     </div>
     ${wKuraBolum()}
-    <div class="sumg"><div><b>${o.turSay}</b><span>Tur</span></div><div><b>${o.macSay}</b><span>Toplam maç</span></div>
-      <div><b>${esc(ilkEl || '—')}</b><span>İlk eleme turu</span></div><div><b>${a.usul==='eleme' ? (bay || 'Yok') : gl.G*gl.c}</b><span>${a.usul==='eleme' ? 'Bay geçen' : 'Elemeye çıkan'}</span></div></div>
-    <div class="bilgi">${a.usul==='eleme' && bay ? `Takım sayısı 2'nin kuvveti olmadığı için ilk turda ${bay} takım kurayla bay geçer. ` : ''}Eşleşmeler ${iki ? 'iki maç oynanır, toplam skora bakılır' : 'tek maçtır'}. Berabere biten eşleşmede tur atlayan takımı yönetici seçer. Bir turun maçları bitmeden sonraki turun takımları belli olmaz; ağaç sonuç girildikçe kendiliğinden dolar.</div>`;
+    <div class="sumg dort"><div><b>${o.turSay}</b><span>Tur</span></div><div><b>${o.macSay}</b><span>Maç</span></div>
+      <div><b class="kck">${esc(ilkEl || '—')}</b><span>İlk eleme turu</span></div><div><b>${a.usul==='eleme' ? (bay || 'Yok') : gl.G*gl.c}</b><span>${a.usul==='eleme' ? 'Bay geçen' : 'Elemeye çıkan'}</span></div></div>
+    <div class="bilgi">${a.usul==='eleme' && bay ? `Takım sayısı 2'nin kuvveti olmadığı için ilk turda ${bay} takım kurayla bay geçer. ` : ''}Berabere biten eşleşmede tur atlayan takımı yönetici seçer; ağaç sonuç girildikçe kendiliğinden dolar.</div>`;
   }
   if(i===3 && a.usul==='lig'){
     const n = W.takimlar.length, tek = (n%2?n:n-1), mac = n*(n-1)/2*(a.ligDevre===2?2:1);
@@ -3268,46 +3350,49 @@ function wizardHtml(){
         <button class="btn ${a.kuraTip!=='canli'?'p':''}" style="height:auto;padding:12px;flex-direction:column" onclick="W.ayar.kuraTip='hemen';render()"><b>🎲 Hemen çek</b><span class="small" style="opacity:.8">Oluşturunca fikstür hazır</span></button>
         <button class="btn ${a.kuraTip==='canli'?'p':''}" style="height:auto;padding:12px;flex-direction:column" onclick="W.ayar.kuraTip='canli';render()"><b>🎬 Canlı kura töreni</b><span class="small" style="opacity:.8">Herkes ekrandan canlı izler</span></button>
       </div></div>
-    ${a.kuraTip==='canli' ? `<div class="bilgi">Turnuva oluşturulunca fikstür çekilmez. Bugün ekranındaki <b>“Kura törenini başlat”</b> düğmesine bastığınızda kura; sesli ve animasyonlu olarak bağlantıyı açık tutan herkesin ekranında aynı anda çekilir. Teknik direktörleri törenden önce Takımlar ekranından ekleyebilirsiniz.</div>` : `<div class="fld"><label>Kura sırası</label>
+    ${a.kuraTip==='canli' ? `<div class="bilgi">Fikstür, Bugün ekranındaki <b>“Kura törenini başlat”</b> düğmesiyle herkesin ekranında canlı çekilir.</div>` : `<div class="fld"><label>Kura sırası</label>
       <div class="grid2">
         <button class="btn ${a.kura!=='sirali'?'p':''}" onclick="W.ayar.kura='rastgele';render()">🎲 Rastgele kura</button>
         <button class="btn ${a.kura==='sirali'?'p':''}" onclick="W.ayar.kura='sirali';render()">Listedeki sıra</button>
       </div></div>`}
-    <div class="sumg"><div><b>${tek*(a.ligDevre===2?2:1)}</b><span>Tur</span></div><div><b>${mac}</b><span>Toplam maç</span></div>
-      <div><b>${n-1}${a.ligDevre===2?' × 2':''}</b><span>Takım başına maç</span></div><div><b>${n%2?'Var':'Yok'}</b><span>Bay geçme</span></div></div>
+    <div class="sumg dort"><div><b>${tek*(a.ligDevre===2?2:1)}</b><span>Tur</span></div><div><b>${mac}</b><span>Maç</span></div>
+      <div><b>${n-1}${a.ligDevre===2?'×2':''}</b><span>Takım başı maç</span></div><div><b>${n%2?'Var':'Yok'}</b><span>Bay geçme</span></div></div>
     <div class="bilgi">${a.ligDevre===2?'İkinci yarıda ilk yarının maçları ev sahibi ve deplasman yer değiştirerek tekrar oynanır.':'Ev sahibi/deplasman dağılımı takımlar arasında dengeli yapılır.'}</div>`;
   }
-  if(i===4) g = `
+  if(i===4){ const tn = arr(a.tatiller).length;
+    g = `
     <div class="grid2">
       <div class="fld"><label>Başlangıç</label><input class="inp" type="date" data-w="baslangic" value="${a.baslangic}" onchange="render()"></div>
       <div class="fld"><label>Bitiş</label><input class="inp" type="date" data-w="bitis" value="${a.bitis}" onchange="render()"></div>
     </div>
     <div class="fld"><label>Oyun günleri</label>${gunSecici('w')}</div>
-    <div class="fld"><label>Maç saatleri</label>${slotEditor('w')}<div class="hint">Örn. öğle arası 12:30 ve 13:00. Her saate bir maç (ya da saha sayısı kadar maç) konur.</div></div>
+    <div class="fld"><label>Maç saatleri <span class="mut" style="font-weight:500">· her saate bir maç</span></label><div class="wsl">${slotEditor('w')}</div></div>
     <div class="grid2">
-      <div class="fld"><label>Aynı anda kaç maç oynanabilir?</label>${stepper('w','sahaSayisi',1,10)}</div>
-      <div class="fld"><label>Takım günde en fazla</label>${stepper('w','gunlukMacMax',1,5)}<div class="hint">maç oynar</div></div>
+      <div class="fld"><label>Aynı anda kaç maç?</label>${stepper('w','sahaSayisi',1,10)}</div>
+      <div class="fld"><label>Takım günde en çok</label>${stepper('w','gunlukMacMax',1,5)}</div>
     </div>
-    <div class="fld"><label>Tatil / maç yapılmayacak günler</label>${tatilEditor('w')}</div>`;
+    <details class="wdet" ${W.ttA?'open':''} ontoggle="W.ttA=this.open"><summary><b>Tatil / maç yapılmayacak günler</b><small>${tn ? tn + ' kayıt' : 'Yok'} · eklemek için dokunun</small></summary>${tatilEditor('w')}</details>`;
+  }
   if(i===5){
     const o = wOnizleme(), p = o.plan;
-    g = `<div class="sumg">
+    g = `<div class="sumg alti">
       <div><b>${W.takimlar.length}</b><span>Takım</span></div><div><b>${o.macSay}</b><span>Maç · ${o.turSay} tur</span></div>
-      <div><b>${o.gunSay}</b><span>Uygun oyun günü</span></div><div><b>${o.kapasite}</b><span>Maç kapasitesi</span></div>
+      <div><b>${o.gunSay}</b><span>Oyun günü</span></div><div><b>${o.kapasite}</b><span>Maç kapasitesi</span></div>
       <div><b>${tarihYaz(a.baslangic)}</b><span>Başlangıç</span></div><div><b>${p.son?tarihYaz(p.son):'—'}</b><span>Tahmini son maç</span></div></div>
-    ${p.tasan ? `<div class="uyari">⚠️ ${p.tasan} maç bitiş tarihine (${tarihYaz(a.bitis)}) sığmıyor; bu maçlar sonraki oyun günlerine planlanacak. Saat ekleyerek, saha sayısını artırarak veya bitiş tarihini uzatarak sığdırabilirsiniz.</div>` : `<div class="bilgi">✅ Tüm maçlar ${tarihYaz(a.bitis)} tarihine kadar planlanabiliyor.</div>`}
-    <div class="card small">
-      <b>${esc(a.logo)} ${esc(a.ad)}</b> · ${esc(a.tur)}<br>
-      ${a.usul==='eleme' ? `Eleme usulü · ${+a.elemeMac===2 ? 'rövanşlı' : 'tek maç'}${a.ucunculuk ? ' · üçüncülük maçı' : ''}` : a.usul==='grup' ? `Gruplar + eleme · ${a.grupSayisi} grup, ilk ${a.grupCikan} çıkar · ${+a.elemeMac===2 ? 'rövanşlı' : 'tek maç'} eleme` : (a.ligDevre===2?'Çift devre':'Tek devre')+' lig'} · ${a.kuraTip==='canli' ? 'canlı kura' : a.kura==='sirali'?'listedeki sıra':'rastgele kura'}${a.usul!=='eleme' ? ` · G/B/M: ${a.puanG}/${a.puanB}/${a.puanM}` : ''}<br>
-      Günler: ${arr(a.gunler).map(n=>GUN_AD[n%7]).join(', ')} · Saatler: ${arr(a.slotlar).join(', ')}${+a.sahaSayisi>1?' · '+a.sahaSayisi+' saha':''}<br>
-      Kadro ${a.kadro} · sahada ${a.sahada} · ${+a.sure?a.sure+' dk × '+a.macDevre+' devre':'süresiz'}
+    ${p.tasan ? `<div class="uyari">⚠️ ${p.tasan} maç bitiş tarihine (${tarihYaz(a.bitis)}) sığmıyor; sonraki oyun günlerine planlanacak. Saat ya da saha ekleyebilir, bitiş tarihini uzatabilirsiniz.</div>` : `<div class="bilgi">✅ Tüm maçlar ${tarihYaz(a.bitis)} tarihine kadar planlanabiliyor.</div>`}
+    <div class="card wozet">
+      <div class="woz-b"><span>${esc(a.logo)}</span><div><b>${esc(a.ad)}</b><small>${esc(a.tur)}${a.aciklama ? ' · ' + esc(a.aciklama) : ''}</small></div></div>
+      <div class="woz-s"><i>Usul</i><span>${a.usul==='eleme' ? `Eleme · ${+a.elemeMac===2 ? 'rövanşlı' : 'tek maç'}${a.ucunculuk ? ' · üçüncülük maçı' : ''}` : a.usul==='grup' ? `${a.grupSayisi} grup (ilk ${a.grupCikan} çıkar) + ${+a.elemeMac===2 ? 'rövanşlı' : 'tek maç'} eleme` : (a.ligDevre===2?'Çift devre':'Tek devre')+' lig'}</span></div>
+      <div class="woz-s"><i>Kura</i><span>${a.kuraTip==='canli' ? 'Canlı kura töreni' : a.kura==='sirali'?'Listedeki sıra':'Rastgele kura'}</span></div>
+      <div class="woz-s"><i>Sonuç</i><span>${a.sonucTip==='kazanan' ? 'Sadece kazanan' : 'Skorlu'}${a.usul!=='eleme' ? ` · puan ${a.puanG}/${a.puanB}/${a.puanM}` : ''}</span></div>
+      <div class="woz-s"><i>Takvim</i><span>${arr(a.gunler).map(n=>GUN_AD[n%7]).join(', ')} · ${arr(a.slotlar).join(', ')}${+a.sahaSayisi>1?' · aynı anda '+a.sahaSayisi+' maç':''}</span></div>
+      <div class="woz-s"><i>Maç</i><span>Kadro ${a.kadro} · sahada ${a.sahada} · ${+a.sure?a.sure+' dk × '+a.macDevre+' devre':'süresiz'}</span></div>
     </div>
-    ${a.kuraTip==='canli' ? `<div class="bilgi">🎬 <b>Canlı kura töreni:</b> Turnuva oluşturulur, fikstür törende çekilir. Tören saatini Bugün ekranından duyurabilir, “Kura törenini başlat” ile herkese canlı yayınlayabilirsiniz.</div>`
-      : `<div class="bilgi">“Kura çek ve oluştur” dediğinizde fikstür çekilir ve tüm maçlar takvime yerleştirilir. Sonradan Ayarlar'dan saatleri/tatilleri değiştirip kalan maçları yeniden planlayabilirsiniz.</div>`}`;
+    <div class="hint" style="text-align:center">${a.kuraTip==='canli' ? '🎬 Fikstür, Bugün ekranından başlatacağınız canlı kura töreninde çekilir.' : 'Fikstür çekilir ve maçlar takvime yerleşir; sonradan Ayarlar’dan değiştirebilirsiniz.'}</div>`;
   }
-  return `<div class="wz-steps">${ADIMLAR.map((_,j)=>`<i class="${j<=i?'on':''}"></i>`).join('')}</div>
-    <div class="wz-head"><small>Yeni turnuva · Adım ${i+1}/${ADIMLAR.length}</small><h1>${ADIMLAR[i]}</h1></div>
-    ${g}
+  return `<div class="wzc wz${i}"><div class="wz-steps">${ADIMLAR.map((_,j)=>`<i class="${j<=i?'on':''}"></i>`).join('')}</div>
+    <div class="wz-head"><h1>${ADIMLAR[i]}</h1><small>Yeni turnuva · ${i+1}/${ADIMLAR.length}</small></div>
+    ${g}</div>
     <div class="wz-foot"><button class="btn" onclick="wGeri()">${i===0?'Vazgeç':'← Geri'}</button>
     ${i<ADIMLAR.length-1 ? `<button class="btn p" onclick="wIleri()">İleri →</button>` : `<button class="btn a" onclick="turnuvaOlustur()">${a.kuraTip==='canli' ? '🎬 Turnuvayı oluştur' : '🎲 Kura çek ve oluştur'}</button>`}</div>`;
 }
