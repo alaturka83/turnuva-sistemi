@@ -1380,6 +1380,58 @@ details.acc .ab{padding:14px}
 .kf-bay{flex-wrap:wrap;justify-content:center;row-gap:4px;text-align:center}
 .ag-t>.lg{flex:none!important;width:auto}
 .ag-t .lg{flex:0 0 auto!important}
+
+/* v21: fon müziği düğmesi */
+#bgmBtn{position:fixed;right:12px;bottom:calc(74px + env(safe-area-inset-bottom));z-index:29;width:38px;height:38px;border-radius:50%;border:1px solid var(--line,#e3e8e5);background:rgba(255,255,255,.92);box-shadow:0 4px 14px rgba(0,0,0,.12);display:flex;align-items:flex-end;justify-content:center;gap:2.5px;padding:0 0 11px;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+#bgmBtn svg{width:19px;height:19px;fill:none;stroke:#94a3b8;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin:auto}
+#bgmBtn:not(.on){align-items:center;padding:0}
+#bgmBtn i{width:3.5px;height:6px;border-radius:2px;background:var(--pri2,#1f8a55)}
+#bgmBtn.cal i{animation:eq 1s ease-in-out infinite}
+#bgmBtn.cal i:nth-child(2){animation-delay:-.35s}#bgmBtn.cal i:nth-child(3){animation-delay:-.7s}
+@keyframes eq{0%,100%{height:5px}50%{height:15px}}
+@media(min-width:900px){#bgmBtn{bottom:18px;right:18px}}
+body:has(#tv.ac) #bgmBtn,body:has(#kuraT.ac) #bgmBtn{display:none}
+/* placeholder logo */
+.lg.lgbos{border-radius:50%;background:#eef2f0;border:1.5px dashed #b9c6bf;color:#8a9a92;font-weight:800;font-family:var(--fd);display:inline-grid;place-items:center}
+/* hero tek satır */
+.hero .hs{flex-wrap:nowrap}
+.hero .hs>div{flex:1 1 0;min-width:0}
+.hero .hs b{line-height:1.1;word-break:normal;overflow-wrap:normal}
+/* ağaç: turlar görünümü */
+.agstep{display:flex;align-items:center;gap:4px;overflow-x:auto;padding:2px 2px 10px;margin:0 -2px 4px;scrollbar-width:none}
+.agstep::-webkit-scrollbar{display:none}
+.ags{flex:none;display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:8px 13px;border-radius:12px;border:1.5px solid var(--line,#e3e8e5);background:#fff;font:inherit;color:inherit;cursor:pointer;text-align:left}
+.ags b{font-size:14px;white-space:nowrap}.ags small{font-size:11px;color:var(--mut);font-weight:600;white-space:nowrap}
+.ags.tam small{color:var(--pri2)}
+.ags.on{background:var(--pri2,#1f8a55);border-color:var(--pri2,#1f8a55);color:#fff;box-shadow:0 4px 12px rgba(31,138,85,.25)}
+.ags.on small{color:rgba(255,255,255,.85)}
+.agok{font-style:normal;color:#b9c6bf;font-weight:800;flex:none}
+.aghd{display:flex;align-items:flex-end;justify-content:space-between;margin:2px 2px 8px}
+.aghd h3{margin:0;font-family:var(--fd);font-size:22px}.aghd small{color:var(--mut);font-size:12.5px;font-weight:600}
+.agbay{display:flex;flex-wrap:wrap;align-items:center;gap:6px;background:#f6faf8;border:1px dashed #cfe2d6;border-radius:12px;padding:8px 10px;margin-bottom:10px}
+.agbay>span:first-child{font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--pri2);margin-right:2px}
+.agbc{display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid var(--line,#e3e8e5);border-radius:999px;padding:3px 10px 3px 4px;font-weight:700;font-size:13px}
+.agbay small{flex-basis:100%;color:var(--mut);font-size:11.5px}
+.akgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;margin-bottom:12px}
+.ak{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--line,#e3e8e5);border-radius:16px;padding:0;overflow:hidden;font:inherit;color:inherit;cursor:pointer;box-shadow:0 2px 10px rgba(16,40,28,.05)}
+.akh{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#f6faf8;border-bottom:1px solid var(--line,#e3e8e5);font-size:11.5px;font-weight:700;color:var(--mut)}
+.akn{color:var(--pri2);letter-spacing:.6px;font-weight:800}.akz{flex:1}
+.akh .badge{margin:0}
+.akt{display:flex;align-items:center;gap:10px;padding:9px 12px;position:relative}
+.akt + .akt{border-top:1px solid #f0f3f1}
+.akad{flex:1;min-width:0;font-weight:700;font-size:15px;line-height:1.15}
+.akt b{font-family:var(--fd);font-size:22px;min-width:18px;text-align:right}
+.akt.kaz::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:4px;border-radius:0 4px 4px 0;background:var(--pri2,#1f8a55)}
+.akt.kaz .akad,.akt.kaz b{color:var(--pri2)}
+.akt.kyb{opacity:.45}
+.akw{font-style:normal;width:20px;height:20px;border-radius:50%;background:var(--pri2,#1f8a55);color:#fff;font-size:12px;display:grid;place-items:center;flex:none}
+.akt.bos .akad{font-style:italic;color:var(--mut);font-weight:600;font-size:14px}
+.akf{padding:7px 12px 9px;border-top:1px dashed var(--line,#e3e8e5);font-size:12px;color:var(--mut);font-weight:600;display:flex;flex-wrap:wrap;gap:4px 6px}
+.akf i{font-style:normal;opacity:.5}.akf b{color:var(--ink,#16231c)}
+.ak.fin{border:2px solid var(--acc,#f4c430);box-shadow:0 6px 22px rgba(244,196,48,.22)}
+.ak.fin .akh{background:linear-gradient(90deg,#fff8dc,#fffdf3)}.ak.fin .akn{color:#a16207}
+.ak.u3 .akn{color:#9a6b3f}
+@media(max-width:600px){.akgrid{grid-template-columns:1fr}.aghd h3{font-size:20px}}
 </style>
 </head>
 <body>
@@ -1783,6 +1835,7 @@ const TURLER = {
   'Voleybol':{skorAd:'Set', kadro:10, sahada:6, sure:0, macDevre:3},
   'Masa Tenisi':{skorAd:'Set', kadro:3, sahada:1, sure:0, macDevre:3},
   'Satranç':{skorAd:'Puan', kadro:4, sahada:1, sure:15, macDevre:1},
+  'Akıl ve Zeka Oyunları':{skorAd:'Puan', kadro:1, sahada:1, sure:0, macDevre:1},
   'Diğer':{skorAd:'Puan', kadro:5, sahada:1, sure:10, macDevre:1}
 };
 
@@ -1964,6 +2017,7 @@ function oyuncuAd(p){
 function oyuncu(tkId, pid){ const t = S.T.takimlar[tkId]; return t && t.oyuncular[pid]; }
 function logo(t, size=30){
   const fs = Math.round(size*.84);
+  if(t.bos) return `<span class="lg lgbos" style="width:${size}px;height:${size}px;font-size:${Math.round(size*.5)}px">?</span>`;
   if(t.logoImg) return `<span class="lg" style="width:${size}px;height:${size}px"><img src="${t.logoImg}" alt=""></span>`;
   return `<span class="lg" style="width:${size}px;height:${size}px;font-size:${fs}px">${esc(t.logo||'⚽')}</span>`;
 }
@@ -2007,7 +2061,14 @@ function render(){
   main.innerHTML = f();
   if(S.view==='takimlar') requestAnimationFrame(takimSigdir);
   if(S.view==='istatistik') requestAnimationFrame(istSigdir);
+  if(S.view==='bugun') requestAnimationFrame(heroSigdir);
   if(S.view==='turnuvaAyar') qrCiz();
+}
+function heroSigdir(){
+  document.querySelectorAll('.hero .hs b').forEach(b=>{
+    b.style.fontSize = ''; let f = parseFloat(getComputedStyle(b).fontSize), lh = f*1.1;
+    while(f > 12 && (b.scrollWidth > b.clientWidth + 1 || b.scrollHeight > lh*2.15)){ f -= 1; lh = f*1.1; b.style.fontSize = f + 'px'; }
+  });
 }
 function kurumLogo(size){
   const k = S.kurum || {};
@@ -2096,7 +2157,7 @@ function bugunHtml(){
     <div class="hs">
       <div><b>${oyn}/${toplam}</b>Oynanan maç</div>
       ${lig ? `<div><b>${lider ? esc(lider.ad) : '—'}</b>Lider</div>` : `<div><b>${esc(asama)}</b>Aşama</div>`}
-      <div><b>${golcu ? golcu.gol : '—'}</b>${golcu ? esc(oyuncuAd(oyuncu(golcu.tk,golcu.p))) : 'Gol kralı'}</div>
+      ${skorAd()==='Gol' ? `<div><b>${golcu ? golcu.gol : '—'}</b>${golcu ? esc(oyuncuAd(oyuncu(golcu.tk,golcu.p))) : 'Gol kralı'}</div>` : `<div><b>${toplam - oyn}</b>Kalan maç</div>`}
     </div>
     <div class="prog"><i style="width:${toplam?Math.round(oyn/toplam*100):0}%"></i></div>
   </div>`;
@@ -2107,7 +2168,7 @@ function bugunHtml(){
   const ert = ms.filter(m=>m.durum==='ertelendi' || (!m.tarih && !oynandi(m) && m.durum!=='canli'));
   if(ert.length && yonetici()) h += `<div class="uyari">⚠️ ${ert.length} maçın tarihi yok (ertelenmiş). Ayarlar → Takvim bölümünden yeniden planlayabilirsiniz.</div>`;
   if(son.length) h += `<div class="sec"><h2>Son sonuçlar</h2><button class="lnk" onclick="git('fikstur')">Tümü →</button></div>` + mList(son.map(m=>macKart(m)));
-  if(!lig) h += `<div class="sec"><h2>${usul()==='eleme' ? 'Turnuva ağacı' : 'Gruplar ve eleme'}</h2><button class="lnk" onclick="git('tablo')">Tümü →</button></div>${usul()==='grup' ? gruplarHtml() : ''}${usul()==='eleme' ? agacHtml() : ''}`;
+  if(!lig) h += `<div class="sec"><h2>${usul()==='eleme' ? 'Turnuva ağacı' : 'Gruplar ve eleme'}</h2><button class="lnk" onclick="git('tablo')">Tümü →</button></div>${usul()==='grup' ? gruplarHtml() : ''}${usul()==='eleme' ? agacHtml({mod:'tur'}) : ''}`;
   else if(sira.length) h += `<div class="sec"><h2>Puan durumu</h2><button class="lnk" onclick="git('tablo')">Tam tablo →</button></div><div class="card">${tabloTablo(sira.slice(0,5), false)}</div>`;
   h += kurKart(false);
   return h;
@@ -2135,42 +2196,67 @@ function esKutu(key, es){
   if(r.ms.length > 1) alt += (alt ? ' · ' : '') + '2 maç';
   return `<button class="ag-es${r.kaz?' bitti':''}" onclick="macDetay('${hedef}')">${sat(A, r.a, kA)}${sat(B, r.b, kB)}${alt ? `<small>${alt}</small>` : ''}</button>`;
 }
-function agacHtml(){
+function sonrakiEs(key){
+  const m = Object.values(S.T.maclar).find(x=>x.evK==='k:'+key || x.depK==='k:'+key);
+  if(!m) return null; const b = esBilgi(m.es); return b.tad + (b.no ? ' ' + b.no : '');
+}
+function esKart(key, es, i, son){
+  const r = es[key]; if(!r) return '';
+  const m0 = r.ms[0], A = mTk(m0,'ev'), B = mTk(m0,'dep'), oyn = r.oynanan > 0, canli = r.ms.some(m=>m.durum==='canli');
+  const hedef = (r.ms.find(m=>!oynandi(m)) || r.ms[r.ms.length-1]).id;
+  const mz = r.ms.find(m=>!oynandi(m) && m.tarih) || r.ms.find(m=>m.tarih);
+  const zaman = mz ? `${tarihYaz(mz.tarih)}${mz.saat ? ' · ' + mz.saat : ''}` : 'Tarih yok';
+  const durum = canli ? '<span class="badge live">Canlı</span>' : r.kaz ? '<span class="badge">Bitti</span>' : r.berabere ? '<span class="badge er">Kazanan seçilecek</span>' : '';
+  const sat = (t, sk, ben) => { const k = r.kaz ? (r.kaz===ben ? 'kaz' : 'kyb') : '';
+    return `<div class="akt ${k}${t.bos ? ' bos' : ''}">${logo(t,28)}<span class="akad">${esc(t.ad)}</span>${k==='kaz' ? '<i class="akw">✓</i>' : ''}<b>${oyn ? sk : ''}</b></div>`; };
+  const bacak = r.ms.length > 1 ? r.ms.map(m=>`${m.bacak}. maç ${oynandi(m) || m.durum==='canli' ? `<b>${m.ev===r.A ? m.evGol+'-'+m.depGol : m.depGol+'-'+m.evGol}</b>` : (m.tarih ? m.tarih.split('-').reverse().slice(0,2).join('.') : '—')}`).join(' · ') : '';
+  const not = r.kaz && r.a===r.b ? esc(r.ms[r.ms.length-1].kNot || 'Beraberlikte belirlendi') : '';
+  const nx = key==='u3' ? '' : son ? '🏆 Galibi şampiyon' : (x => x ? `Galibi → ${esc(x)}` : '')(sonrakiEs(key));
+  const alt = [bacak, not, nx].filter(Boolean).join('<i>·</i>');
+  return `<button class="ak${r.kaz ? ' bitti' : ''}${son ? ' fin' : ''}${key==='u3' ? ' u3' : ''}" onclick="macDetay('${hedef}')">
+    <div class="akh"><span class="akn">${key==='u3' ? '🥉 ÜÇÜNCÜLÜK' : son ? '🏆 FİNAL' : 'MAÇ ' + (i+1)}</span><span class="akz">${esc(zaman)}</span>${durum}</div>
+    ${sat(A, r.a, r.A)}${sat(B, r.b, r.B)}${alt ? `<div class="akf">${alt}</div>` : ''}</button>`;
+}
+function agacHtml(opt={}){
   const T = S.T, el = Object.values(T.maclar).filter(m=>m.asama==='eleme'); if(!el.length) return '';
   const es = esSonuclari(T), R = Math.max(...el.filter(m=>m.es!=='u3').map(m=>+m.es.slice(1).split('-')[0]));
+  const sp = sampiyonId(T), u3 = es.u3;
+  const tadR = r => (el.find(m=>m.es && m.es.startsWith(`e${r}-`)) || {}).tad || '';
+  const keys = r => Object.keys(es).filter(k=>k.startsWith(`e${r}-`)).sort((a, b)=>+a.split('-')[1] - +b.split('-')[1]);
+  const spHtml = sp ? `<div class="ag-sp">${logo(takim(sp),44)}<div><small>ŞAMPİYON</small><b>${esc(takim(sp).ad)}</b></div><span>🏆</span></div>` : '';
+  const bayHucre = (r, j) => { const ust = es[`e${r+1}-${Math.floor(j/2)}`], m0 = ust && ust.ms[0], yan = j%2 ? 'dep' : 'ev', src = m0 && m0[yan+'K'];
+    return src && !src.startsWith('k:') ? mTk(m0, yan) : null; };
+  const mod = opt.mod || S.agMod || (window.innerWidth <= 600 ? 'tur' : 'agac');
+  if(mod === 'tur'){
+    const aktif = (()=>{ for(let r=1; r<=R; r++) if(keys(r).some(k=>!es[k].kaz)) return r; return R; })();
+    const sec = Math.min(R, S.agTur || aktif);
+    const step = Array.from({length:R}, (_, i)=>i+1).map(r=>{ const ks = keys(r), b = ks.filter(k=>es[k].kaz).length, tam = ks.length && b===ks.length;
+      return `<button class="ags${r===sec ? ' on' : ''}${tam ? ' tam' : ''}" onclick="S.agTur=${r};render()"><b>${esc(tadR(r))}</b><small>${tam ? '✓ Tamamlandı' : `${b}/${ks.length} eşleşme`}</small></button>`; }).join('<i class="agok">›</i>');
+    const ks = keys(sec), tarihler = ks.flatMap(k=>es[k].ms.map(m=>m.tarih)).filter(Boolean).sort();
+    const baylar = []; for(let j=0; j<2**(R-sec); j++) if(!es[`e${sec}-${j}`]){ const t = bayHucre(sec, j); if(t) baylar.push(t); }
+    const kartlar = ks.map((k, i)=>esKart(k, es, i, sec===R)).join('') + (u3 && sec===R ? esKart('u3', es, 0, false) : '');
+    return `${spHtml}<div class="agstep">${step}</div>
+      <div class="aghd"><div><h3>${esc(tadR(sec))}</h3><small>${ks.length} eşleşme${baylar.length ? ` · ${baylar.length} bay` : ''}${tarihler.length ? ` · ${tarihYaz(tarihler[0])}${tarihler.length > 1 && tarihler[tarihler.length-1] !== tarihler[0] ? ' – ' + tarihYaz(tarihler[tarihler.length-1]) : ''}` : ''}</small></div></div>
+      ${baylar.length ? `<div class="agbay"><span>Bay geçenler</span>${baylar.map(t=>`<span class="agbc">${logo(t,20)}${esc(t.ad)}</span>`).join('')}<small>Doğrudan ${esc(tadR(sec+1))} turuna çıkar</small></div>` : ''}
+      <div class="akgrid">${kartlar}</div>`;
+  }
   let cols = '';
   for(let r=1; r<=R; r++){
     const cells = [];
     for(let j=0; j<2**(R-r); j++){
       const key = `e${r}-${j}`;
       if(es[key]){ cells.push(esKutu(key, es)); continue; }
-      const ust = es[`e${r+1}-${Math.floor(j/2)}`], m0 = ust && ust.ms[0], yan = j%2 ? 'dep' : 'ev', src = m0 && m0[yan+'K'];
-      cells.push(src && !src.startsWith('k:') ? `<div class="ag-es ag-bay"><div class="ag-t${mTk(m0,yan).bos?' bos':''}">${logo(mTk(m0,yan),20)}<span>${esc(mTk(m0,yan).ad)}</span></div><small>Bay · doğrudan üst tur</small></div>` : `<div class="ag-es ag-bos"></div>`);
+      const t = bayHucre(r, j);
+      cells.push(t ? `<div class="ag-es ag-bay"><div class="ag-t${t.bos?' bos':''}">${logo(t,20)}<span>${esc(t.ad)}</span></div><small>Bay · doğrudan üst tur</small></div>` : `<div class="ag-es ag-bos"></div>`);
     }
-    const tad = (el.find(m=>m.es && m.es.startsWith(`e${r}-`)) || {}).tad || '';
-    cols += `<div class="ag-tur ${r===R?'fin':''}"><h3>${esc(tad)}</h3><div class="ag-h">${cells.join('')}</div></div>`;
+    cols += `<div class="ag-tur ${r===R?'fin':''}"><h3>${esc(tadR(r))}</h3><div class="ag-h">${cells.join('')}</div></div>`;
   }
-  const sp = sampiyonId(T), u3 = es.u3;
-  if(window.innerWidth <= 600){
-    // Mobil: tur sekmeleri + tam genişlik eşleşmeler (isimler kesilmez)
-    const aktif = (()=>{ for(let r=1; r<=R; r++) if(Object.keys(es).some(k=>k.startsWith(`e${r}-`) && !es[k].kaz)) return r; return R; })();
-    const sec = Math.min(R, S.agTur || aktif);
-    const tadR = r => (el.find(m=>m.es && m.es.startsWith(`e${r}-`)) || {}).tad || '';
-    let liste = '';
-    for(let j=0; j<2**(R-sec); j++){
-      const key = `e${sec}-${j}`;
-      if(es[key]){ liste += esKutu(key, es); continue; }
-      const ust = es[`e${sec+1}-${Math.floor(j/2)}`], m0 = ust && ust.ms[0], yan = j%2 ? 'dep' : 'ev', src = m0 && m0[yan+'K'];
-      if(src && !src.startsWith('k:')) liste += `<div class="ag-es ag-bay"><div class="ag-t${mTk(m0,yan).bos?' bos':''}">${logo(mTk(m0,yan),24)}<span>${esc(mTk(m0,yan).ad)}</span></div><small>Bay · doğrudan ${esc(tadR(sec+1))}</small></div>`;
-    }
-    return `${sp ? `<div class="ag-sp">${logo(takim(sp),40)}<div><small>ŞAMPİYON</small><b>${esc(takim(sp).ad)}</b></div><span>🏆</span></div>` : ''}
-      <div class="chips agch">${Array.from({length:R}, (_, i)=>i+1).map(r=>`<button class="chip ${r===sec?'on':''}" onclick="S.agTur=${r};render()">${esc(tadR(r))}</button>`).join('')}</div>
-      <div class="agm">${liste}</div>
-      ${u3 && sec===R ? `<div class="sec"><h2>Üçüncülük Maçı</h2></div><div class="agm">${esKutu('u3', es)}</div>` : ''}`;
-  }
-  return `${sp ? `<div class="ag-sp">${logo(takim(sp),44)}<div><small>ŞAMPİYON</small><b>${esc(takim(sp).ad)}</b></div><span>🏆</span></div>` : ''}
-    <div class="agac">${cols}</div>
+  return `${spHtml}<div class="agac">${cols}</div>
     ${u3 ? `<div class="sec"><h2>Üçüncülük Maçı</h2></div><div class="ag-u3">${esKutu('u3', es)}</div>` : ''}`;
+}
+function agacSeg(){
+  const mod = S.agMod || (window.innerWidth <= 600 ? 'tur' : 'agac');
+  return `<div class="seg"><button class="${mod==='tur'?'on':''}" onclick="S.agMod='tur';render()">Turlar</button><button class="${mod==='agac'?'on':''}" onclick="S.agMod='agac';render()">Ağaç</button></div>`;
 }
 function elemeBilgi(){
   const a = S.T.ayar;
@@ -2183,8 +2269,8 @@ function gruplarHtml(){
     return `<div class="sec"><h2>${g} Grubu</h2><span class="mut small">${x.bitti ? '✅ Tamamlandı' : `İlk ${c} takım eleme turuna çıkar`}</span></div><div class="card">${tabloTablo(x.sira, window.innerWidth <= 600, c)}</div>`; }).join('');
 }
 function tabloHtml(){
-  if(usul()==='eleme') return `<div class="sec" style="margin-top:4px"><h2>Turnuva Ağacı</h2><button class="ibtn" title="İndir" onclick="indirMenu('tablo')">⬇️</button></div>${agacHtml()}${elemeBilgi()}`;
-  if(usul()==='grup') return `<div class="sec" style="margin-top:4px"><h2>Gruplar</h2><button class="ibtn" title="İndir" onclick="indirMenu('tablo')">⬇️</button></div>${gruplarHtml()}<div class="sec"><h2>Eleme Turu</h2></div>${agacHtml()}${elemeBilgi()}`;
+  if(usul()==='eleme') return `<div class="sec" style="margin-top:4px"><h2>Turnuva Ağacı</h2><div class="row" style="gap:6px">${agacSeg()}<button class="ibtn" title="İndir" onclick="indirMenu('tablo')">⬇️</button></div></div>${agacHtml()}${elemeBilgi()}`;
+  if(usul()==='grup') return `<div class="sec" style="margin-top:4px"><h2>Gruplar</h2><button class="ibtn" title="İndir" onclick="indirMenu('tablo')">⬇️</button></div>${gruplarHtml()}<div class="sec"><h2>Eleme Turu</h2>${agacSeg()}</div>${agacHtml()}${elemeBilgi()}`;
   const sira = siralamaHesap(S.T), a = S.T.ayar;
   const kr = arr(a.kriterler).filter(k=>KRITERLER[k]);
   return `<div class="sec" style="margin-top:4px"><h2>Puan Tablosu</h2>
@@ -3816,6 +3902,36 @@ function tvRender(){
     ag.style.transformOrigin = 'top center'; ag.style.transform = `scale(${sc.toFixed(3)})`; }); }
 }
 
+/* ===================== GENEL FON MÜZİĞİ ===================== */
+const BGM = {
+  a:null, ses:.16, acik:(()=>{ try{ return localStorage.getItem('tm_bgm') !== '0'; }catch(e){ return true; } })(),
+  hazir(){ if(this.a) return this.a; const a = new Audio('fon-muzik.mp3'); a.loop = true; a.preload = 'none'; a.volume = this.ses; a.addEventListener('play', ()=>this.ciz()); a.addEventListener('pause', ()=>this.ciz()); this.a = a; return a; },
+  caliyor(){ return !!(this.a && !this.a.paused); },
+  baslat(){
+    if(!this.acik || (typeof KT!=='undefined' && KT.acik) || document.hidden) return;
+    const a = this.hazir(); clearInterval(a._f); a.volume = 0;
+    const p = a.play(); if(p && p.catch) p.catch(()=>{});
+    let v = 0; a._f = setInterval(()=>{ v = Math.min(this.ses, v + .02); a.volume = v; if(v >= this.ses) clearInterval(a._f); }, 120);
+    this.ciz();
+  },
+  dur(){ if(!this.a) return; const a = this.a; clearInterval(a._f); a.pause(); this.ciz(); },
+  tog(){ this.acik = !this.acik; try{ localStorage.setItem('tm_bgm', this.acik ? '1' : '0'); }catch(e){} this.acik ? this.baslat() : this.dur(); toast(this.acik ? '🎵 Fon müziği açık' : 'Fon müziği kapalı'); this.ciz(); },
+  ciz(){
+    let b = document.getElementById('bgmBtn');
+    if(!b){ b = document.createElement('button'); b.id = 'bgmBtn'; b.title = 'Fon müziği'; b.onclick = e=>{ e.stopPropagation(); BGM.tog(); }; document.body.appendChild(b); }
+    const on = this.acik;
+    b.className = on ? (this.caliyor() ? 'on cal' : 'on') : '';
+    b.innerHTML = on ? '<i></i><i></i><i></i>' : '<svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/><path d="M3 3l18 18"/></svg>';
+  }
+};
+(function(){
+  let kilit = false;
+  const ilk = e=>{ if(e && e.target && e.target.closest && e.target.closest('#bgmBtn')) return; if(!kilit){ kilit = true; try{ Ses.hazir(); }catch(e){} } if(BGM.acik && !BGM.caliyor()) BGM.baslat(); };
+  ['pointerdown','keydown','touchstart'].forEach(ev=>document.addEventListener(ev, ilk, {passive:true}));
+  document.addEventListener('visibilitychange', ()=>{ if(document.hidden) BGM.dur(); else if(BGM.acik) BGM.baslat(); });
+  window.addEventListener('load', ()=>{ BGM.ciz(); if(BGM.acik) BGM.baslat(); });
+})();
+
 /* ===================== CANLI KURA TÖRENİ ===================== */
 /* Tören, sunucu saatine bağlı tek bir zaman çizelgesidir: kura.baslangic + geçen süre.
    Herkes aynı anı görür; sonradan katılan kaldığı yerden izler. */
@@ -3980,7 +4096,7 @@ function kuraGoster(gecen, tekrar){
   if(!S.T || !S.T.kura) return;
   const P = kuraPlan(S.T); if(!P.n){ toast('Kura bilgisi bulunamadı'); return; }
   sheetKapat(); if($('#tv').classList.contains('ac')) tvKapat();
-  kuraKapat(true);
+  kuraKapat(true); BGM.dur();
   Object.assign(KT, {acik:true, P, olay:kuraOlaylar(P), idx:0, tekrar:!!tekrar, baslangic:S.T.kura.baslangic || 0});
   ktIskelet(P);
   KT.t0 = performance.now() - (gecen || 0);
@@ -4009,6 +4125,7 @@ function kuraKapat(sessiz){
   Ses.padDur(); document.body.style.overflow = '';
   if(KT.acik && !sessiz && !KT.tekrar && KT.baslangic){ try{ localStorage.setItem('tm_kuraKapat', String(KT.baslangic)); }catch(e){} }
   KT.acik = false;
+  if(!sessiz) setTimeout(()=>BGM.baslat(), 300);
 }
 function ktSesAc(){
   if(Ses.hazir() && KT.acik && ktGecen() < KT.P.finale) Ses.padBasla();
