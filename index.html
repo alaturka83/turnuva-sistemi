@@ -1669,6 +1669,8 @@ body:has(#kutla.ac) #bgmBtn{display:none}
   .wzc.wz2 .fld{margin-bottom:7px}
   body:has(.wz-foot) #bgmBtn{display:none}
 }
+.ay-tla{margin:-4px -4px 0}
+.ay-tla .ay-t.acik{background:#eef8f2;border-radius:12px}
 </style>
 </head>
 <body>
@@ -3639,10 +3641,13 @@ function ayarAnaHtml(){
     <span class="ay-ok">✏️</span></button>
 
   <div class="sec"><h2>Turnuvalar</h2><button class="btn sm p" onclick="wizardBaslat()">+ Yeni</button></div>
-  <div class="card ay-tl">${ks.map(id=>{ const l = S.liste[id];
+  ${(()=>{ const liste = ks.map(id=>{ const l = S.liste[id];
     return `<button class="ay-t ${S.tid===id ? 'acik' : ''}" onclick="turnuvaAyarAc('${id}')"><span class="ay-tlg">${esc(l.logo||'🏆')}</span>
       <span class="ay-tm"><b>${esc(l.ad)}</b><small>${esc(l.tur||'')}${l.olusturma ? ' · ' + new Date(l.olusturma).toLocaleDateString('tr-TR') : ''}</small></span>
-      <span class="ay-ok">›</span></button>`; }).join('') || '<div class="mut small" style="padding:10px 4px">Henüz turnuva yok. “+ Yeni” ile başlayın.</div>'}</div>
+      <span class="ay-ok">›</span></button>`; }).join('');
+    if(ks.length < 2) return `<div class="card ay-tl">${liste || '<div class="mut small" style="padding:10px 4px">Henüz turnuva yok. “+ Yeni” ile başlayın.</div>'}</div>`;
+    const c = S.liste[S.tid] || {};
+    return ac('anaTur', esc(c.logo || '🏆'), `${ks.length} turnuva`, 'Açık olan: ' + esc(c.ad || '—'), `<div class="ay-tl ay-tla">${liste}</div>`); })()}
 
   <div class="sec"><h2>Genel</h2></div>
   ${S.T ? ac('anaRapor', '📄', 'Raporlar ve çıktılar', esc(S.T.ayar.ad) + ' · PDF ve Excel', ciktiSatirlari(['tablo','fikstur','gunluk','istatistik','kadro','kartlar','foy','rapor'])) : ''}
