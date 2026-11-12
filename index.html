@@ -162,6 +162,16 @@ svg.i{fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke
 .tcard b{display:block;margin-top:8px;font-family:var(--fd);font-size:19px}
 .thead{border-radius:18px;padding:18px;color:#fff;display:flex;gap:14px;align-items:center;margin-bottom:14px;position:relative;overflow:hidden}
 .thead h1{font-size:28px}
+.thlogo{flex:none;display:grid;place-items:center;padding:0;border-radius:14px;cursor:zoom-in;position:relative;transition:transform .15s}
+.thlogo:hover{transform:scale(1.06)}
+.thlogo:active{transform:scale(.97)}
+.thlogo:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
+.thlogo::after{content:"🔍";position:absolute;right:-6px;bottom:-6px;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;font-size:12px;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.lbuyuk{display:grid;place-items:center;padding:6px 0 14px}
+.lbuyuk .lbk{width:min(78vw,340px);height:min(78vw,340px);border-radius:24px;display:grid;place-items:center;background:var(--soft,#eef3ef);border:4px solid var(--tc,#ccc);overflow:hidden;padding:10px}
+.lbuyuk .lbk img{width:100%;height:100%;object-fit:contain}
+.lbuyuk .lbk span{font-size:min(46vw,200px);line-height:1}
+.lbuyuk h3{margin-top:12px;font-family:var(--fd);font-size:24px;text-align:center}
 
 /* PLAYER CARDS */
 .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}
@@ -2673,13 +2683,19 @@ function takimDetayHtml(){
   const ms = macListe().filter(m=>m.ev===t.id || m.dep===t.id);
   const ad = yonetici();
   return `<button class="btn sm" style="margin-bottom:10px" onclick="git('takimlar')">← Takımlar</button>
-    <div class="thead" style="background:linear-gradient(135deg,${esc(t.renk)},#0b3d2a)">${logo(t,64)}<div><h1>${esc(t.ad)}</h1>${t.td && t.td.ad ? `<div class="tdsat">${tdGorsel(t,26)}<span>Teknik Direktör: <b>${esc(t.td.ad)}</b></span></div>` : ''}
+    <div class="thead" style="background:linear-gradient(135deg,${esc(t.renk)},#0b3d2a)"><button class="thlogo" onclick="takimLogoBuyut('${t.id}')" title="Logoyu büyüt" aria-label="Logoyu büyüt">${logo(t,64)}</button><div><h1>${esc(t.ad)}</h1>${t.td && t.td.ad ? `<div class="tdsat">${tdGorsel(t,26)}<span>Teknik Direktör: <b>${esc(t.td.ad)}</b></span></div>` : ''}
       <div class="tozet"><span class="g"><b>${st.g}</b> galibiyet</span><span class="b"><b>${st.b}</b> beraberlik</span><span class="m"><b>${st.m}</b> yenilgi</span></div></div></div>
     ${ad ? `<div class="tak-akt"><button onclick="takimDuzenle('${t.id}')"><span>✏️</span>Düzenle</button><button onclick="oyuncuForm('${t.id}')"><span>➕</span>Oyuncu</button><button onclick="topluOyuncu('${t.id}')"><span>📋</span>Toplu ekle</button><button onclick="indirMenu('takim')"><span>⬇️</span>Kadro/Kart</button>${!Object.keys(S.T.maclar).length ? `<button class="r" onclick="takimSil('${t.id}')"><span>🗑</span>Sil</button>` : ''}</div>` : ''}
     <div class="sec"><h2>Oyuncular</h2><span class="mut small">${oy.length}${kadro?' / '+kadro:''}</span></div>
     ${kadro && oy.length>kadro ? `<div class="uyari">Kadro sınırı ${kadro} oyuncu, bu takımda ${oy.length} oyuncu var.</div>`:''}
     ${oy.length ? `<div class="pgrid pk${Math.min(5, Math.max(3, oy.length))}">${oy.map(p=>oyuncuKart(t,p)).join('')}</div>` : `<div class="card empty small">Henüz oyuncu eklenmedi.${ad?' “+ Oyuncu” ile ekleyebilirsiniz.':''}</div>`}
     <div class="sec"><h2>Maçları</h2></div>${mList(ms.map(m=>macKart(m)))}`;
+}
+function takimLogoBuyut(id){
+  const t = takim(id); if(!t || t.bos) return;
+  const ic = t.logoImg ? `<img src="${t.logoImg}" alt="${esc(t.ad)} logosu">` : `<span>${esc(t.logo||'⚽')}</span>`;
+  sheet(`<div class="sh"><h2>Takım Logosu</h2><button class="x" onclick="sheetKapat()">✕</button></div>
+    <div class="lbuyuk" style="--tc:${esc(t.renk)}"><div class="lbk">${ic}</div><h3>${esc(t.ad)}</h3></div>`);
 }
 function oyuncuKart(t, p){
   const s = oyuncuIstat(t.id, p.id);
