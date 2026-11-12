@@ -377,7 +377,7 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
   .mac .mtp,.mac .mtp i{max-width:60px}
   .mac .mrow{gap:4px;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}
   .mac .tk{gap:4px;font-size:13px;line-height:1.12}
-  .mac .tk .tad{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word;text-overflow:clip}
+  .mac .tk .tad{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:normal;overflow-wrap:normal;text-overflow:clip}
   .mac .tk .lg{width:22px!important;height:22px!important;font-size:19px!important}
   .mac .skor,.mac .saat{min-width:46px;padding:1px 4px}
   .mac .skor{font-size:17px}
@@ -476,7 +476,7 @@ textarea.inp{height:auto;min-height:110px;padding:10px 12px;resize:vertical}
   .tcard{padding:9px 4px 7px;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:3px}
   .tcard::before{height:4px}
   .tcard .lg{width:34px!important;height:34px!important;font-size:29px!important}
-  .tcard b{font-size:13.5px!important;line-height:1.1;margin-top:2px!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
+  .tcard b{font-size:13.5px!important;line-height:1.1;margin-top:2px!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:normal;overflow-wrap:normal}
   .tcard .tdk{font-size:10.5px;margin:0;max-width:100%}
   .tgrid.k4 .tcard .lg{width:28px!important;height:28px!important;font-size:24px!important}
   .tgrid.k4 .tcard b{font-size:12px!important}
@@ -919,16 +919,16 @@ details.acc .ab{padding:14px}
   .tgrid .tcard .lg,.tgrid.k4 .tcard .lg{grid-row:1/3;width:30px!important;height:30px!important;font-size:26px!important}
   .tcard b,.tgrid.k4 .tcard b{grid-column:2;margin:0!important;font-size:13px!important;line-height:1.12;align-self:end}
   .tcard .tdk{grid-column:2;font-size:10.5px;align-self:start;margin:0}
-  .tbl .tkc span{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.1;max-width:none;word-break:normal;overflow-wrap:break-word}
+  .tbl .tkc span{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.1;max-width:none;word-break:normal;overflow-wrap:normal}
   .tbl.detay .tkc span{font-size:11px}
   .st-tr{grid-template-columns:16px 18px minmax(0,1.6fr) minmax(0,.75fr) 36px;gap:6px}
-  .st-tr-ad{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.1;font-size:12.5px;overflow-wrap:break-word}
-  .st-km>span,.st-sm>b,.st-pd>b{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.12;overflow-wrap:break-word}
+  .st-tr-ad{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.1;font-size:12.5px;overflow-wrap:normal;word-break:normal}
+  .st-km>span,.st-sm>b,.st-pd>b{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.12;overflow-wrap:normal;word-break:normal}
   .st-hs,.st-go{grid-template-columns:minmax(0,46%) 1fr auto}
   .st-hs-t,.st-go .st-hs-t{font-size:12px}
   .st-msat{grid-template-columns:1fr;justify-items:start;gap:2px;font-size:12px}
   .st-msat .st-skr{margin-left:24px}
-  .lst li b{overflow-wrap:break-word}
+  .lst li b{overflow-wrap:normal;word-break:normal}
 }
 
 /* v8: takımlar dikey otomatik sığdırma + ayarlar */
@@ -937,7 +937,7 @@ details.acc .ab{padding:14px}
   .tgrid.tgv .tcard{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:var(--h,96px);padding:6px 4px 5px!important;text-align:center;border-radius:12px}
   .tgrid.tgv .tcard::before{left:0!important;right:0!important;top:0!important;bottom:auto!important;width:auto!important;height:4px!important}
   .tgrid.tgv .tcard .lg{grid-row:auto;width:var(--lg)!important;height:var(--lg)!important;font-size:calc(var(--lg) * .86)!important;flex:none}
-  .tgrid.tgv .tcard b{font-size:var(--fs)!important;line-height:1.1;margin:2px 0 0!important;text-align:center;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:break-word;max-width:100%}
+  .tgrid.tgv .tcard b{font-size:var(--fs)!important;line-height:1.1;margin:2px 0 0!important;text-align:center;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:normal;word-break:normal;max-width:100%}
   .tgrid.tgv .tcard>*{align-self:center!important;grid-column:auto!important}
   .tgrid.tgv .tcard .tdk{font-size:calc(var(--fs) - 3px);max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0}
 }
@@ -945,7 +945,7 @@ details.acc .ab{padding:14px}
 .ay-dur.on{color:var(--pri2);background:#e7f3ec}
 .ay-kurum{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px}
 .ay-km{flex:1;min-width:0}
-.ay-km b{display:block;font-size:16px;overflow-wrap:break-word}
+.ay-km b{display:block;font-size:16px;overflow-wrap:normal;word-break:normal}
 .ay-km small{display:block;color:var(--mut);font-size:12.5px;line-height:1.3;margin-top:1px}
 .ay-ok{flex:none;width:32px;height:32px;border-radius:10px;background:var(--soft);display:grid;place-items:center;font-size:16px;color:var(--mut)}
 .ay-tl{padding:4px 10px}
@@ -954,7 +954,7 @@ details.acc .ab{padding:14px}
 .ay-t.acik .ay-tlg{box-shadow:0 0 0 2px var(--pri3)}
 .ay-tlg{width:40px;height:40px;border-radius:12px;background:var(--soft);display:grid;place-items:center;font-size:23px;flex:none}
 .ay-tm{flex:1;min-width:0}
-.ay-tm b{display:block;font-size:15px;line-height:1.2;overflow-wrap:break-word}
+.ay-tm b{display:block;font-size:15px;line-height:1.2;overflow-wrap:normal;word-break:normal}
 .ay-tm small{display:block;color:var(--mut);font-size:12px}
 .ay-r{flex:none;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.3px;padding:2px 7px;border-radius:6px;background:var(--soft);color:var(--mut)}
 .ay-r.yay{background:#e7f3ec;color:var(--pri2)}
@@ -1043,7 +1043,7 @@ details.acc .ab{padding:14px}
 .td-on{--tc:#13693f;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;margin-bottom:12px;color:#fff;background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(0,0,0,.45)),var(--tc);box-shadow:0 6px 18px rgba(0,0,0,.15)}
 .td-on .lg{filter:drop-shadow(0 3px 6px rgba(0,0,0,.35))}
 .td-on-m{min-width:0}
-.td-on-m b{display:block;font-family:var(--fd);font-size:22px;line-height:1.1;overflow-wrap:break-word}
+.td-on-m b{display:block;font-family:var(--fd);font-size:22px;line-height:1.1;overflow-wrap:normal;word-break:normal}
 .td-on-m small{display:block;opacity:.9;font-size:13px;margin-top:2px}
 .td-bl{background:#fff;border-radius:14px;padding:10px 12px;margin-bottom:8px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
 .td-et{display:block;font-size:12px;font-weight:800;color:#33443b;margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px}
@@ -1095,7 +1095,7 @@ details.acc .ab{padding:14px}
 /* v14: oyuncu kartları hizalı + tam isim */
 .pgrid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
 .pgrid .pc{display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
-.pgrid .pc .pn{white-space:normal!important;display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.1;min-height:2.2em;max-width:100%;overflow-wrap:break-word;text-overflow:clip}
+.pgrid .pc .pn{white-space:normal!important;display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.1;min-height:2.2em;max-width:100%;overflow-wrap:normal;word-break:normal;text-overflow:clip}
 .pgrid .pc .ps{margin-top:auto;padding-top:3px}
 /* v13: mobil takım düzenle tek ekran + oyuncu kartı sütunları */
 @media(max-width:600px){
@@ -1142,7 +1142,7 @@ details.acc .ab{padding:14px}
   .pgrid.pk5 .pc .pfoto{width:38px!important;height:38px!important;border-width:2px!important}
   .pgrid.pk4 .pc .pav{font-size:36px!important}
   .pgrid.pk5 .pc .pav{font-size:30px!important}
-  .pgrid.pk4 .pc .pn,.pgrid.pk5 .pc .pn{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.05;overflow-wrap:break-word}
+  .pgrid.pk4 .pc .pn,.pgrid.pk5 .pc .pn{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.05;overflow-wrap:normal;word-break:normal}
   .pgrid.pk4 .pc .pn{font-size:12.5px}
   .pgrid.pk5 .pc .pn{font-size:10.5px}
   .pgrid.pk4 .pc .ps{font-size:10.5px;gap:5px}
@@ -4813,6 +4813,30 @@ Store.on('aktif', v=>{ S.aktif = v || null; secimYap(); });
 Store.on('kurum', v=>{ S.kurum = v || {}; yenile(); });
 if(URLP.get('tv')==='1') setTimeout(()=>{ if(S.T) tvAc(); }, 1500);
 render();
+
+/* Uzun isimler: kelimeyi bölmeden sığdır — tek kelime kutuya sığmıyorsa yazıyı küçült */
+(function(){
+  const SEL = '.tad, .tbl .tkc span, .st-tr-ad, .st-km>span, .st-sm>b, .st-pd>b, .lst li b, .tcard b, .ay-km b, .ay-tm b, .td-on-m b, .pgrid .pc .pn, .kk-ad, .kt-slot span:not(.lg), .kf-ad, .ag-t span, .hero .hs b, .brr span:not(.lg), .tvt span:not(.lg)';
+  let bekliyor = false;
+  function sigdir(){
+    bekliyor = false;
+    document.querySelectorAll(SEL).forEach(el=>{
+      if(el.dataset.fsk){ el.style.fontSize = ''; delete el.dataset.fsk; }
+      if(!el.clientWidth) return;
+      const cs = getComputedStyle(el);
+      if(cs.whiteSpace === 'nowrap') return;          // tek satır + "…" kullanan yerler
+      if(el.scrollWidth <= el.clientWidth + 1) return;
+      let fs = parseFloat(cs.fontSize); const min = Math.max(8, fs * 0.55); let n = 0;
+      while(el.scrollWidth > el.clientWidth + 1 && fs > min && n++ < 40){ fs -= 0.5; el.style.fontSize = fs + 'px'; }
+      el.dataset.fsk = 1;
+    });
+  }
+  const iste = () => { if(!bekliyor){ bekliyor = true; requestAnimationFrame(sigdir); } };
+  new MutationObserver(iste).observe(document.body, {childList:true, subtree:true, characterData:true});
+  addEventListener('resize', iste);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(iste);
+  iste();
+})();
 </script>
 </body>
 </html>
